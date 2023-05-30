@@ -10,15 +10,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ShellComponent } from './shell/shell.component';
-import { I18nModule } from './i18n';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { I18nModule } from './i18n';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ShellComponent,
-  ],
+  declarations: [AppComponent, ShellComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,12 +24,10 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'en-US'
-    }),
-    I18nModule
+    TranslateModule.forRoot(),
+    I18nModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

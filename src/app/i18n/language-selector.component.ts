@@ -12,13 +12,16 @@ export class LanguageSelectorComponent implements OnInit {
 
   constructor(private i18nService: I18nService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('###', this.i18nService.language);
+  }
 
   setLanguage(language: string) {
     this.i18nService.language = language;
   }
 
   get currentLanguage(): string {
+    console.log(this.i18nService.language);
     return this.i18nService.language;
   }
 

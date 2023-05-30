@@ -82,19 +82,70 @@
             <div class="md:hidden flex content-center justify-center mb-2">
                 <img class="" src="/assets/logo.svg" alt="Logo">
             </div>
-           
-            <div class="px-2">
-                <hr>
+            <!-- Navigation links -->
+            <div class="hidden sm:-my-px sm:ml-6 sm:flex">
+              <a
+                routerLink="/job-seeker"
+                routerLinkActive="active"
+                class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              >
+                Job Seeker
+              </a>
+              <a
+                routerLink="/employer"
+                routerLinkActive="active"
+                class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              >
+                Employer
+              </a>
             </div>
-
-            <div class="flex justify-between mt-2">
-                <a href="">
-                    <img src="/assets/linkedin.svg" alt="Linkedin">
-                </a>
-                <img class="hidden md:block"  src="/assets/logo.svg" alt="Logo">
-                <div class="text-[14px] text-[#93969E] font-normal">Privacy Policy & Terms</div>
+          </div>
+          <!-- Language dropdown and toggle icon for small devices -->
+          <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <!-- Language dropdown -->
+            <div class="relative inline-block text-left">
+              <app-language-selector [icon]="false"></app-language-selector>
             </div>
+          </div>
+          <!-- Toggle icon for small devices -->
+          <div class="flex sm:hidden items-center">
+            <button
+              type="button"
+              (click)="drawer.toggle()"
+              *ngIf="isHandset$ | async"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <!-- Toggle icon -->
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        </footer>
-    </mat-sidenav-content>
+    <router-outlet></router-outlet>
+
+    <footer class="w-11/12 mx-auto mb-8 sm:px-6">
+      <div class="md:hidden flex content-center justify-center mb-2">
+        <img class="" src="/assets/logo.svg" alt="Logo" />
+      </div>
+
+      <div class="px-2">
+        <hr />
+      </div>
+
+      <div class="flex justify-between mt-2">
+        <a href="">
+          <img src="/assets/linkedin.svg" alt="Linkedin" />
+        </a>
+        <img class="hidden md:block" src="/assets/logo.svg" alt="Logo" />
+        <div class="text-[14px] text-[#93969E] font-normal">
+          Privacy Policy & Terms
+        </div>
+      </div>
+    </footer>
+  </mat-sidenav-content>
 </mat-sidenav-container>
