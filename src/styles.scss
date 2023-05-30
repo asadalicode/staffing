@@ -8,8 +8,12 @@
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 
-html, body { height: 100%; }
-body { 
+html,
+body {
+    height: 100%;
+}
+
+body {
     @apply font-montserrat;
 }
 
@@ -17,18 +21,82 @@ body {
 // custom styles
 
 
-.btn-primary{
+.btn-primary {
     @apply bg-primary-dark rounded-[8px] font-bold text-base text-white px-6 py-3;
 }
 
-.btn-primary-outline{
+.btn-primary-outline {
     @apply border-2 border-primary-dark hover:bg-primary-dark rounded-[8px] font-bold text-base hover:text-white text-primary-dark px-6 py-3;
 }
 
-.btn-primary-link{
+.btn-primary-link {
     @apply font-bold text-2xl text-primary-dark underline
 }
 
-.btn-primary-link{
+.btn-primary-link {
     @apply text-primary-dark underline font-bold text-base;
+}
+
+
+.owl-theme {
+    .owl-nav {
+        display: none;
+    }
+    .owl-dots {
+        text-align: center;
+        margin-top: 80px;
+        -webkit-tap-highlight-color: transparent;
+        padding: 0 4px;
+
+        @media screen and (max-width: 567px) {
+            margin-top: 30px;
+        }
+
+        .owl-dot{
+            background:#CFCED6;
+            height: 16px;
+            width: 16px;
+            border-radius: 100%;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            -ms-border-radius: 100%;
+            -o-border-radius: 100%;
+            margin: 0 4px;
+
+            span{
+               visibility: hidden;
+            }
+}
+        .active {
+            height: 16px;
+             width: 44px;
+
+            background: #E2888C;
+            border-radius: 8px;
+        }
+    }
+}
+
+.slider-section {
+    position: relative;
+
+    .slider-section-background {
+        height: 100%;
+
+        &::before {
+            content: "";
+            background-color: #FDEFED;
+            border-radius: 20px;
+            position: absolute;
+            width: 80%;
+            left: 10%;
+            top: 0;
+            height: calc(100% - 50px);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+        }
+    }
+
 }

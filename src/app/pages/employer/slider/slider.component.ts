@@ -19,12 +19,13 @@ export class SliderComponent {
 ]
   customOptions: OwlOptions = {
     loop: true,
+    autoplay: false,
     center: true,
-    margin: 10,
+    margin:48,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -36,6 +37,9 @@ export class SliderComponent {
       },
       1024: {
         items: 3
+      },
+      1500: {
+        items:3
       }
     },
     nav: true
