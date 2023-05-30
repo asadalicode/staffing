@@ -6,6 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./employer.component.scss']
 })
 export class EmployerComponent {
+  total = 32;
+  items = [1,1,1,1]
+  constructor() { }
+  
 
-  constructor() {}
+  loadmore() {
+    this.items.push(1);
+    this.items.push(1);
+    this.items.push(1);
+    this.items.push(1);
+  }
+
+  gotoTop() {
+    let top = document.getElementById('top');
+    if (top !== null) {
+      top.scrollIntoView();
+      top = null;
+    }
+  }
 }

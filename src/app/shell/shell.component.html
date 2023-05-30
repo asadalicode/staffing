@@ -28,59 +28,21 @@
         </button>
       </div> -->
 
-        <!-- app.component.html -->
-        <header class="bg-white sticky top-0 z-10">
-            <nav class="w-11/12 mx-auto sm:px-6">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <!-- Logo -->
-                        <div class="flex-shrink-0 flex items-center">
-                            <a href="#">
-                                <!-- Add your logo image or text here -->
-                                <img class="block w-16 w-auto" src="assets/logo.svg" alt="Logo">
-                            </a>
-                        </div>
-                        <!-- Navigation links -->
-                        <div class="hidden sm:-my-px sm:ml-6 sm:flex">
-                            <a routerLink="/job-seeker" routerLinkActive="active"
-                                class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                                Job Seeker
-                            </a>
-                            <a routerLink="/employer" routerLinkActive="active"
-                                class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                                Employer
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Language dropdown and toggle icon for small devices -->
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <!-- Language dropdown -->
-                        <div class="relative inline-block text-left">
-                            <app-language-selector [icon]="true"></app-language-selector>
-                           
-                        </div>
-                    </div>
-                    <!-- Toggle icon for small devices -->
-                    <div class="flex sm:hidden items-center">
-                        <button type="button" (click)="drawer.toggle()" *ngIf="isHandset$ | async"
-                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
-                            aria-controls="mobile-menu" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <!-- Toggle icon -->
-                            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <router-outlet></router-outlet>
-
-
-        <footer class="w-11/12 mx-auto mb-8 sm:px-6 sm:mt-[60px] md:mt-[100px]">
-
-            <div class="md:hidden flex content-center justify-center mb-2">
-                <img class="" src="/assets/logo.svg" alt="Logo">
+    <!-- app.component.html -->
+    <header class="bg-white sticky top-0">
+      <nav class="w-11/12 mx-auto sm:px-6">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+              <a href="#">
+                <!-- Add your logo image or text here -->
+                <img
+                  class="block w-16 w-auto"
+                  src="assets/logo.svg"
+                  alt="Logo"
+                />
+              </a>
             </div>
             <!-- Navigation links -->
             <div class="hidden sm:-my-px sm:ml-6 sm:flex">
