@@ -5,7 +5,7 @@ import { BaseChartDirective } from 'ng2-charts';
 @Component({
   selector: 'app-salary-graph',
   templateUrl: './salary-graph.component.html',
-  styleUrls: ['./salary-graph.component.scss']
+  styleUrls: ['./salary-graph.component.scss'],
 })
 export class SalaryGraphComponent {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
@@ -16,14 +16,14 @@ export class SalaryGraphComponent {
     scales: {
       x: {},
       y: {
-        min: 10
-      }
+        min: 10,
+      },
     },
     plugins: {
       legend: {
         display: false,
-      }
-    }
+      },
+    },
   };
   barChartType: ChartType = 'bar';
   //  barChartPlugins = [
@@ -32,17 +32,26 @@ export class SalaryGraphComponent {
 
   barChartData: ChartData<'bar'> = {
     labels: ['60-70k', '80-90k', '100-110k', '120-130k', '140-150'],
-    datasets: [    
-      { data: [28, 48, 30,45, 50], backgroundColor: "rgba(210, 210, 210, 1)" }
-    ] 
+    datasets: [
+      {
+        data: [28, 48, 30, 45, 50],
+        backgroundColor: [
+          'rgba(210, 210, 210, 1)',
+          '#AA1D35',
+          'rgba(210, 210, 210, 1)',
+          'rgba(210, 210, 210, 1)',
+          'rgba(210, 210, 210, 1)',
+        ],
+      },
+    ],
   };
 
   // events
-  chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+  chartClicked({ event, active }: { event?: ChartEvent; active?: {}[] }): void {
     console.log(event, active);
   }
 
-  chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+  chartHovered({ event, active }: { event?: ChartEvent; active?: {}[] }): void {
     console.log(event, active);
   }
 
@@ -55,7 +64,8 @@ export class SalaryGraphComponent {
       Math.round(Math.random() * 100),
       56,
       Math.round(Math.random() * 100),
-      40];
+      40,
+    ];
 
     this.chart?.update();
   }

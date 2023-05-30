@@ -12,7 +12,6 @@
 export const environment = {
   production: false,
   version: 1 + '-dev',
-  serverUrl: 'https://backend.eridejo.com',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'ar-SA', 'es-ES', 'it-IT', 'fr-FR'],
 };
