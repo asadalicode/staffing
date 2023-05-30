@@ -1,0 +1,22 @@
+<owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let item of items">
+        <ng-template carouselSlide>
+            <div class="bg-white m-4 p-7 rounded-md text-left">
+                <img class=" w-auto max-w-[20px] max-h-[20px]" src="/assets/icons/qoute.svg" alt="">
+                <q class="block mt-6 mb-4">The professionalism and dedication of the team at this recruitment agency made our hiring process seamless and
+                stress-free.</q>
+                <figcaption class="flex items-center space-x-4">
+                    <img src="/assets/placeholder/user-icon.png" alt=""
+                        class="flex-none w-auto max-w-[50px] rounded-full object-cover" loading="lazy" decoding="async">
+                    <div class="flex-auto">
+                        <div class="text-base text-slate-900 font-semibold dark:text-slate-300">Ryan Florence</div>
+                        <div class="mt-0.5">Remix &amp; React Training</div>
+                    </div>
+                </figcaption>
+            </div>
+
+        </ng-template>
+    </ng-container>
+
+
+</owl-carousel-o>
