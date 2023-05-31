@@ -20,6 +20,13 @@ body {
 
 // custom styles
 
+.nav-link{
+    @apply inline-flex items-center px-1 pt-1 text-base font-semibold text-secondary-light hover:text-primary-dark;
+
+    &.active {
+        @apply text-primary-dark;
+    }
+}
 
 .btn-primary {
     @apply bg-primary-dark rounded-[8px] font-bold text-base text-white px-6 py-3;
