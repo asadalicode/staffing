@@ -100,3 +100,15 @@ body {
     }
 
 }
+
+
+// my custom input styles based on input type
+
+input[type=radio] {
+    lable{
+        @apply text-xl font-normal text-secondary-light cursor-pointer;
+    }
+    &:checked + label{
+            @apply font-semibold underline text-primary-dark ;
+    }
+}

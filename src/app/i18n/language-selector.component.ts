@@ -21,7 +21,6 @@ export class LanguageSelectorComponent implements OnInit {
   }
 
   get currentLanguage(): string {
-    console.log(this.i18nService.language);
     return this.i18nService.language;
   }
 

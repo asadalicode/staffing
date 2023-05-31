@@ -1,28 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { interval as observableInterval } from "rxjs";
+import { takeWhile, scan, tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-employer',
   templateUrl: './employer.component.html',
   styleUrls: ['./employer.component.scss']
 })
-export class EmployerComponent {
+export class EmployerComponent implements OnInit{
   total = 32;
-  items = [1,1,1,1]
+  items = [
+    { fav: true},
+    { fav: false},
+    { fav: false},
+    { fav: true},
+  ];
+  windowScrolled = false;
+  tabSelected = 'All Candidates';  // default
   constructor() { }
   
-
-  loadmore() {
-    this.items.push(1);
-    this.items.push(1);
-    this.items.push(1);
-    this.items.push(1);
+  ngOnInit() {
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.pageYOffset !== 0;
+    });
   }
 
-  gotoTop() {
-    let top = document.getElementById('top');
-    if (top !== null) {
-      top.scrollIntoView();
-      top = null;
-    }
+  loadmore() {
+    this.items.push({fav:false});
+    this.items.push({fav:false});
+    this.items.push({fav:true});
+    this.items.push({fav:false});
+  }
+
+  filter(event:any) {}
+
+  scrollToTop(el:Element) {
+    window.scrollTo(0, 0);
   }
 }

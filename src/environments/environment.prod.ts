@@ -10,5 +10,5 @@ export const environment = {
   version: 1,
   // serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US', 'ar-SA', 'es-ES', 'it-IT', 'fr-FR'],
+  supportedLanguages: ['en-US', 'fr-FR'],
 };
