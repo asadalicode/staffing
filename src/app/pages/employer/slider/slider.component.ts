@@ -23,7 +23,7 @@ export class SliderComponent {
     center: true,
     margin: 48,
     mouseDrag: true,
-    touchDrag: false,
+    touchDrag: true,
     pullDrag: false,
     dots: true,
     navSpeed: 700,
