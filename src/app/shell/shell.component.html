@@ -1,26 +1,37 @@
-<mat-sidenav-container class="sidenav-container bg-[#F4F6F8]">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
-            <div class="flex-shrink-0 flex items-center">
-                <a href="#">
-                    <!-- Add your logo image or text here -->
-                    <img class="block w-16 w-auto" src="assets/logo.svg" alt="Logo">
-                </a>
-            </div>
-        <div class="flex flex-col">
-            <a routerLink="/job-seeker" routerLinkActive="active"
-                class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                Job Seeker
-            </a>
-            <a routerLink="/employer" routerLinkActive="active"
-                class=" inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                Employer
-            </a>
-        </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-
-        <!-- <div class="lg-container lg-mx-auto">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="false"
+  >
+    <div class="flex-shrink-0 flex items-center">
+      <a href="javascript:void(0)">
+        <!-- Add your logo image or text here -->
+        <img class="block w-16 w-auto" src="assets/logo.svg" alt="Logo" />
+      </a>
+    </div>
+    <div class="flex flex-col">
+      <a
+        routerLink="/job-seeker"
+        routerLinkActive="active"
+        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+      >
+        Job Seeker
+      </a>
+      <a
+        routerLink="/employer"
+        routerLinkActive="active"
+        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+      >
+        Employer
+      </a>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- <div class="lg-container lg-mx-auto">
         <img class="w-16 md:w-24 lg:w-32" src="assets/logo.svg">
         
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
@@ -35,7 +46,7 @@
           <div class="flex">
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
-              <a href="#">
+              <a href="javascript:void(0)">
                 <!-- Add your logo image or text here -->
                 <img
                   class="block w-16 w-auto"
@@ -56,7 +67,8 @@
               <a
                 routerLink="/employer"
                 routerLinkActive="active"
-                class="ml-8 nav-link ">
+                class="ml-8 nav-link"
+              >
                 Employer
               </a>
             </div>
@@ -99,7 +111,7 @@
       </div>
 
       <div class="flex justify-between mt-2">
-        <a href="">
+        <a href="javascript:void(0)">
           <img src="/assets/linkedin.svg" alt="Linkedin" />
         </a>
         <img class="hidden md:block" src="/assets/logo.svg" alt="Logo" />
