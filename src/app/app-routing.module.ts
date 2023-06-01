@@ -5,13 +5,17 @@ const routes: Routes = [
   { path: '', redirectTo: 'employer', pathMatch: 'full' },
   {
     path: 'employer',
-    loadChildren: () => import('./pages/employer/employer.module')
-      .then(mod => mod.EmployerModule)
-  }
+    loadChildren: () =>
+      import('./pages/employer/employer.module').then(
+        (mod) => mod.EmployerModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
