@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { ShellComponent } from './shell/shell.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18nModule } from './i18n';
+import { RouteReuseStrategy } from '@angular/router';
+import { RouteReusableStrategy } from '@shared';
 
 @NgModule({
   declarations: [AppComponent, ShellComponent],
@@ -27,7 +29,12 @@ import { I18nModule } from './i18n';
     TranslateModule.forRoot(),
     I18nModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: RouteReusableStrategy,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
