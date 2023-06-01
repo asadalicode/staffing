@@ -2,13 +2,17 @@
   <mat-icon>language</mat-icon>
 </button>
 <ng-template #text>
-  <button mat-raised-button color="primary" [matMenuTriggerFor]="languageMenu">
-    {{ currentLanguage }}
+  <button class="flag-list" mat-raised-button color="primary" [matMenuTriggerFor]="languageMenu">
+    <img class="h-[14px] w-[28px] object-cover" src="assets/flags/{{currentLanguage}}.svg" alt="">
+    {{ currentLanguage.split('-')[0] }}
   </button>
 </ng-template>
 <mat-menu #languageMenu="matMenu">
-  <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
-    {{ language }}
-  </button>
+  <ul>
+      <li class="cursor-pointer items-center capitalize flex gap-[5px] px-[10px] py-[5px] hover:bg-primary-light" *ngFor="let language of languages" (click)="setLanguage(language)">
+        <img class="h-[14px] w-[28px] object-cover" src="assets/flags/{{language}}.svg" alt="">
+        {{ language.split('-')[0] }}
+      </li>
+  </ul>
 </mat-menu>
 

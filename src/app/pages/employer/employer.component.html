@@ -1,9 +1,5 @@
-<div
-  class="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-0 py-5 lg:pt-20"
->
-  <h1
-    class="font-montserrat fonr-weight-400 text-3xl md:text-5xl lg:text-7xl sm:text-center"
-  >
+<div class="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-4 sm:px-6 lg:px-0 py-5 lg:pt-20">
+  <h1 class="font-montserrat fonr-weight-400 text-3xl md:text-5xl lg:text-7xl sm:text-center">
     I’ll find you top talent for
     <span class="sm:whitespace-pre before:content-[\a]">
       your
@@ -20,32 +16,18 @@
     <div class="flex flex-row justify-between py-2">
       <div class="flex my-radio-button">
         <div class="flex items-center">
-          <input
-            id="inline-radio"
-            (change)="filter($event)"
-            [checked]="tabSelected === 'All Candidates'"
-            type="radio"
-            value="All Candidates"
-            name="filter-candidate"
-            class="invisible"
-          />
-          <label
-            for="inline-radio"
-            (change)="filter($event)"
-            class="cursor-pointer"
-            >All Candidates</label
-          >
+          <input id="inline-radio" (change)="filter($event)" [checked]="tabSelected === 'All Candidates'" type="radio"
+            value="All Candidates" name="filter-candidate" class="invisible" />
+          <label for="inline-radio" (change)="filter($event)" class="cursor-pointer">
+            <span translate>All_Candidates</span> 
+          </label>
         </div>
         <div class="flex items-center">
-          <input
-            id="inline-2-radio"
-            [checked]="tabSelected === 'Favourites'"
-            type="radio"
-            value="Favourites"
-            name="filter-candidate"
-            class="invisible"
-          />
-          <label for="inline-2-radio" class="cursor-pointer">Favourites</label>
+          <input id="inline-2-radio" [checked]="tabSelected === 'Favourites'" type="radio" value="Favourites"
+            name="filter-candidate" class="invisible" />
+          <label for="inline-2-radio" class="cursor-pointer" translate>
+            <span translate>Favourites</span>
+          </label>
         </div>
       </div>
       <div class="hidden sm:block text-sm14 text-secondary-light">
@@ -58,23 +40,20 @@
       </ng-container>
 
       <div class="flex flex-col items-center gap-3">
-        <button type="button" (click)="loadmore()" class="btn-primary-outline">
-          Invite Favourite Candidates
+        <button type="button" (click)="loadmore()" class="btn-primary-outline" translate>
+           Invite Favourite Candidates
         </button>
-        <button type="button" class="btn-primary-link">
+        <button type="button" class="btn-primary-link" translate>
           Load More Candidates
         </button>
       </div>
     </div>
 
     <div class="flex flex-row justify-center items-center gap-3 pt-4">
-      <button
-        type="button"
-        (click)="scrollToTop()"
-        class="flex gap-2 flex-row items-center text-[13px] font-bold text-secondary"
-      >
+      <button type="button" (click)="scrollToTop()"
+        class="flex gap-2 flex-row items-center text-[13px] font-bold text-secondary">
         <img class="animate-bounce" src="assets/icons/arrow-up.svg" alt="" />
-        <span>Back To Top</span>
+        <span translate>Back To Top</span>
       </button>
     </div>
   </section>
@@ -86,9 +65,7 @@
 
 <div>
   <section class="py-4 mt-3">
-    <h2
-      class="font-bold text-[#93969E] mt-6 text-[24px] sm:text-[30px] md:text-[40px] text-center"
-    >
+    <h2 class="font-bold text-[#93969E] mt-6 text-[24px] sm:text-[30px] md:text-[40px] text-center">
       Our customers say it best.
     </h2>
 

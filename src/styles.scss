@@ -111,6 +111,16 @@ body {
       -ms-border-radius: 20px;
       -o-border-radius: 20px;
     }
+
+    @media  screen and (max-width: 320px) {
+            &::before {
+                content: "";
+                width: 100%;
+                left: 0%;
+                top: -20px;
+                height: calc(100% - 15px);
+                }
+    }
   }
 }
 

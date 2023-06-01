@@ -9,6 +9,7 @@ import { SalaryGraphComponent } from './salary-graph/salary-graph.component';
 import { SliderComponent } from './slider/slider.component';
 import { NgChartsModule, NgChartsConfiguration } from 'ng2-charts';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     CommonModule,
     NgChartsModule,
     CarouselModule,
+    TranslateModule,
     RouterModule.forChild(routes),
   ],
   providers: [

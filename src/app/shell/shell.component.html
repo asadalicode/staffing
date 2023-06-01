@@ -1,12 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="false"
-  >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
     <div class="flex-shrink-0 flex items-center">
       <a href="javascript:void(0)">
         <!-- Add your logo image or text here -->
@@ -14,30 +8,18 @@
       </a>
     </div>
     <div class="flex flex-col">
-      <a
-        routerLink="/job-seeker"
-        routerLinkActive="active"
-        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-      >
-        Job Seeker
+      <a routerLink="/job-seeker" routerLinkActive="active" translate
+        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+        <span translate>Job Seeker</span> 
       </a>
-      <a
-        routerLink="/employer"
-        routerLinkActive="active"
-        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
-      >
+      <a routerLink="/employer" routerLinkActive="active" translate
+        class="inline-flex items-center px-4 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
         Employer
       </a>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- <div class="lg-container lg-mx-auto">
-        <img class="w-16 md:w-24 lg:w-32" src="assets/logo.svg">
-        
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-      </div> -->
+
 
     <!-- app.component.html -->
     <header class="bg-white sticky top-0">
@@ -48,27 +30,15 @@
             <div class="flex-shrink-0 flex items-center">
               <a href="javascript:void(0)">
                 <!-- Add your logo image or text here -->
-                <img
-                  class="block w-16 w-auto"
-                  src="assets/logo.svg"
-                  alt="Logo"
-                />
+                <img class="block w-16 w-auto" src="assets/logo.svg" alt="Logo" />
               </a>
             </div>
             <!-- Navigation links -->
             <div class="hidden sm:-my-px sm:ml-6 sm:flex">
-              <a
-                routerLink="/job-seeker"
-                routerLinkActive="active"
-                class="nav-link"
-              >
+              <a routerLink="/job-seeker" routerLinkActive="active" class="nav-link">
                 Job Seeker
               </a>
-              <a
-                routerLink="/employer"
-                routerLinkActive="active"
-                class="ml-8 nav-link"
-              >
+              <a routerLink="/employer" routerLinkActive="active" class="ml-8 nav-link">
                 Employer
               </a>
             </div>
@@ -82,14 +52,9 @@
           </div>
           <!-- Toggle icon for small devices -->
           <div class="flex sm:hidden items-center">
-            <button
-              type="button"
-              (click)="drawer.toggle()"
-              *ngIf="isHandset$ | async"
+            <button type="button" (click)="drawer.toggle()" *ngIf="isHandset$ | async"
               class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
+              aria-controls="mobile-menu" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
               <!-- Toggle icon -->
               <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -101,8 +66,8 @@
 
     <router-outlet></router-outlet>
 
-    <footer class="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto mb-8 sm:px-6">
-      <div class="md:hidden flex content-center justify-center mb-2">
+    <footer class="w-full sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto  mb-8 sm:px-6 px-4 pt-8 sm:pt-16 pb-6">
+      <div class="sm:hidden flex content-center justify-center mb-2">
         <img class="" src="/assets/logo.svg" alt="Logo" />
       </div>
 
@@ -110,13 +75,19 @@
         <hr />
       </div>
 
-      <div class="flex justify-between mt-2">
-        <a href="javascript:void(0)">
-          <img src="/assets/linkedin.svg" alt="Linkedin" />
-        </a>
-        <img class="hidden md:block" src="/assets/logo.svg" alt="Logo" />
-        <div class="text-[14px] text-[#93969E] font-normal">
-          Privacy Policy & Terms
+      <div class="grid grid-cols-2 sm:grid-cols-3  gap-4 pt-4 sm:pt-1.5">
+        <div class="text-left">
+          <a class="col-span-1" href="javascript:void(0)">
+            <img src="/assets/linkedin.svg" alt="Linkedin" />
+          </a>
+        </div>
+        <div class="text-center hidden sm:block">
+          <img class="col-span-1hidden md:block items-start mx-auto" src="/assets/logo.svg" alt="Logo" />
+        </div>
+        <div class="text-right">
+          <div class=" col-span-1 self-end text-[14px] text-[#93969E] font-normal" translate>
+            Privacy Policy & Terms
+          </div>
         </div>
       </div>
     </footer>

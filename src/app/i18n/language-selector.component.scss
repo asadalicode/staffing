@@ -1,0 +1,19 @@
+:host {
+    .flag-list {
+        display: flex;
+        gap: 5px;
+        flex-direction: row;
+        align-items: center;
+        text-transform: capitalize;
+
+        &::after{
+            content: url('../../assets/icons/drowdown-arrow.svg');
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            right: -16px;
+            top: -3px;
+        }
+    }
+
+}
