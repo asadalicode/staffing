@@ -14,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { I18nModule } from './i18n';
 import { RouteReuseStrategy } from '@angular/router';
 import { RouteReusableStrategy } from '@shared';
-
 @NgModule({
   declarations: [AppComponent, ShellComponent],
   imports: [

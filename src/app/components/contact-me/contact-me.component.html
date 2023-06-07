@@ -1,0 +1,32 @@
+<div>
+    <div class="flex justify-between items-center">
+        <h4>Contact Me</h4>
+        <app-button-close class="self-end" (click)="close()" bgColor="bg-primary-light"></app-button-close>
+    </div>
+    <p>Let's confirm a few more details about your NodeJS Developer role.</p>
+
+
+    <div class="flex flex-row gap-6 mt-6">
+        <figure class="flex flex-col bg-light-600 items-center justify-center">
+            <img src="assets/placeholder/user-icon.png" alt="image">
+            <h4>Glenn Fairchil</h4>
+            <p>Account Manager</p>
+            <div></div>
+
+            <div class="flex flex-row gap-6">
+                <div>Linkedin</div>
+                <div>Email</div>
+                <div>Calendly</div>
+            </div>
+        </figure>
+        <div class="grow">
+            <app-reusable-form [formGroup]="formGroup" formClass="grid grid-cols-2 gap-3">
+                <app-reusable-input  type="text" [control]="formGroup.get('firstName')"></app-reusable-input>
+                <app-reusable-input type="text" [control]="formGroup.get('lastName')"></app-reusable-input>
+                <app-reusable-input class="col-span-2" type="email" [control]="formGroup.get('email')"></app-reusable-input>
+                <app-reusable-input class="col-span-2" type="text" [control]="formGroup.get('companyName')"></app-reusable-input>
+                <app-reusable-input class="col-span-2" type="text" [control]="formGroup.get('phone')"></app-reusable-input>
+            </app-reusable-form>
+        </div>
+    </div>
+</div>

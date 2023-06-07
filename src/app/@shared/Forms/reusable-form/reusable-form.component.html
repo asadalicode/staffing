@@ -1,0 +1,4 @@
+<form [formGroup]="formGroup" [class]="formClass">
+  <ng-content></ng-content>
+  <button (click)="submit()" [disabled]="formGroup.invalid">Submit</button>
+</form>

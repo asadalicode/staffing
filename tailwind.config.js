@@ -18,7 +18,8 @@ module.exports = {
       '4xl': ['36px', '40px'],
       '5xl': ['42px', '48px'],
       '6xl': ['48px', '52px'],
-      '7xl': [ '56px', '62px'],
+      '7xl': [ '56px', '62px' ],
+      '24': [ '24px', '29.26px']
     },
 
     borderRadius: {
@@ -32,10 +33,10 @@ module.exports = {
     },
 
     screens: {
-      'sm': '567px',
+      'sm': '640px',
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      'md': '770px',
       // => @media (min-width: 768px) { ... }
 
       'lg': '1024px',
@@ -52,17 +53,32 @@ module.exports = {
     extend: {
 
       screens: {
-        'xs': {'min': '375px', 'max': '567px'}
+       // 'xs': {'min': '375px', 'max': '530px'}
+        'xs': '530px',
+        'xxs': '375px'
       },
       fontFamily: {
         'montserrat': [ 'Montserrat', 'sans-serif' ],
         'roboto': [ 'Roboto', 'sans-serif' ],
       },
 
+      dropShadow: {
+        'light': '0px 4px 12px rgba(0, 0, 0, 0.04)',
+      },
+
       colors: {
         transparent: 'transparent',
         black: {
           202020: '#202020',
+        },
+        light: {
+          100: '#F4F2F3',
+          200: '#F0F2FA',
+          201: '#F3F4F6',
+          300: '#9CA3AF',
+          400: '#6B7280',
+          500: '#93969E',
+          600: '#F9FAFB'
         },
         primary: {
           light: '#FDEFED',
