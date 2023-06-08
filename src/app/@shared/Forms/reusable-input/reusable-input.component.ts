@@ -20,6 +20,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule, ReactiveFormsModu
 export class ReusableInputComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() type = 'text';
+  @Input() placeholder = 'text';
   @Input() control: any;
   @Input() customValidator: any;
 

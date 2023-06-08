@@ -1,32 +1,69 @@
 <div>
     <div class="flex justify-between items-center">
-        <h4>Contact Me</h4>
+        <h4 class="text-24 font-semibold text-secondary-light">Contact Me</h4>
         <app-button-close class="self-end" (click)="close()" bgColor="bg-primary-light"></app-button-close>
     </div>
     <p>Let's confirm a few more details about your NodeJS Developer role.</p>
 
 
-    <div class="flex flex-row gap-6 mt-6">
-        <figure class="flex flex-col bg-light-600 items-center justify-center">
-            <img src="assets/placeholder/user-icon.png" alt="image">
-            <h4>Glenn Fairchil</h4>
-            <p>Account Manager</p>
-            <div></div>
+    <div class="flex flex-col sm:flex-row gap-6 mt-6">
+        <figure class="flex flex-col bg-light-600 p-4 rounded-[12px] items-center border-2 border-primary-light">
+            <img class="w-[100px] h-[100px] object-contain mb-2" src="assets/placeholder/user-icon.png" alt="image">
+            <h4 class="text-24 font-medium text-primary-dark">Glenn Fairchil</h4>
+            <p class="font-bold text-base text-secondary-light mb-1.5">Account Manager</p>
+            <div class="text-sm14 flex items-center gap-2 text-primary-dark font-bold justify-center sm:justify-start">
+                <span><img src="/assets/icons/phone.svg" alt="" /></span>
+                <span>0438 343 020</span>
+            </div>
 
-            <div class="flex flex-row gap-6">
-                <div>Linkedin</div>
-                <div>Email</div>
-                <div>Calendly</div>
+            <div class="flex flex-row gap-6 text-sm font-normal pt-8">
+                <div class="flex flex-col justify-center items-center gap-2">
+                    <svg width="44" height="43" viewBox="0 0 44 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="21.5" r="21" stroke="#B8BABE" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M17.6714 14.757C17.6714 15.7154 16.9416 16.491 15.8005 16.491C14.7038 16.491 13.974 15.7154 13.9966 14.757C13.974 13.752 14.7037 12.999 15.8223 12.999C16.9416 12.999 17.6495 13.752 17.6714 14.757ZM14.0884 29.0241V17.8608H17.5577V29.0234H14.0884V29.0241Z"
+                            fill="#D9D9D9" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M20.3417 21.424C20.3417 20.0316 20.2959 18.8445 20.25 17.8628H23.2635L23.4237 19.3922H23.4921C23.9488 18.6843 25.0899 17.6123 26.939 17.6123C29.2213 17.6123 30.9334 19.119 30.9334 22.4049V29.0261H27.464V22.8397C27.464 21.4007 26.9623 20.4197 25.7068 20.4197C24.7477 20.4197 24.1774 21.0817 23.9495 21.7204C23.8577 21.949 23.8126 22.268 23.8126 22.5884V29.0261H20.3431V21.424H20.3417Z"
+                            fill="#D9D9D9" />
+                    </svg>
+                    <span>Linkedin</span>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-2">
+                    <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.334 27.3332C15.0673 27.3332 14.834 27.2332 14.634 27.0332C14.434 26.8332 14.334 26.5998 14.334 26.3332V17.6665C14.334 17.3998 14.434 17.1665 14.634 16.9665C14.834 16.7665 15.0673 16.6665 15.334 16.6665H26.6673C26.934 16.6665 27.1673 16.7665 27.3673 16.9665C27.5673 17.1665 27.6673 17.3998 27.6673 17.6665V26.3332C27.6673 26.5998 27.5673 26.8332 27.3673 27.0332C27.1673 27.2332 26.934 27.3332 26.6673 27.3332H15.334ZM21.0007 22.2998L26.6673 18.5832V17.6665L21.0007 21.2998L15.334 17.6665V18.5832L21.0007 22.2998Z"
+                            fill="#D9D9D9" />
+                        <circle cx="21.5" cy="21.5" r="21" stroke="#B8BABE" />
+                    </svg>
+                    <span>Email</span>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-2">
+                    <svg width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="21.5" cy="21.5" r="21" stroke="#B8BABE" />
+                        <path
+                            d="M28.1199 30.4751H14.8801C13.8438 30.4751 13 29.6313 13 28.595V15.3503C13 14.314 13.8438 13.4702 14.8801 13.4702H28.1199C29.1561 13.4702 30 14.314 30 15.3503V28.5901C30.0049 29.6313 29.1611 30.4751 28.1199 30.4751ZM14.8801 14.5114C14.4163 14.5114 14.0412 14.8865 14.0412 15.3503V28.5901C14.0412 29.0539 14.4163 29.429 14.8801 29.429H28.1199C28.5837 29.429 28.9588 29.0539 28.9588 28.5901V15.3503C28.9588 14.8865 28.5837 14.5114 28.1199 14.5114H14.8801Z"
+                            fill="#D9D9D9" />
+                        <path
+                            d="M25.2973 16.2832C25.0753 16.2832 24.8976 16.1055 24.8976 15.8834V13.1102C24.8976 12.8881 25.0753 12.7104 25.2973 12.7104C25.5194 12.7104 25.697 12.8881 25.697 13.1102V15.8785C25.697 16.1006 25.5194 16.2832 25.2973 16.2832ZM17.6634 16.2832C17.4413 16.2832 17.2637 16.1055 17.2637 15.8834V13.1102C17.2637 12.8881 17.4413 12.7104 17.6634 12.7104C17.8854 12.7104 18.0631 12.8881 18.0631 13.1102V15.8785C18.068 16.1006 17.8854 16.2832 17.6634 16.2832ZM21.9812 25.2347C20.3232 25.2347 18.976 23.8875 18.976 22.2294C18.976 20.5714 20.3232 19.2242 21.9812 19.2242C22.7313 19.2242 23.4468 19.5006 23.9995 20.0039C24.0686 20.0631 24.0735 20.1717 24.0094 20.2358C23.9502 20.3049 23.8416 20.3099 23.7775 20.2457C23.284 19.7967 22.6474 19.5499 21.9812 19.5499C20.5058 19.5499 19.3066 20.749 19.3066 22.2245C19.3066 23.7 20.5058 24.8991 21.9812 24.8991C22.6474 24.8991 23.284 24.6524 23.7775 24.2033C23.8465 24.1441 23.9502 24.149 24.0094 24.2132C24.0686 24.2823 24.0637 24.3859 23.9995 24.4451C23.4468 24.9583 22.7313 25.2347 21.9812 25.2347Z"
+                            fill="#D9D9D9" />
+                    </svg>
+                    <span>Calendly</span>
+                </div>
             </div>
         </figure>
         <div class="grow">
-            <app-reusable-form [formGroup]="formGroup" formClass="grid grid-cols-2 gap-3">
-                <app-reusable-input  type="text" [control]="formGroup.get('firstName')"></app-reusable-input>
-                <app-reusable-input type="text" [control]="formGroup.get('lastName')"></app-reusable-input>
-                <app-reusable-input class="col-span-2" type="email" [control]="formGroup.get('email')"></app-reusable-input>
-                <app-reusable-input class="col-span-2" type="text" [control]="formGroup.get('companyName')"></app-reusable-input>
-                <app-reusable-input class="col-span-2" type="text" [control]="formGroup.get('phone')"></app-reusable-input>
-            </app-reusable-form>
+
+            <form [formGroup]="formGroup" class="grid grid-cols-2 gap-3">
+                <app-reusable-input placeholder="First Name" class="col-span-2 md:col-span-1" type="text" [control]="formGroup.get('firstName')"></app-reusable-input>
+                <app-reusable-input placeholder="Last Name" class="col-span-2 md:col-span-1" type="text" [control]="formGroup.get('lastName')"></app-reusable-input>
+                <app-reusable-input placeholder="Email" class="col-span-2" type="email" [control]="formGroup.get('email')"></app-reusable-input>
+                <app-reusable-input placeholder="Company Name" class="col-span-2" type="text" [control]="formGroup.get('companyName')"></app-reusable-input>
+                <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="formGroup.get('phone')"></app-reusable-input>
+
+                <button (click)="submit()" class="btn-primary-lg col-span-2" [disabled]="formGroup.invalid">Submit</button>
+
+            </form>
         </div>
     </div>
 </div>

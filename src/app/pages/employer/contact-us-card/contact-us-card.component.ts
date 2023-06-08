@@ -25,7 +25,7 @@ export class ContactUsCardComponent {
 
   contactMe() {
     const dialogRef = this.dialog.open(ContactMeComponent, {
-      panelClass: ['popup-modal', 'md'],
+      panelClass: ['popup-modal', 'lg'],
     });
   }
 }

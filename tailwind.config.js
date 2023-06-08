@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+// const withMT = require("@material-tailwind/html/utils/withMT");
+
+import withMT  from '@material-tailwind/html/utils/withMT';
+module.exports = withMT({
   content: [
     "./src/**/*.{html,ts}",
   ],
@@ -7,19 +10,19 @@ module.exports = {
   theme: {
 
     fontSize: {
-      xs: ['8.69px', '11px'],
+      xs: [ '8.69px', '11px' ],
       sm: [ '12px', '14px' ],
-      'sm14': ['14px', '17px'],
-      '2sm': ['15px', '23px'],
+      'sm14': [ '14px', '17px' ],
+      '2sm': [ '15px', '23px' ],
       base: '1rem',
       xl: [ '18px', '27px' ],
-      '2xl': ['20px', '25px'],
+      '2xl': [ '20px', '25px' ],
       '3xl': [ '30px', '33px' ],
-      '4xl': ['36px', '40px'],
-      '5xl': ['42px', '48px'],
-      '6xl': ['48px', '52px'],
+      '4xl': [ '36px', '40px' ],
+      '5xl': [ '42px', '48px' ],
+      '6xl': [ '48px', '52px' ],
       '7xl': [ '56px', '62px' ],
-      '24': [ '24px', '29.26px']
+      '24': [ '24px', '29.26px' ]
     },
 
     borderRadius: {
@@ -53,7 +56,7 @@ module.exports = {
     extend: {
 
       screens: {
-       // 'xs': {'min': '375px', 'max': '530px'}
+        // 'xs': {'min': '375px', 'max': '530px'}
         'xs': '530px',
         'xxs': '375px'
       },
@@ -99,5 +102,5 @@ module.exports = {
     },
   },
   plugins: [],
-}
+})
 
