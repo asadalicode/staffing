@@ -1,0 +1,11 @@
+:host{
+    .about-section{
+        p{
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .truncate + button{
+        visibility: visible;
+    }
+}

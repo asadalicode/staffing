@@ -30,6 +30,9 @@ export class ConfirmationPopupComponent {
     this.dialogRef.close();
   }
 
+  goAhead() {
+    this.dialogRef.close(true);
+  }
   navigate(link:any) {
     
   }

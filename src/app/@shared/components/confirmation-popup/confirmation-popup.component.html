@@ -10,7 +10,7 @@
     <p class="{{config.descriptionClass}} font-normal text-base">{{config.description}}</p>
 
     <div class="flex flex-col gap-2 mt-4 w-full">
-        <button type="button" class="{{config.buttonClass}} ">{{config.buttonText}}</button>
+        <button type="button" class="{{config.buttonClass}}" (click)="goAhead()">{{config.buttonText}}</button>
         <button type="button" (click)="close()" class="{{config.buttonLinkColor}}">{{config.buttonLinkText}}</button>
     </div>
 

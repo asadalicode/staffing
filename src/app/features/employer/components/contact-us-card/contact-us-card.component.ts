@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ContactMeComponent } from '@app/components/contact-me/contact-me.component';
-import { HowIWorkComponent } from '@app/components/how-i-work/how-i-work.component';
+import { HowIWorkComponent } from '../../popupModals/how-i-work/how-i-work.component';
+import { ContactMeComponent } from '../../popupModals/contact-me/contact-me.component';
 
 @Component({
   selector: 'app-contact-us-card',

@@ -1,10 +1,12 @@
-import { ConfirmationPopupComponent } from './../../@shared/components/confirmation-popup/confirmation-popup.component';
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ButtonCloseComponent } from '@app/@shared/components/button-close/button-close.component';
 import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusable-input.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ContactMeAdditionalDetailsComponent } from '../contact-me-additional-details/contact-me-additional-details.component';
+import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 
 @Component({
   selector: 'app-contact-me',
@@ -15,6 +17,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
     ReusableInputComponent,
     ConfirmationPopupComponent,
     FormsModule,
+    ContactMeAdditionalDetailsComponent,
     ReactiveFormsModule],
   templateUrl: './contact-me.component.html',
   styleUrls: ['./contact-me.component.scss']
@@ -22,10 +25,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class ContactMeComponent {
 
   jobTitle: string = 'NodeJS Developer';
-  formGroup = new FormGroup({
+  contactForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     companyName: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
   });
@@ -39,7 +42,8 @@ export class ContactMeComponent {
     this.dialogRef.close();
   }
 
-  submit(){
+  submit() {
+    console.log(this.contactForm.value)
     this.dialogRef.close('yes');
     this.openConfirmationPopup();
   }
@@ -49,7 +53,7 @@ export class ContactMeComponent {
     const dialogRef = this.dialog.open(ConfirmationPopupComponent, {
       data: {
         iconSrc:'assets/icons/check.svg',
-        title: `Thanks ${this.formGroup.value.firstName}!`,
+        title: `Thanks ${this.contactForm.value.firstName}!`,
         titleClass: 'text-secondary-light',
         description: `Can you tell me a little more about the ${this.jobTitle} role`,
         descriptionClass: '!font-bold text-secondary-light !text-[24px]',
@@ -63,9 +67,23 @@ export class ContactMeComponent {
     });
 
     dialogRef.afterClosed().subscribe(yes => {
-      // if (yes) {
-      //   this.contactMe();
-      // }
+      if (yes) {
+        this.goToAdditionalInformation();
+      }
+    });
+  }
+
+
+  goToAdditionalInformation() {
+    const dialogRef = this.dialog.open(ContactMeAdditionalDetailsComponent, {
+      data: {},
+      panelClass: ['popup-modal', 'lg'],
+    });
+
+    dialogRef.afterClosed().subscribe(yes => {
+      if (yes) {
+        // this.goToAdditionalInformation();
+      }
     });
   }
 }

@@ -34,8 +34,8 @@
                     <span class="">Port Melbourne, Victoria</span>
                 </div>
                 <div class="flex gap-4 items-center">
-                    <a href="" class=" text-sm underline text-primary-dark" translate>Book Interview</a>
-                    <a href="" class="text-sm underline text-primary-dark " translate>Invite To Job</a>
+                    <button type="button" class="text-sm underline text-primary-dark" (click)="onBookInterview()" translate>Book Interview</button>
+                    <button type="button" class="text-sm underline text-primary-dark " (click)="onInviteToJob()" translate>Invite To Job</button>
                     <div [class.bg-primary-dark]="!item.fav"
                         class="cursor-pointer hidden md:flex justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full ">
                         <img [src]="item.fav? '/assets/icons/heart.svg': '/assets/icons/heart-while.svg'"

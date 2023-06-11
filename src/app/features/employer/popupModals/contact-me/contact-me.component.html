@@ -3,7 +3,7 @@
         <h4 class="text-24 font-semibold text-secondary-light">Contact Me</h4>
         <app-button-close class="self-end" (click)="close()" bgColor="bg-primary-light"></app-button-close>
     </div>
-    <p>Let's confirm a few more details about your NodeJS Developer role.</p>
+    <p class="font-normal text-base text-secondary-light">Let's confirm a few more details about your <span class="font-semibold text-primary-dark">{{jobTitle}}</span> role.</p>
 
 
     <div class="flex flex-col sm:flex-row gap-6 mt-6">
@@ -53,15 +53,14 @@
             </div>
         </figure>
         <div class="grow">
+            <form [formGroup]="contactForm" class="grid grid-cols-2 gap-4">
+                <app-reusable-input placeholder="First Name" class="col-span-2 md:col-span-1" type="text" [control]="contactForm.controls.firstName"></app-reusable-input>
+                <app-reusable-input placeholder="Last Name" class="col-span-2 md:col-span-1" type="text" [control]="contactForm.controls.lastName"></app-reusable-input>
+                <app-reusable-input placeholder="Email" class="col-span-2" type="email" [control]="contactForm.controls.email"></app-reusable-input>
+                <app-reusable-input placeholder="Company Name" class="col-span-2" type="text" [control]="contactForm.controls.companyName"></app-reusable-input>
+                <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="contactForm.controls.phone"></app-reusable-input>
 
-            <form [formGroup]="formGroup" class="grid grid-cols-2 gap-3">
-                <app-reusable-input placeholder="First Name" class="col-span-2 md:col-span-1" type="text" [control]="formGroup.get('firstName')"></app-reusable-input>
-                <app-reusable-input placeholder="Last Name" class="col-span-2 md:col-span-1" type="text" [control]="formGroup.get('lastName')"></app-reusable-input>
-                <app-reusable-input placeholder="Email" class="col-span-2" type="email" [control]="formGroup.get('email')"></app-reusable-input>
-                <app-reusable-input placeholder="Company Name" class="col-span-2" type="text" [control]="formGroup.get('companyName')"></app-reusable-input>
-                <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="formGroup.get('phone')"></app-reusable-input>
-
-                <button (click)="submit()" class="btn-primary-lg col-span-2" [disabled]="formGroup.invalid">Submit</button>
+                <button (click)="submit()" class="btn-primary-lg col-span-2 mt-5 disabled:opacity-70" [disabled]="contactForm.invalid">Submit</button>
 
             </form>
         </div>

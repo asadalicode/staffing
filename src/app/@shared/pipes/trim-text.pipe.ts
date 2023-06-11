@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TrimTextPipe implements PipeTransform {
 
-  private showFullText: { [key: string]: boolean } = {};
+  private showFullText = false;
 
   transform(value: string, length: number, textKey: string): string {
-    if (this.showFullText[textKey]) {
+    if (this.showFullText) {
       return value;
     }
     if (value.length <= length) {
@@ -19,7 +19,7 @@ export class TrimTextPipe implements PipeTransform {
   }
 
   toggleText(textKey: string): void {
-    this.showFullText[textKey] = !this.showFullText[textKey];
+    this.showFullText = !this.showFullText;
   }
 
 }

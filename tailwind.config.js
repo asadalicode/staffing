@@ -81,7 +81,8 @@ module.exports = withMT({
           300: '#9CA3AF',
           400: '#6B7280',
           500: '#93969E',
-          600: '#F9FAFB'
+          600: '#F9FAFB',
+          700: '#979797'
         },
         primary: {
           light: '#FDEFED',
@@ -101,6 +102,11 @@ module.exports = withMT({
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: 'base', // only generate global styles
+      strategy: 'class', // only generate classes
+    }),
+  ],
 })
 

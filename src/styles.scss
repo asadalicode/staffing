@@ -22,6 +22,33 @@ body {
   @apply font-montserrat;
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 6.21px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #E6E6E6;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #D2D2D2;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #D2D2D2;
+}
+
+
 .mat-drawer-container {
   display: contents !important;
 }
@@ -44,7 +71,9 @@ body {
     }
   }
 
-
+    button{
+      @apply disabled:opacity-70;
+    }
 
    .btn-sm {
       @apply font-medium text-sm px-3 py-2 rounded hover:shadow-lg;
@@ -129,21 +158,24 @@ body {
 
 
   .popup-modal{
+    max-width: calc(100vw - 32px) !important;
     &.xs{
-      width: 475px;
+      @apply sm:w-[475px] w-[100%];
     }
     &.sm{
-      width: 580px;
+      @apply sm:w-[580px] w-[100%];
     }
     &.md{
-      width: 696px;
+      @apply sm:w-[696px] w-[100%];
     }
     &.lg{
-      width: 862px;
+      @apply sm:w-[862px] w-[100%];
     }
     mat-dialog-container {   
+         max-height: 90vh;
+         overflow: auto;
         .mdc-dialog__surface {
-          @apply p-[40px] bg-white rounded-none sm:rounded-large;
+          @apply p-[15px] sm:p-[28px] md:p-[40px] bg-white sm:rounded-[4px];
         }
       }
   }

@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'employer',
     loadChildren: () =>
-      import('./pages/employer/employer.module').then(
+      import('./features/employer/employer.module').then(
         (mod) => mod.EmployerModule
       ),
   },
