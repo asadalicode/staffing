@@ -8,7 +8,6 @@
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
 
-
 // moduels styles
 
 // @import 'assets/theme/popup';
@@ -22,7 +21,6 @@ body {
   @apply font-montserrat;
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 6.21px;
@@ -30,12 +28,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #E6E6E6;
+  background: #e6e6e6;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #D2D2D2;
+  background: #d2d2d2;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -45,9 +43,8 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #D2D2D2;
+  background: #d2d2d2;
 }
-
 
 .mat-drawer-container {
   display: contents !important;
@@ -58,7 +55,6 @@ body {
   height: auto !important;
   @apply bg-[#F4F6F8];
 }
-
 
 // custom styles
 
@@ -71,31 +67,30 @@ body {
     }
   }
 
-    button{
-      @apply disabled:opacity-70;
-    }
+  button {
+    @apply disabled:opacity-70;
+  }
 
-   .btn-sm {
-      @apply font-medium text-sm px-3 py-2 rounded hover:shadow-lg;
-   }
+  .btn-sm {
+    @apply font-medium text-sm px-3 py-2 rounded hover:shadow-lg;
+  }
 
-   .btn-lg {
-      @apply font-bold text-base px-6 py-3 rounded-lg hover:shadow-lg;
-   }
+  .btn-lg {
+    @apply font-bold text-base px-6 py-3 rounded-lg hover:shadow-lg;
+  }
 
-   .btn-outline-sm {
-      @apply border text-sm px-3 py-2 font-medium rounded;
-   }
+  .btn-outline-sm {
+    @apply border text-sm px-3 py-2 font-medium rounded;
+  }
 
-    .btn-outline-lg {
-      @apply border-2 text-base px-6 py-3 font-bold rounded-lg;
-    }
+  .btn-outline-lg {
+    @apply border-2 text-base px-6 py-3 font-bold rounded-lg;
+  }
 
   .btn-primary-sm {
     @extend .btn-sm;
     @apply bg-primary-dark text-white;
   }
-
 
   .btn-primary-lg {
     @extend .btn-lg;
@@ -104,24 +99,23 @@ body {
 
   .btn-primary-outline-sm {
     @extend .btn-outline-sm;
-    @apply  border-primary-dark hover:bg-primary-dark hover:text-white text-primary-dark;
+    @apply border-primary-dark hover:bg-primary-dark hover:text-white text-primary-dark;
   }
   .btn-primary-outline-lg {
     @extend .btn-outline-lg;
     @apply border-primary-dark hover:bg-primary-dark hover:text-white text-primary-dark;
   }
 
-  .btn-default-outline{
-     @apply border normal-case border-secondary-light hover:drop-shadow-light text-secondary-light py-2 rounded-lg text-center;
+  .btn-default-outline {
+    @apply border normal-case border-secondary-light hover:drop-shadow-light text-secondary-light py-2 rounded-lg text-center;
   }
-  
 
   .btn-link-sm {
-      @apply font-medium text-sm underline;
+    @apply font-medium text-sm underline;
   }
 
-  .btn-link-md{
-      @apply font-bold text-base underline;
+  .btn-link-md {
+    @apply font-bold text-base underline;
   }
 
   .btn-link-lg {
@@ -135,7 +129,7 @@ body {
       @apply text-xl font-normal text-secondary-light cursor-pointer;
     }
 
-    &:checked+label {
+    &:checked + label {
       @apply font-semibold underline text-primary-dark;
     }
   }
@@ -156,31 +150,29 @@ body {
     }
   }
 
-
-  .popup-modal{
+  .popup-modal {
     max-width: calc(100vw - 32px) !important;
-    &.xs{
+    &.xs {
       @apply sm:w-[475px] w-[100%];
     }
-    &.sm{
+    &.sm {
       @apply sm:w-[580px] w-[100%];
     }
-    &.md{
+    &.md {
       @apply sm:w-[696px] w-[100%];
     }
-    &.lg{
+    &.lg {
       @apply sm:w-[862px] w-[100%];
     }
-    mat-dialog-container {   
-         max-height: 90vh;
-         overflow: auto;
-        .mdc-dialog__surface {
-          @apply p-[15px] sm:p-[28px] md:p-[40px] bg-white sm:rounded-[4px];
-        }
+    mat-dialog-container {
+      max-height: 90vh;
+      overflow: auto;
+      .mdc-dialog__surface {
+        @apply p-[15px] sm:p-[28px] md:p-[40px] bg-white sm:rounded-[4px];
       }
+    }
   }
 }
-
 
 .owl-theme {
   .owl-nav {
@@ -254,4 +246,100 @@ body {
       }
     }
   }
+}
+
+.wrapper {
+  margin-bottom: 20px;
+}
+
+/*****************************************************
+	Custom styling example bellow.
+*****************************************************/
+
+.iti {
+  display: block !important;
+  margin-bottom: 20px;
+}
+
+.iti .dropdown-menu.country-dropdown {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-color: #c7cace;
+  margin-top: -1px;
+}
+
+.iti .iti__country-list {
+  box-shadow: none;
+  font-size: 14px;
+  margin-left: 0;
+  width: 244px;
+  max-height: 170px;
+}
+
+.iti__flag-container.open + input {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.iti .search-container input {
+  font-size: 14px;
+  border-color: #c7cace;
+  border-radius: 0;
+  padding: 5px 10px;
+}
+
+.iti .search-container input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 479px) {
+  .iti .iti__country-list {
+    width: 88.3vw;
+  }
+}
+
+ngx-intl-tel-input input {
+  width: 100%;
+  height: 44px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #c7cace;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+ngx-intl-tel-input.ng-invalid.ng-touched input {
+  border: 1px solid #c0392b;
+}
+
+ngx-intl-tel-input input:hover {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.24);
+}
+
+ngx-intl-tel-input input:focus {
+  outline: none !important;
+  border-color: #3498db;
+  box-shadow: 0 0 0 0 #000;
+}
+
+ngx-intl-tel-input input::-webkit-input-placeholder {
+  color: #bac2c7;
+}
+
+ngx-intl-tel-input input:-ms-input-placeholder {
+  color: #bac2c7;
+}
+
+ngx-intl-tel-input input::-ms-input-placeholder {
+  color: #bac2c7;
+}
+
+ngx-intl-tel-input input::placeholder {
+  color: #bac2c7;
+}
+
+ngx-intl-tel-input input[disabled] {
+  background-color: #e5eaf1;
 }
