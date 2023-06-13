@@ -58,7 +58,9 @@
                 <app-reusable-input placeholder="Last Name" class="col-span-2 md:col-span-1" type="text" [control]="contactForm.controls.lastName"></app-reusable-input>
                 <app-reusable-input placeholder="Email" class="col-span-2" type="email" [control]="contactForm.controls.email"></app-reusable-input>
                 <app-reusable-input placeholder="Company Name" class="col-span-2" type="text" [control]="contactForm.controls.companyName"></app-reusable-input>
-                <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="contactForm.controls.phone"></app-reusable-input>
+                <!-- <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="contactForm.controls.phone"></app-reusable-input> -->
+                <app-phone-number-input class="grow col-span-2"  placeholder="Contact Number"  [formGroup]="contactForm.controls.contact">
+                </app-phone-number-input>
 
                 <button (click)="submit()" class="btn-primary-lg col-span-2 mt-5 disabled:opacity-70" [disabled]="contactForm.invalid">Submit</button>
 

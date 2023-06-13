@@ -22,8 +22,15 @@
                         [control]="formStep1.controls.lastName"></app-reusable-input>
                     <app-reusable-input placeholder="Email" class="col-span-2" type="email"
                         [control]="formStep1.controls.email"></app-reusable-input>
-                    <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text"
-                        [control]="formStep1.controls.phone"></app-reusable-input>
+
+                    <div class="flex flex-col sm:flex-row col-span-2 gap-4">
+                            <app-phone-number-input class="grow" placeholder="Office Number" [formGroup]="formStep1.controls.contact">
+                            </app-phone-number-input>
+                            <app-reusable-input placeholder="Extension (Opt.)" class="col-span-2 md:col-span-1 w-full sm:w-[180px]" type="text"
+                                ></app-reusable-input>
+                    </div>
+                   
+
                     <button type="button" (click)="next()" class="btn-primary-lg col-span-2 mt-5 disabled:opacity-70"
                         [disabled]="formStep1.invalid">Confirm and start</button>
                 </form>

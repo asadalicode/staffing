@@ -6,11 +6,12 @@ import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusab
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
+import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 
 @Component({
   selector: 'app-invite-to-job',
   standalone: true,
-  imports: [CommonModule, ButtonCloseComponent, FormsModule, ReactiveFormsModule,
+  imports: [CommonModule, ButtonCloseComponent, FormsModule, ReactiveFormsModule, PhoneNumberInputComponent,
    SelectInputComponent, ReusableInputComponent],
   templateUrl: './invite-to-job.component.html',
   styleUrls: ['./invite-to-job.component.scss']
@@ -53,10 +54,12 @@ export class InviteToJobComponent implements OnInit {
 
   ngOnInit(): void {
     this.formStep1 = new FormGroup({
-      firstName: new FormControl('asad', Validators.required),
-      lastName: new FormControl('ali', Validators.required),
-      email: new FormControl('asad@gmail.com', Validators.required),
-      phone: new FormControl('0304334432', Validators.required),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      contact: new FormGroup({
+        phone: new FormControl('', Validators.required),
+      }),
     });
 
 

@@ -305,40 +305,52 @@ ngx-intl-tel-input input {
   padding: 10px;
   border-style: solid;
   border-width: 1px;
-  border-color: #c7cace;
+  border-color: #D2D2D2;
+  color:#5E5E5E;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 ngx-intl-tel-input.ng-invalid.ng-touched input {
-  border: 1px solid #c0392b;
+  border: 1px solid #AA1D35;
 }
 
 ngx-intl-tel-input input:hover {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.24);
+  box-shadow: none;
 }
 
 ngx-intl-tel-input input:focus {
   outline: none !important;
-  border-color: #3498db;
+  border-color: rgba(123, 128, 154, 1);;
   box-shadow: 0 0 0 0 #000;
 }
 
-ngx-intl-tel-input input::-webkit-input-placeholder {
-  color: #bac2c7;
-}
+ngx-intl-tel-input input {
+  &::placeholder {
+      color: #93969E;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: normal;
+    }
+  &::-webkit-input-placeholder {
+    color: #93969E;
+    font-size: 14px;
+      line-height: 17px;
+  }
+  &:-ms-input-placeholder {
+    color: #93969E;
+    font-size: 14px;
+      line-height: 17px;
+  }
+  &::-ms-input-placeholder {
 
-ngx-intl-tel-input input:-ms-input-placeholder {
-  color: #bac2c7;
-}
+    color: #93969E;
+    font-size: 14px;
+      line-height: 17px;
+  }
+} 
 
-ngx-intl-tel-input input::-ms-input-placeholder {
-  color: #bac2c7;
-}
-
-ngx-intl-tel-input input::placeholder {
-  color: #bac2c7;
-}
 
 ngx-intl-tel-input input[disabled] {
   background-color: #e5eaf1;

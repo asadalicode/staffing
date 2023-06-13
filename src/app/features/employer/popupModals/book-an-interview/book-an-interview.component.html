@@ -55,34 +55,11 @@
           type="email"
           [control]="formStep1.controls.email"
         ></app-reusable-input>
-        <app-reusable-input
-          placeholder="Contact Number"
+
+        <app-phone-number-input
           class="col-span-2"
-          type="text"
-          [control]="formStep1.controls.phone"
-        ></app-reusable-input>
-        <div class="wrapper">
-          <ngx-intl-tel-input
-            [cssClass]="'custom'"
-            [preferredCountries]="preferredCountries"
-            [enableAutoCountrySelect]="true"
-            [enablePlaceholder]="true"
-            [searchCountryFlag]="true"
-            [searchCountryField]="[
-              SearchCountryField.Iso2,
-              SearchCountryField.Name
-            ]"
-            [selectFirstCountry]="false"
-            [selectedCountryISO]="CountryISO.India"
-            [maxLength]="15"
-            [phoneValidation]="true"
-            [separateDialCode]="separateDialCode"
-            [numberFormat]="PhoneNumberFormat.National"
-            name="phone"
-            formControlName="phone"
-          >
-          </ngx-intl-tel-input>
-        </div>
+          [formGroup]="formStep1.controls.contact">
+        </app-phone-number-input>
 
         <button
           type="button"

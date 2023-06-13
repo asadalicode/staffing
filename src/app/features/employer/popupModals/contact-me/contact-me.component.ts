@@ -7,6 +7,7 @@ import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusab
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactMeAdditionalDetailsComponent } from '../contact-me-additional-details/contact-me-additional-details.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
+import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 
 @Component({
   selector: 'app-contact-me',
@@ -17,6 +18,7 @@ import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation
     ReusableInputComponent,
     ConfirmationPopupComponent,
     FormsModule,
+    PhoneNumberInputComponent,
     ContactMeAdditionalDetailsComponent,
     ReactiveFormsModule],
   templateUrl: './contact-me.component.html',
@@ -30,7 +32,9 @@ export class ContactMeComponent {
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     companyName: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
+    contact: new FormGroup({
+      phone: new FormControl('', Validators.required),
+    }),
   });
 
   constructor(

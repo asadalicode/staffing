@@ -19,6 +19,7 @@ import {
 import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusable-input.component';
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
+import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 
 @Component({
   selector: 'app-book-an-interview',
@@ -30,7 +31,7 @@ import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation
     ReactiveFormsModule,
     ReusableInputComponent,
     SelectInputComponent,
-    NgxIntlTelInputModule,
+    PhoneNumberInputComponent
   ],
   templateUrl: './book-an-interview.component.html',
   styleUrls: ['./book-an-interview.component.scss'],
@@ -39,15 +40,6 @@ export class BookAnInterviewComponent implements OnInit {
   formStep1!: any;
   formStep2!: any;
   step = 1;
-
-  separateDialCode = false;
-  SearchCountryField = SearchCountryField;
-  CountryISO = CountryISO;
-  PhoneNumberFormat = PhoneNumberFormat;
-  preferredCountries: CountryISO[] = [
-    CountryISO.UnitedStates,
-    CountryISO.UnitedKingdom,
-  ];
 
   interviewTypeList = [
     { label: 'One on one', value: '1' },
@@ -68,7 +60,9 @@ export class BookAnInterviewComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
+      contact: new FormGroup({
+        phone: new FormControl('', Validators.required),
+      }),
     });
     this.formStep2 = new FormGroup({
       interviewType: new FormControl('', Validators.required),
