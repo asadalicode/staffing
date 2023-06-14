@@ -60,10 +60,11 @@
 
     <!-- about section -->
     <app-expension-panel title="About">
-        <div class="about-section" [innerHTML]="aboutText"></div>
+        <!-- <div class="about-section" [innerHTML]="aboutText"></div> -->
         
-        <!-- <p class="text-secondary-dark text-base font-normal">{{aboutText | trimText:788: 'about'}}</p> -->
-        <button type="button" class="btn-default-outline mt-6 w-full" translate>Show Full Summary</button>
+        <p class="text-secondary-dark text-base font-normal">{{aboutText | trimText: 778: showMoreText}}</p>
+        <button type="button" *ngIf="showMoreText" class="btn-default-outline mt-6 w-full" translate (click)="showMoreText = !showMoreText">Show Full Summary</button>
+
     </app-expension-panel>
 
     <!-- experiance section -->
@@ -90,20 +91,15 @@
 
 
                     <ul class="pl-[18px] text-sm14 leading-6 text-black-202020 list-disc font-medium">
-                        <li >
+                        <li *ngFor="let item of items;">
                             <div class="flex flex-row gap-2">
-                                <span class="truncate">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam distinctio aut eveniet
+                                <span [class.truncate]="!stateOfTruncatedText[item]">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam distinctio aut eveniet
                                     blanditiis cumque
                                     quos porro natus tenetur dolores nostrum nemo doloremque ut vitae, dolore fugit. Consequatur quasi at
                                     reiciendis.</span>
-                                <button type="button" class="text-primary-dark underline whitespace-nowrap invisible">see more</button>
+                                <button type="button" (click)="toggleLongTextState(item)" class="text-primary-dark underline whitespace-nowrap invisible">see more</button>
                             </div> 
                         </li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, animi placeat.</li>
-                        <li>Lorem ipsum dolor sit.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet earum possimus numquam pariatur. Quos illo
-                            reprehenderit, ab nostrum soluta ut!</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi mollitia corrupti odit est quo.</li>
                     </ul>
                 </div>
 

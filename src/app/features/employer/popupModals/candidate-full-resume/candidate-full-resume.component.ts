@@ -13,22 +13,27 @@ export class CandidateFullResumeComponent {
 
   totalCandidates = 32;
   currentCandiate = 1;
+
+  showMoreAboutTextLength = 778;
+  showMoreText = true;
+
+  stateOfTruncatedText!: boolean[];
+  items = [1, 2, 3, 4, 5];
  
-  aboutText: string = `<p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe inventore enim delectus quo cum mollitia,
+  aboutText: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe inventore enim delectus quo cum mollitia,
    quas doloribus eos iusto exercitationem sed dolorum deleniti totam maxime quia aliquid incidunt vero! Sit, tempore magni earum 
    nesciunt ducimus esse id beatae, omnis soluta provident reprehenderit nisi. Excepturi earum repudiandae ab distinctio odio 
   possimus consequatur, ducimus delectus impedit necessitatibus quis placeat suscipit doloribus eaque rerum facere nisi unde a dicta 
   voluptatem repellendus. Libero expedita, officia accusantium dolore at distinctio cupiditate unde, quaerat quo, quos cumque vitae 
   veritatis autem dolor sint! Maiores esse doloribus consectetur 
-  </p>
-  <p>
+
   quae nulla illum eaque porro. Magnam voluptate vel quis molestias corporis quasi itaque amet commodi velit libero repellat optio 
   numquam eveniet eius possimus veniam, veritatis voluptatibus consequatur mollitia! Voluptates cumque, consequuntur ut minus temporibus
   maxime perferendis rem enim esse est eum sit explicabo officia nisi fugit officiis omnis inventore saepe consectetur, praesentium quam?
     Iste, est omnis. Ab, aspernatur illo! Distinctio cupiditate, asperiores rerum quas a quia! Dolore magni doloremque accusantium ratione,
      rem quae quam. Voluptatibus expedita placeat neque mollitia eius fugiat architecto delectus beatae, accusamus, porro nisi consequatur 
      consequuntur animi eveniet soluta nihil facilis exercitationem quibusdam nulla similique ab provident. Deleniti doloribus non dolor
-      accusamus quasi saepe reprehenderit, fugiat debitis?  </p>`;
+      accusamus quasi saepe reprehenderit, fugiat debitis? `;
   
   
   constructor(
@@ -36,6 +41,10 @@ export class CandidateFullResumeComponent {
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
     public trimPipe: TrimTextPipe) { }
 
+  ngOnInit() {
+    // Creates the array with inactive state initially for all category items. 
+    this.stateOfTruncatedText = Array(this.items.length).fill(false);
+  }
 
   prevCandidate() {
     if (this.currentCandiate > 1) {
@@ -54,10 +63,6 @@ export class CandidateFullResumeComponent {
   }
 
 
-  toggelLongText(key: string) {
-    this.trimPipe.toggleText(key);
-  }
-
   onBookInterview(): void {
     const dialogRef = this.dialog.open(BookAnInterviewComponent, {
       panelClass: ['popup-modal', 'lg'],
@@ -68,5 +73,9 @@ export class CandidateFullResumeComponent {
     const dialogRef = this.dialog.open(InviteToJobComponent, {
       panelClass: ['popup-modal', 'lg'],
     });
+  }
+
+  toggleLongTextState(index: number) {
+    this.stateOfTruncatedText[index] = !this.stateOfTruncatedText[index]
   }
 }
