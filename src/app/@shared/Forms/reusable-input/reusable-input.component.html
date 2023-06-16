@@ -1,7 +1,7 @@
 
 <div class="relative h-11 w-full">
   <input [type]="type" [formControl]="control"  
-    [class.border-red-500]="control.invalid && control.touched && control.dirty"
+    [class.border-primary-dark]="control.invalid && (control.touched || control.dirty)"
     class="peer h-full w-full border rounded-[4px] px-3 border-[#D2D2D2]
      bg-transparent pt-4 pb-1.5 text-sm14 font-semibold text-secondary-500 outline outline-0 transition-all
       focus:border-secondary-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"  
@@ -15,8 +15,8 @@
     {{ placeholder }}
   </label>
 
-  <ng-container *ngIf="control.invalid && control.touched && control.dirty">
-    <div class="text-sm font-normal text-red-500" *ngFor="let err of control.errors | keyvalue">
+  <ng-container *ngIf="control.invalid && (control.touched || control.dirty)">
+    <div class="text-sm font-normal text-primary-dark" *ngFor="let err of control.errors | keyvalue">
       {{ errorMessages[err.key]}}
     </div>
   </ng-container>

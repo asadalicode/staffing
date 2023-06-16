@@ -24,7 +24,7 @@
       interview.
     </p>
     <p class="font-normal text-base text-secondary-light">
-      I need to confirm few details, is this your best contact?
+      I need to confirm a few details, is this your best contact?
     </p>
   </ng-container>
 
@@ -62,11 +62,9 @@
         </app-phone-number-input>
 
         <button
-          type="button"
+          type="submit"
           (click)="submit()"
-          class="btn-primary-lg col-span-2 mt-5"
-          [disabled]="formStep1.invalid"
-        >
+          class="btn-primary-lg col-span-2 mt-5">
           Confirm and start
         </button>
       </form>

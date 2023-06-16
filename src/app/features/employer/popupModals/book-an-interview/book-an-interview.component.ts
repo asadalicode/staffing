@@ -74,10 +74,27 @@ export class BookAnInterviewComponent implements OnInit {
   }
 
   submit() {
-    this.step = 2;
+    if (this.formStep1.valid) {
+      console.log(this.formStep1.value);
+      this.step = 2;
+    } else {
+      this.formStep1.markAllAsTouched();
+      console.log(this.formStep1.value);
+      debugger
+
+      // this.scrollToFirstInvalidControl();
+    }
+   
   }
 
   confirm() {
+    // if (this.form.valid) {
+    //   console.log(this.form.value);
+    // } else {
+    //   this.form.markAllAsTouched();
+    //   this.scrollToFirstInvalidControl();
+    // }
+
     console.log(this.formStep2.value);
     this.dialogRef.close();
     this.openConfirmationPopup();

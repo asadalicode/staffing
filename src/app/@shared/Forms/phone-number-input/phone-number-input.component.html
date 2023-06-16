@@ -1,16 +1,28 @@
 <div class="wrapper col-span-2" [formGroup]="contact">
-    <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
-        [enablePlaceholder]="true" [customPlaceholder]="placeholder" [searchCountryFlag]="true" [searchCountryField]="[
-              SearchCountryField.Iso2,
-              SearchCountryField.Name
-            ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [enableAutoCountrySelect]="true" [maxLength]="15"
-        [phoneValidation]="true" [separateDialCode]="separateDialCode" [numberFormat]="PhoneNumberFormat.National"
-        name="phone" formControlName="phone">
+    <ngx-intl-tel-input 
+        [cssClass]="'custom'" 
+        [preferredCountries]="preferredCountries" 
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true" 
+        [customPlaceholder]="placeholder"  
+        [searchCountryFlag]="true" 
+        [searchCountryField]="[SearchCountryField.All]" 
+        [selectFirstCountry]="false" 
+        [selectedCountryISO]="CountryISO.India" 
+        [enableAutoCountrySelect]="true" 
+        [maxLength]="15"
+        [phoneValidation]="true" 
+        [separateDialCode]="separateDialCode" 
+        [numberFormat]="PhoneNumberFormat"
+        name="phone" 
+        formControlName="phone">
     </ngx-intl-tel-input>
 
-    <ng-container class="invalid-feedback">
-        <div class="text-sm font-normal text-red-500" *ngFor="let err of contact.errors | keyvalue">
+
+    <!-- <ng-container class="invalid-feedback"> -->
+        <!-- <div class="text-sm font-normal text-primary-dark" *ngFor="let err of contact.errors | keyvalue"> -->
+        <div class="text-sm font-normal text-primary-dark" *ngFor="let err of contact.errors | keyvalue">
             {{ errorMessages[err.key]}}
         </div>
-    </ng-container>
+    <!-- </ng-container> -->
 </div> 

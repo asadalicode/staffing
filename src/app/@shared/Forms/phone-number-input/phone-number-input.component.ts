@@ -11,13 +11,15 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
   styleUrls: ['./phone-number-input.component.scss']
 })
 export class PhoneNumberInputComponent {
-  separateDialCode = false;
+  separateDialCode = true;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO
-  PhoneNumberFormat = PhoneNumberFormat;
+  PhoneNumberFormat = PhoneNumberFormat.National;
   preferredCountries: CountryISO[] = [
     CountryISO.UnitedStates,
     CountryISO.UnitedKingdom,
+    CountryISO.Australia,
+    CountryISO.Canada
   ];
 
   @Input() label!: string;

@@ -1,7 +1,7 @@
 <div>
     <div class="flex justify-between items-center">
         <div class="flex flex-col sm:flex-row gap-1 sm:gap-3 items-center">
-            <h4 class="text-24 font-semibold text-secondary-light">Book an interview</h4>
+            <h4 class="text-24 font-semibold text-secondary-light">Invite To Job</h4>
             <span class="hidden sm:flex h-2 w-2 rounded-full bg-primary-dark"></span>
             <div class="text-24 font-normal text-secondary-light">NodeJS Developer</div>
         </div>
@@ -31,7 +31,7 @@
                     </div>
                    
 
-                    <button type="button" (click)="next()" class="btn-primary-lg col-span-2 mt-5 disabled:opacity-70"
+                    <button type="button" (click)="next()" class="btn-primary-lg col-span-2 mt-5"
                         [disabled]="formStep1.invalid">Confirm and start</button>
                 </form>
             </div>
@@ -53,7 +53,7 @@
                         <button
                             class="btn-primary-outline-lg capitalize w-[30%] min-w-[135px] !border-primary-light mt-5"
                             (click)="prev()">back</button>
-                        <button type="button" (click)="next()" class="btn-primary-lg mt-5 grow disabled:opacity-70"
+                        <button type="button" (click)="next()" class="btn-primary-lg mt-5 grow"
                             [disabled]="formStep2.invalid">Next</button>
                     </div>
 
@@ -127,7 +127,7 @@
                         <button
                             class="btn-primary-outline-lg capitalize w-[30%] min-w-[135px] !border-primary-light mt-5"
                             (click)="prev()">back</button>
-                        <button type="button" (click)="next()" class="btn-primary-lg mt-5 grow disabled:opacity-70"
+                        <button type="button" (click)="next()" class="btn-primary-lg mt-5 grow"
                             [disabled]="formStep2.invalid">Next</button>
                     </div>
 
@@ -157,7 +157,7 @@
             <div class="flex flex-row gap-4 mt-[52px]">
                 <button class="btn-primary-outline-lg capitalize w-[30%] min-w-[135px] !border-primary-light"
                     (click)="prev()">back</button>
-                <button type="button" (click)="next()" class="btn-primary-lg grow disabled:opacity-70">Next</button>
+                <button type="button" (click)="next()" class="btn-primary-lg grow">Next</button>
             </div>
         </div>
 

@@ -1,13 +1,18 @@
+import { UserCardComponent } from './../../components/user-card/user-card.component';
 
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ButtonCloseComponent } from '@app/@shared/components/button-close/button-close.component';
 import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusable-input.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactMeAdditionalDetailsComponent } from '../contact-me-additional-details/contact-me-additional-details.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+
+interface Config {
+  title: string
+}
 
 @Component({
   selector: 'app-contact-me',
@@ -18,6 +23,7 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
     ReusableInputComponent,
     ConfirmationPopupComponent,
     FormsModule,
+    UserCardComponent,
     PhoneNumberInputComponent,
     ContactMeAdditionalDetailsComponent,
     ReactiveFormsModule],
@@ -39,8 +45,8 @@ export class ContactMeComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ContactMeComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Config,
     public dialog: MatDialog) { }
-
 
   close() {
     this.dialogRef.close();
