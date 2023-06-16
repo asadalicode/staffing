@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import {
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  FormsModule,
+  ReactiveFormsModule,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-reusable-input',
@@ -12,11 +18,10 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule, ReactiveFormsModu
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ReusableInputComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-
 export class ReusableInputComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() type = 'text';
@@ -24,11 +29,10 @@ export class ReusableInputComponent implements ControlValueAccessor {
   @Input() control = new FormControl('');
   @Input() customValidator: any;
 
-
   errorMessages: Record<string, string> = {
     required: 'The field is required.',
-    email: 'the e-mail is invalid.'
-  }
+    email: 'The e-mail is invalid.',
+  };
 
   onChange: ((value: any) => void) | undefined;
   onTouched!: () => void;
@@ -46,8 +50,7 @@ export class ReusableInputComponent implements ControlValueAccessor {
   }
 
   ngOnInit() {
-    console.log(this.control)
+    console.log(this.control);
     // this.control.setValidators(this.customValidator);
   }
-
 }

@@ -1,114 +1,231 @@
-<div class="bg-white border-2 border-primary-dark rounded-[20px] p-4 sm:p-6 md:p-8">
-    <div class="flex md:flex-row flex-col sm:gap-4">
-        <div class="flex flex-row grow gap-4">
-            <img src="/assets/placeholder/user-icon.png" alt="icon"
-                class="flex-none w-[60px] h-[60px] rounded-full object-cover" loading="lazy" decoding="async">
+<div
+  class="bg-white border-2 border-primary-dark rounded-[20px] p-4 sm:p-6 md:p-8"
+>
+  <div class="flex md:flex-row flex-col sm:gap-4">
+    <div class="flex flex-row grow gap-4">
+      <img
+        src="/assets/placeholder/user-icon.png"
+        alt="icon"
+        class="flex-none w-[60px] h-[60px] rounded-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
 
-            <div class="grow">
-                <h2
-                    class=" line-clamp-2 md:line-clamp-1 max-w-[150px] md:max-w-[250px] mr-[35px] text-2xl text-left font-bold text-secondary-darktruncate text-ellipsis overflow-hidden ">
-                    Glenn Fairchild Glenn Fair</h2>
-                <div class="hidden md:flex  text-base font-medium text-secondary-light">Senior NodeJS Developer</div>
-                <div class="hidden md:flex  text-[14px] font-light text-secondary-light gap-2 items-center">
-                    <span><img src="/assets/icons/map.svg" alt=""></span>
-                    <span class="">Port Melbourne, Victoria</span>
-                </div>
-            </div>
-
-            <div class=" flex cursor-pointer md:hidden  justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full "
-                [class.bg-primary-dark]="!item.fav">
-                <img [src]="item.fav? '/assets/icons/heart.svg': '/assets/icons/heart-while.svg'" class="w-[16px]"
-                    alt="">
-            </div>
-
+      <div class="grow">
+        <h2
+          class="line-clamp-2 md:line-clamp-1 max-w-[150px] md:max-w-[250px] mr-[35px] text-2xl text-left font-bold text-secondary-darktruncate text-ellipsis overflow-hidden"
+        >
+          Glenn Fairchild Glenn Fair
+        </h2>
+        <div class="hidden md:flex text-base font-medium text-secondary-light">
+          Senior NodeJS Developer
         </div>
-
-
-
-        <div class="flex gap-1 flex-col">
-
-            <div class="flex md:grow  flex-col gap-2 items-start md:items-end">
-                <div class="flex md:hidden  text-base font-medium text-secondary-light">Senior NodeJS Developer</div>
-                <div class="flex md:hidden  text-[14px] font-light text-secondary-light gap-2 items-center">
-                    <span><img src="/assets/icons/map.svg" alt=""></span>
-                    <span class="">Port Melbourne, Victoria</span>
-                </div>
-                <div class="flex gap-4 items-center">
-                    <button type="button" class="text-sm underline text-primary-dark" (click)="onBookInterview()" translate>Book Interview</button>
-                    <button type="button" class="text-sm underline text-primary-dark " (click)="onInviteToJob()" translate>Invite To Job</button>
-                    <div [class.bg-primary-dark]="!item.fav"
-                        class="cursor-pointer hidden md:flex justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full ">
-                        <img [src]="item.fav? '/assets/icons/heart.svg': '/assets/icons/heart-while.svg'"
-                            class="w-[16px]" alt="">
-                    </div>
-                </div>
-                <div class=" bg-primary-light text-secondary-light py-1 sm:py-2 px-1 sm:px-6 text-[14px] mt-[16px] md:mt-0  rounded-[4px] font-semibold"
-                    translate>Total
-                    Experience 14+ years</div>
-            </div>
+        <div
+          class="hidden md:flex text-[14px] font-light text-secondary-light gap-2 items-center"
+        >
+          <span><img src="/assets/icons/map.svg" alt="" /></span>
+          <span class="">Port Melbourne, Victoria</span>
         </div>
+      </div>
+
+      <div
+        class="flex cursor-pointer md:hidden justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full"
+        [class.bg-primary-dark]="!item.fav"
+      >
+        <img
+          [src]="
+            item.fav
+              ? '/assets/icons/heart.svg'
+              : '/assets/icons/heart-while.svg'
+          "
+          class="w-[16px]"
+          alt=""
+        />
+      </div>
     </div>
 
-    <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
-        <h3 class="font-bold text-xl " translate>Experience</h3>
-        <div class="font-semibold text-secondary-light text-2sm">
-            <div class="grid grid-cols-6 px-3 mb-2 mt-4">
-                <span class="order-1 col-span-4 sm:col-span-2">Accountant</span>
-                <span
-                    class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020">Shell
-                    Australia</span>
-                <span
-                    class="col-span-2 order-2  sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020">5
-                    years</span>
-            </div>
-            <div class="grid grid-cols-6 px-3 mb-2">
-                <span class="order-1 col-span-4 sm:col-span-2">Assistant Manager Accountant</span>
-                <span
-                    class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020">Shell
-                    Australia</span>
-                <span
-                    class="col-span-2 order-2  sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020">5
-                    years</span>
-            </div>
-
-            <button type="button" class=" font-normal text-[#202020] text-sm">+3 Other Roles</button>
+    <div class="flex gap-1 flex-col">
+      <div class="flex md:grow flex-col gap-2 items-start md:items-end">
+        <div class="flex md:hidden text-base font-medium text-secondary-light">
+          Senior NodeJS Developer
         </div>
-    </div>
-
-    <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
-        <h3 class="font-bold text-xl text-secondary-dark " translate>Qualifications</h3>
-        <div class="text-secondary-light mt-4">
-            <div class="grid sm:grid-cols-2 px-3 mb-4">
-                <span class="font-semibold text-2sm">Master Degree - Business Administration</span>
-                <span class="sm:text-right font-light text-[14px]">Monash University, Melbourne</span>
-            </div>
-
-            <div class="grid sm:grid-cols-2 px-3 mb-4">
-                <span class="font-semibold text-2sm">Master Degree - Business Administration</span>
-                <span class="sm:text-right font-light text-[14px]">Monash University, Melbourne</span>
-            </div>
-
+        <div
+          class="flex md:hidden text-[14px] font-light text-secondary-light gap-2 items-center"
+        >
+          <span><img src="/assets/icons/map.svg" alt="" /></span>
+          <span class="">Port Melbourne, Victoria</span>
         </div>
-    </div>
-
-    <div class="p-3 rounded-md">
-        <h3 class="font-bold text-xl text-secondary-dark " translate>Skills</h3>
-        <div class="flex flex-wrap gap-2 mt-4">
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">NodeJS</span>
-            <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Angular</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">React js</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">React js</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Development</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Development</span>
-            <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Frontend Development</span>
-            <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Angular</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Angular</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Angular</span>
-            <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">Angular</span>
+        <div class="flex gap-4 items-center">
+          <button
+            type="button"
+            class="text-sm underline text-primary-dark"
+            (click)="onBookInterview()"
+            translate
+          >
+            Book Interview
+          </button>
+          <button
+            type="button"
+            class="text-sm underline text-primary-dark"
+            (click)="onInviteToJob()"
+            translate
+          >
+            Invite To Job
+          </button>
+          <div
+            [class.bg-primary-dark]="!item.fav"
+            class="cursor-pointer hidden md:flex justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full"
+          >
+            <img
+              [src]="
+                item.fav
+                  ? '/assets/icons/heart.svg'
+                  : '/assets/icons/heart-while.svg'
+              "
+              class="w-[16px]"
+              alt=""
+            />
+          </div>
         </div>
+        <div
+          class="bg-primary-light text-secondary-light py-1 sm:py-2 px-1 sm:px-6 text-[14px] mt-[16px] md:mt-0 rounded-[4px] font-semibold"
+          translate
+        >
+          Total Experience 14+ years
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="mt-4 flex flex-col sm:flex-row gap-4">
-        <button type="button" class="btn-link-lg text-primary-dark" (click)="openFullResume()" translate>View Full Resume</button>
+  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
+    <h3 class="font-bold text-xl" translate>Experience</h3>
+    <div class="font-semibold text-secondary-light text-2sm">
+      <div class="grid grid-cols-6 px-3 mb-2 mt-4">
+        <span class="order-1 col-span-4 sm:col-span-2">Accountant</span>
+        <span
+          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
+          >Shell Australia</span
+        >
+        <span
+          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
+          >5 years</span
+        >
+      </div>
+      <div class="grid grid-cols-6 px-3 mb-2">
+        <span class="order-1 col-span-4 sm:col-span-2"
+          >Assistant Manager Accountant</span
+        >
+        <span
+          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
+          >Shell Australia</span
+        >
+        <span
+          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
+          >5 years</span
+        >
+      </div>
+
+      <div class="grid grid-cols-6 px-3 mb-2">
+        <span class="order-1 col-span-4 sm:col-span-2">Junior Auditor</span>
+        <span
+          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
+          >Shell Australia
+        </span>
+        <span
+          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
+          >4 years</span
+        >
+      </div>
+
+      <button type="button" class="font-normal text-[#202020] text-sm">
+        +3 Other Roles
+      </button>
     </div>
+  </div>
+
+  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
+    <h3 class="font-bold text-xl text-secondary-dark" translate>
+      Qualifications
+    </h3>
+    <div class="text-secondary-light mt-4">
+      <div class="grid sm:grid-cols-2 px-3 mb-4">
+        <span class="font-semibold text-2sm"
+          >Master Degree - Business Administration</span
+        >
+        <span class="sm:text-right font-light text-[14px]"
+          >Monash University, Melbourne</span
+        >
+      </div>
+
+      <div class="grid sm:grid-cols-2 px-3 mb-4">
+        <span class="font-semibold text-2sm"
+          >Master Degree - Business Administration</span
+        >
+        <span class="sm:text-right font-light text-[14px]"
+          >Monash University, Melbourne</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="p-3 rounded-md">
+    <h3 class="font-bold text-xl text-secondary-dark" translate>Skills</h3>
+    <div class="flex flex-wrap gap-2 mt-4">
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >NodeJS</span
+      >
+      <span
+        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Angular</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >React js</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >React js</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Development</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Development</span
+      >
+      <span
+        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Frontend Development</span
+      >
+      <span
+        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Angular</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Angular</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Angular</span
+      >
+      <span
+        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
+        >Angular</span
+      >
+    </div>
+  </div>
+
+  <div class="mt-4 flex flex-col sm:flex-row gap-4">
+    <button
+      type="button"
+      class="btn-link-lg text-primary-dark"
+      (click)="openFullResume()"
+      translate
+    >
+      View Full Resume
+    </button>
+  </div>
 </div>
