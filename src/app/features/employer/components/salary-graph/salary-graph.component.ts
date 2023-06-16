@@ -17,6 +17,7 @@ export class SalaryGraphComponent {
       x: {},
       y: {
         min: 10,
+        display: false,
       },
     },
     plugins: {
