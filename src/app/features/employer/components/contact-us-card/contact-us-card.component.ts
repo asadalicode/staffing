@@ -25,6 +25,17 @@ export class ContactUsCardComponent {
 
   contactMe() {
     const dialogRef = this.dialog.open(ContactMeComponent, {
+      data: {
+        title: 'Contact Me'
+      },
+      panelClass: ['popup-modal', 'lg'],
+    });
+  }
+  findNextHire() {
+    const dialogRef = this.dialog.open(ContactMeComponent, {
+      data: {
+        title: 'Find My Next Hire'
+      },
       panelClass: ['popup-modal', 'lg'],
     });
   }

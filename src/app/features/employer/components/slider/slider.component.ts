@@ -37,10 +37,7 @@ export class SliderComponent {
       },
       1024: {
         items: 3,
-      },
-      1500: {
-        items: 3,
-      },
+      }
     },
     nav: true,
   };
