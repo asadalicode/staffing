@@ -71,7 +71,7 @@
       {{ aboutText | trimText : moreTextCount : showMoreText }}
     </p>
     <button class="btn-default-outline mt-6 w-full" (click)="toggleShowMoretext()">
-      Show {{ moreTextCount == 778 ? "Full" : "Less" }} Summary
+      Show {{ moreTextCount == 778 ? "Full Summary" : "Less" }}
     </button>
   </app-expension-panel>
 
@@ -92,17 +92,29 @@
         </div>
 
         <div
-          class="sm:grid sm:grid-flow-col-dense sm:grid-rows-2 sm:auto-cols-max items-center text-base text-secondary-light font-light">
-          <div class="float-left sm:float-none clear-both bg-gray-400 mr-2 w-9 h-9 sm:row-span-2"></div>
-          <div class="text-secondary-dark font-medium pt-[6px] sm:pt-0">
-            FutureDev Agency
+          class="xs:grid xs:grid-flow-col-dense xs:grid-rows-2 xs:auto-cols-max items-center text-base text-secondary-light font-light">
+          <div class="hidden xs:block float-left xs:float-none clear-both bg-gray-400 mr-2 w-9 h-9 xs:row-span-2"></div>
+          <!-- <ng-container class="sm:hidden">
+            <div class="text-secondary-dark font-medium pt-[6px] sm:pt-0">
+              FutureDev Agency
+            </div>
+            <div class="clear-both">Jan 2022 - Present</div>
+          </ng-container> -->
+
+          <div class="flex flex-col xs:flex-row xs:gap-3 xs:items-center">
+            <div class="text-secondary-dark font-medium flex items-center xs:items-start">
+              <div class="xs:hidden block bg-gray-400 mr-2 w-9 h-9"></div>
+              <span>FutureDev Agency</span>
+            </div>
+            <span class="w-1 hidden xs:flex rounded-full h-1 bg-primary-dark"></span>
+            <span>Jan 2022 - Present</span>
           </div>
-          <div class="clear-both">Jan 2022 - Present</div>
+
           <div>Port Melbourne, Victoria</div>
         </div>
 
         <app-ul-list></app-ul-list>
-        
+
       </div>
 
       <div>
@@ -114,8 +126,11 @@
         </div>
 
         <div class="flex flex-col text-base text-secondary-light font-light">
-          <span class="text-secondary-dark font-medium">FutureDev Agency</span>
-          <span>Jan 2022 - Present</span>
+          <div class="flex flex-col sm:flex-row sm:gap-3 sm:items-center">
+            <span class="text-secondary-dark font-medium">FutureDev Agency</span>
+            <span class="w-1 hidden sm:flex rounded-full h-1 bg-primary-dark"></span>
+            <span>Jan 2022 - Present</span>
+          </div>
           <span>Port Melbourne, Victoria</span>
         </div>
 
@@ -192,13 +207,15 @@
   </app-expension-panel>
   <app-expension-panel title="Language">
     <ul>
-      <li class="text-base font-semibold leading-6">
-        English
-        <span class="before:m-[8px] before:content-[''] be text-light-400 font-medium">Native</span>
+      <li class="text-base font-semibold leading-6 flex gap-2 items-center">
+        <span>English</span>
+        <span class="w-3 h-[2px] bg-primary-dark"></span>
+        <span class=" text-light-400 font-medium">Native</span>
       </li>
-      <li class="text-base font-semibold leading-6">
-        German
-        <span class="before:m-[8px] before:content-[''] text-light-400 font-medium">Fluent</span>
+      <li class="text-base font-semibold leading-6 flex gap-2 items-center">
+        <span>German</span>
+        <span class="w-3 h-[2px] bg-primary-dark"></span>
+        <span class=" text-light-400 font-medium">Fluent</span>
       </li>
     </ul>
   </app-expension-panel>
