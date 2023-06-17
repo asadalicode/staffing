@@ -18,6 +18,7 @@ import { ContactUsCardComponent } from './components/contact-us-card/contact-us-
 import { CandidateCardComponent } from './components/candidate-card/candidate-card.component';
 import { SalaryGraphComponent } from './components/salary-graph/salary-graph.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { UlListComponent } from './components/ul-list/ul-list.component';
 
 
 
@@ -46,6 +47,7 @@ const routes: Routes = [
     BookAnInterviewComponent,
     ContactMeComponent,
     TrimTextPipe,
+    UlListComponent,
     RouterModule.forChild(routes),
   ],
   providers: [

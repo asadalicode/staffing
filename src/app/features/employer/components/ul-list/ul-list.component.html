@@ -1,0 +1,9 @@
+<ul [class.truncated-list]="truncateDefault"
+    class="pl-[18px]   text-sm14 leading-6 text-black-202020 list-disc font-medium ">
+    <li *ngFor="let item of items">
+        {{item}}
+    </li>
+</ul>
+    <button type="button" *ngIf="truncateDefault" (click)="truncateDefault = !truncateDefault" class="text-primary-dark underline whitespace-nowrap see-more">
+        see more
+    </button>

@@ -1,0 +1,24 @@
+:host{
+    .truncated-list {
+            width: 100%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            background: #fff; 
+        }
+
+                // ul.truncated-list {
+                //     max-height: 10rem;
+                //     /* Set the desired height for the truncated list */
+                //     overflow: hidden;
+                // }
+        
+                // ul.truncated-list li:last-child span::after {
+                //     content: '...';
+                // }
+        
+                // ul.truncated-list li:last-child button {
+                //     display: inline-block;
+                // }
+}
