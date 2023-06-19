@@ -1,14 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CountryISO, NgxIntlTelInputModule, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-phone-number-input',
   standalone: true,
   imports: [CommonModule, NgxIntlTelInputModule, ReactiveFormsModule, FormsModule],
   templateUrl: './phone-number-input.component.html',
-  styleUrls: ['./phone-number-input.component.scss']
+  styleUrls: ['./phone-number-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PhoneNumberInputComponent),
+      multi: true,
+    },
+  ],
 })
 export class PhoneNumberInputComponent {
   separateDialCode = true;

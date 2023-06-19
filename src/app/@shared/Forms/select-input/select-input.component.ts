@@ -35,7 +35,7 @@ interface DataType {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ReusableInputComponent),
+      useExisting: forwardRef(() => SelectInputComponent),
       multi: true,
     },
   ],
