@@ -20,6 +20,7 @@ import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusab
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
   selector: 'app-book-an-interview',
@@ -30,6 +31,7 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
     FormsModule,
     ReactiveFormsModule,
     ReusableInputComponent,
+    UserCardComponent,
     SelectInputComponent,
     PhoneNumberInputComponent,
   ],
@@ -40,7 +42,7 @@ export class BookAnInterviewComponent implements OnInit {
   formStep1!: any;
   formStep2!: any;
   step = 1;
-
+  jobTitle: string = 'NodeJS Developer';
   interviewTypeList = [
     { label: 'One on one', value: '1', data: { label: 'One on one' } },
     { label: 'Video', value: '2', data: { label: 'Video' } },
@@ -60,6 +62,7 @@ export class BookAnInterviewComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      company: new FormControl('', Validators.required),
       contact: new FormGroup({
         phone: new FormControl('', Validators.required),
       }),

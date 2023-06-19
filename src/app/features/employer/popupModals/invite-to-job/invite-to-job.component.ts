@@ -13,6 +13,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
   selector: 'app-invite-to-job',
@@ -22,6 +23,7 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
     ButtonCloseComponent,
     FormsModule,
     ReactiveFormsModule,
+    UserCardComponent,
     PhoneNumberInputComponent,
     SelectInputComponent,
     ReusableInputComponent,
@@ -37,7 +39,7 @@ export class InviteToJobComponent implements OnInit {
   step = 1;
   selectedJobType = '';
   selectedCurrency = '';
-
+  jobTitle: string = 'NodeJS Developer';
   salaryTypeList = [
     { value: 'Annually', label: 'Annually', data: { label: 'Annually' } },
     { value: 'Hourly', label: 'Hourly', data: { label: 'Hourly' } },
@@ -71,6 +73,7 @@ export class InviteToJobComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      company: new FormControl('', Validators.required),
       contact: new FormGroup({
         phone: new FormControl('', Validators.required),
       }),
