@@ -21,6 +21,31 @@ body {
   @apply font-montserrat;
 }
 
+:root {
+  --select2-dropdown-border-color: #d2d2d2 !important;
+}
+
+.select2-container--default {
+  border-radius: 4px !important;
+  .select2-results__option {
+    background: transparent !important;
+    color: #5e5e5e !important;
+    width: 90% !important;
+    margin: auto;
+    padding: 8px !important;
+    border-bottom: 1px solid #d2d2d2 !important;
+  }
+}
+.select2-container--default .select2-results__option:last-child {
+  border-bottom: none !important;
+}
+
+.select2-container--open .select2-dropdown--below {
+  border-radius: 4px !important;
+  border-top: 1px solid #d2d2d2 !important;
+  top: 3px;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 6.21px;
@@ -236,10 +261,10 @@ body {
       -ms-border-radius: 20px;
       -o-border-radius: 20px;
 
-        @media screen and (min-width: 500px) {
-            top: 0;
-            height: calc(100% - 50px);
-          }
+      @media screen and (min-width: 500px) {
+        top: 0;
+        height: calc(100% - 50px);
+      }
     }
   }
 }
@@ -301,15 +326,15 @@ ngx-intl-tel-input input {
   padding: 10px;
   border-style: solid;
   border-width: 1px;
-  border-color: #D2D2D2;
-  color:#5E5E5E;
+  border-color: #d2d2d2;
+  color: #5e5e5e;
   border-radius: 4px;
   font-size: 14px;
   font-weight: 600;
 }
 
 ngx-intl-tel-input.ng-invalid.ng-touched input {
-  border: 1px solid #AA1D35;
+  border: 1px solid #aa1d35;
 }
 
 ngx-intl-tel-input input:hover {
@@ -318,35 +343,33 @@ ngx-intl-tel-input input:hover {
 
 ngx-intl-tel-input input:focus {
   outline: none !important;
-  border-color: rgba(123, 128, 154, 1);;
+  border-color: rgba(123, 128, 154, 1);
   box-shadow: 0 0 0 0 #000;
 }
 
 ngx-intl-tel-input input {
   &::placeholder {
-      color: #93969E;
-      font-size: 14px;
-      line-height: 17px;
-      font-weight: normal;
-    }
-  &::-webkit-input-placeholder {
-    color: #93969E;
+    color: #93969e;
     font-size: 14px;
-      line-height: 17px;
+    line-height: 17px;
+    font-weight: normal;
+  }
+  &::-webkit-input-placeholder {
+    color: #93969e;
+    font-size: 14px;
+    line-height: 17px;
   }
   &:-ms-input-placeholder {
-    color: #93969E;
+    color: #93969e;
     font-size: 14px;
-      line-height: 17px;
+    line-height: 17px;
   }
   &::-ms-input-placeholder {
-
-    color: #93969E;
+    color: #93969e;
     font-size: 14px;
-      line-height: 17px;
+    line-height: 17px;
   }
-} 
-
+}
 
 ngx-intl-tel-input input[disabled] {
   background-color: #e5eaf1;

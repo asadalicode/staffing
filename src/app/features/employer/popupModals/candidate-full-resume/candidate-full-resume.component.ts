@@ -25,8 +25,6 @@ export class CandidateFullResumeComponent implements OnInit {
 
   stateOfTruncatedText!: boolean[];
 
-
-
   aboutText: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe inventore enim delectus quo cum mollitia,
    quas doloribus eos iusto exercitationem sed dolorum deleniti totam maxime quia aliquid incidunt vero! Sit, tempore magni earum 
    nesciunt ducimus esse id beatae, omnis soluta provident reprehenderit nisi. Excepturi earum repudiandae ab distinctio odio 
@@ -42,19 +40,126 @@ export class CandidateFullResumeComponent implements OnInit {
   consequuntur animi eveniet soluta nihil facilis exercitationem quibusdam nulla similique ab provident. Deleniti doloribus non dolor
   accusamus quasi saepe reprehenderit, fugiat debitis? `;
 
+  experiences: any = [];
+  noOfExperiences = 5;
+  isExperienceToggle: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
     public trimPipe: TrimTextPipe,
     private cdr: ChangeDetectorRef,
     private elRef: ElementRef
-  ) {}
-
-  ngOnInit() {
-   
-    
+  ) {
+    this.experiences = {
+      totalExperiece: '6 yrs 11 mos',
+      meta: [
+        {
+          id: 1,
+          icon: 'icon',
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: null,
+          title: 'Senior Back-end Developer',
+          experience: '1 yr 5 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2023',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: 'icon',
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: null,
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: 'icon',
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: null,
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: 'icon',
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: null,
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: 'icon',
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+        {
+          id: 1,
+          icon: null,
+          title: 'Senior NodeJS Developer',
+          experience: '1 yr 3 mos',
+          company: 'FutureDev Agency',
+          from: 'Jan 2022',
+          to: 'Present',
+          address: 'Port Melbourne, Victoria',
+        },
+      ],
+    };
   }
-  
+
+  ngOnInit() {}
+
   prevCandidate() {
     if (this.currentCandiate > 1) {
       this.currentCandiate -= 1;
@@ -95,7 +200,14 @@ export class CandidateFullResumeComponent implements OnInit {
       this.moreTextCount = 778;
     }
     this.cdr.detectChanges();
+  }
 
-    console.log(this.moreTextCount);
+  toggleMoreExperience() {
+    this.isExperienceToggle = !this.isExperienceToggle;
+    if (this.isExperienceToggle) {
+      this.noOfExperiences = this.experiences.meta.length;
+    } else {
+      this.noOfExperiences = 5;
+    }
   }
 }

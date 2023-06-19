@@ -31,7 +31,7 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
     ReactiveFormsModule,
     ReusableInputComponent,
     SelectInputComponent,
-    PhoneNumberInputComponent
+    PhoneNumberInputComponent,
   ],
   templateUrl: './book-an-interview.component.html',
   styleUrls: ['./book-an-interview.component.scss'],
@@ -42,11 +42,11 @@ export class BookAnInterviewComponent implements OnInit {
   step = 1;
 
   interviewTypeList = [
-    { label: 'One on one', value: '1' },
-    { label: 'Video', value: '2' },
-    { label: 'Phone', value: '3' },
-    { label: 'Informal', value: '4' },
-    { label: 'Group', value: '5' },
+    { label: 'One on one', value: '1', data: { label: 'One on one' } },
+    { label: 'Video', value: '2', data: { label: 'Video' } },
+    { label: 'Phone', value: '3', data: { label: 'Phone' } },
+    { label: 'Informal', value: '4', data: { label: 'Informal' } },
+    { label: 'Group', value: '5', data: { label: 'Group' } },
   ];
 
   constructor(
@@ -80,11 +80,10 @@ export class BookAnInterviewComponent implements OnInit {
     } else {
       this.formStep1.markAllAsTouched();
       console.log(this.formStep1.value);
-      debugger
+      debugger;
 
       // this.scrollToFirstInvalidControl();
     }
-   
   }
 
   confirm() {

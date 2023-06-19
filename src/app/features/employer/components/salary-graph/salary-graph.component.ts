@@ -14,7 +14,11 @@ export class SalaryGraphComponent {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      x: {},
+      x: {
+        grid: {
+          display: false,
+        },
+      },
       y: {
         min: 10,
         display: false,
@@ -32,7 +36,7 @@ export class SalaryGraphComponent {
   // ];
 
   barChartData: ChartData<'bar'> = {
-    labels: ['60-70k', '80-90k', '100-110k', '120-130k', '140-150'],
+    labels: ['60-70k', '80-90k', '100-110k', '120-130k', '140-150k'],
     datasets: [
       {
         data: [28, 48, 30, 45, 50],

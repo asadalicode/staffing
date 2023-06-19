@@ -1,9 +1,15 @@
-<!-- <select2 [data]="data" [templates]="template">
-    <ng-template #template let-data="data"><strong>{{data?.color}}</strong>: {{data?.name}}</ng-template>
-</select2> -->
+<select2
+  [data]="data"
+  class="bg-transparent"
+  [templates]="template"
+  [placeholder]="placeholder"
+  [value]="control.value || ''"
+>
+  <ng-template #template let-data="data" class="bg-transparent">
+    {{ data?.label }}</ng-template
+  >
+</select2>
 
-
-
-<div class="relative h-11 w-full">
+<!-- <div class="relative h-11 w-full">
     <select2 [data]="data" [placeholder]="placeholder" [value]="control.value || ''" (update)="update($event)"> </select2>
-</div>
+</div> -->

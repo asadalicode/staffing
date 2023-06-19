@@ -1,12 +1,29 @@
-import { Component, EventEmitter, Input, Output, Pipe, ViewEncapsulation, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Pipe,
+  ViewEncapsulation,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { Select2Module, Select2Option } from 'ng-select2-component';
-import { FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import {
+  Select2Data,
+  Select2Module,
+  Select2Option,
+} from 'ng-select2-component';
+import {
+  FormControl,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ReusableInputComponent } from '../reusable-input/reusable-input.component';
 
-interface DataType{
-  label: string,
-  value: string
+interface DataType {
+  label: string;
+  value: string;
 }
 
 @Component({
@@ -19,20 +36,20 @@ interface DataType{
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ReusableInputComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  encapsulation : ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class SelectInputComponent {
   @Input() label!: string;
   @Input() placeholder = '';
-  @Input() data!: DataType[];
+  @Input() data!: Select2Data;
   @Input() control = new FormControl('');
   @Input() customValidator: any;
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
-  
-  update($event:any) {
+  dataSet!: Select2Data;
+  update($event: any) {
     console.log($event);
     this.onSelect.emit($event);
   }
@@ -52,8 +69,12 @@ export class SelectInputComponent {
     this.onTouched = fn;
   }
 
+  constructor() {}
+
   ngOnInit() {
+    console.log(this.data);
+
     // this.control.setValidators(this.customValidator);
-    console.log(this.control)
+    console.log(this.control);
   }
 }

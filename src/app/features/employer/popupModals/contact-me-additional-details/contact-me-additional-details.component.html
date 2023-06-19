@@ -1,58 +1,96 @@
 <div>
-    <div class="flex justify-between items-center">
-        <h4 class="text-24 font-semibold text-secondary-light">Additional details</h4>
-        <app-button-close class="self-end" (click)="close()" bgColor="bg-primary-light"></app-button-close>
-    </div>
-    <p class="font-normal text-base text-secondary-light">Can you tell me a bit more about your job?</p>
+  <div class="flex justify-between items-center">
+    <h4 class="text-24 font-semibold text-secondary-light">
+      Additional details
+    </h4>
+    <app-button-close
+      class="self-end"
+      (click)="close()"
+      bgColor="bg-primary-light"
+    ></app-button-close>
+  </div>
+  <p class="font-normal text-base text-secondary-light">
+    Can you tell me a bit more about your job?
+  </p>
 
+  <div class="w-full pt-[30px]">
+    <form [formGroup]="form" class="flex flex-col gap-4">
+      <app-select-input
+        placeholder="Select Job Type"
+        [data]="jobTypeList"
+        [control]="form.controls.jobType"
+      ></app-select-input>
 
-    <div class="w-full pt-[30px]">
-        <form [formGroup]="form" class="flex flex-col gap-4">
-            <app-select-input  placeholder="Select Job Type" [data]="salaryTypeList" [control]="form.controls.jobType"></app-select-input>
+      <app-select-input
+        placeholder="Location Type"
+        [data]="locationTypeList"
+        [control]="form.controls.locationType"
+      ></app-select-input>
 
-            <app-select-input  placeholder="Location Type" [data]="salaryTypeList" [control]="form.controls.locationType"></app-select-input>
-           
-            <app-reusable-input placeholder="Target Start Date" class="sm:w-[50%] md:w-[40%]" type="date" [control]="form.controls.date"></app-reusable-input>
-           
-            <div>
-                <h4 class="font-bold text-base text-primary-dark mt-6">Salary / Rate</h4>
-                <div class="flex gap-3 items-center mt-3">
-                    <label for="" class="text-sm font-medium text-secondary-light">Curreny</label>
+      <app-reusable-input
+        placeholder="Target Start Date"
+        class="sm:w-[50%] md:w-[40%]"
+        type="date"
+        [control]="form.controls.date"
+      ></app-reusable-input>
 
+      <div>
+        <h4 class="font-bold text-base text-primary-dark mt-6">
+          Salary / Rate
+        </h4>
+        <div class="flex gap-3 items-center mt-3">
+          <label for="" class="text-sm font-medium text-secondary-light"
+            >Curreny</label
+          >
 
-                        <app-select-input [data]="currencyList"
-                            [control]="form.controls.currency"></app-select-input>
-                </div>
+          <app-select-input
+            [data]="currencyList"
+            [control]="form.controls.currency"
+          ></app-select-input>
+        </div>
 
-
-                <div class="mt-3 flex flex-col sm:flex-row sm:items-center gap-2" >
-                    <div class="relative flex h-11 w-full min-w-[200px]">
-                        <div class="!absolute text-sm14 font-medium left-2 top-3 select-none text-secondary-light">A$</div>
-                        <input type="text"  [formControl]="form.controls.salaryStart" 
-                            class="h-full pl-8 w-full border rounded-[4px] px-3 border-[#D2D2D2]
-                                bg-transparent pt-[7px] pb-1.5 text-sm14 font-semibold text-secondary-500 outline outline-0 transition-all
-                                placeholder-shown:border-blue-gray-200 focus:border-secondary-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder="0" />
-                    </div>
-
-                    <span>To</span>
-
-                    <div class="relative flex h-11 w-full min-w-[200px]">
-                        <div class="!absolute text-sm14 font-medium left-2 top-3 select-none text-secondary-light">A$</div>
-                        <input type="text" [formControl]="form.controls.salaryEnd" 
-                            class="h-full pl-8 w-full border rounded-[4px] px-3 border-[#D2D2D2]
-                                                    bg-transparent pt-[7px] pb-1.5 text-sm14 font-semibold text-secondary-500 outline outline-0 transition-all
-                                                    placeholder-shown:border-blue-gray-200 focus:border-secondary-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder="0" />
-                    </div>
-
-            
-                    <app-select-input class="sm:w-[120px]" [data]="salaryTypeList" [control]="form.controls.salaryType"></app-select-input>
-                </div>
+        <div class="mt-3 flex flex-col sm:flex-row sm:items-center gap-2">
+          <div class="relative flex h-11 w-full min-w-[200px]">
+            <div
+              class="!absolute text-sm14 font-medium left-2 top-3 select-none text-secondary-light"
+            >
+              A$
             </div>
-        
-            <button (click)="submit()" class="btn-primary-lg col-span-2 mt-5" [disabled]="form.invalid">Submit</button>
-        
-        </form>
-    </div>
+            <input
+              type="text"
+              [formControl]="form.controls.salaryStart"
+              class="h-full pl-8 w-full border rounded-[4px] px-3 border-[#D2D2D2] bg-transparent pt-[7px] pb-1.5 text-sm14 font-semibold text-secondary-500 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-secondary-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              placeholder="0"
+            />
+          </div>
+
+          <span>To</span>
+
+          <div class="relative flex h-11 w-full min-w-[200px]">
+            <div
+              class="!absolute text-sm14 font-medium left-2 top-3 select-none text-secondary-light"
+            >
+              A$
+            </div>
+            <input
+              type="text"
+              [formControl]="form.controls.salaryEnd"
+              class="h-full pl-8 w-full border rounded-[4px] px-3 border-[#D2D2D2] bg-transparent pt-[7px] pb-1.5 text-sm14 font-semibold text-secondary-500 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-secondary-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              placeholder="0"
+            />
+          </div>
+
+          <app-select-input
+            class="sm:w-[120px]"
+            [data]="salaryTypeList"
+            [control]="form.controls.salaryType"
+          ></app-select-input>
+        </div>
+      </div>
+
+      <button (click)="submit()" class="btn-primary-lg col-span-2 mt-5">
+        Submit
+      </button>
+    </form>
+  </div>
 </div>
