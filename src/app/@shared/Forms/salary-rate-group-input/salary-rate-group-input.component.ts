@@ -2,11 +2,12 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { SelectInputComponent } from '../select-input/select-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-salary-rate-group-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, SelectInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, SelectInputComponent, TranslateModule],
   templateUrl: './salary-rate-group-input.component.html',
   styleUrls: ['./salary-rate-group-input.component.scss'],
   providers: [

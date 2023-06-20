@@ -13,7 +13,7 @@ export const environment = {
   production: false,
   version: 1 + '-dev',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US','fr-FR'],
+  supportedLanguages: ['en-US','fr-FR', 'pr-PR'],
 };
 
 /*

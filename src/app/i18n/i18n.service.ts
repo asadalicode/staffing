@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import enUS from '../../translations/en-US.json';
 import esES from '../../translations/es-ES.json';
 import frFR from '../../translations/fr-FR.json';
+import prPR from '../../translations/pr-PR.json';
 
 const languageKey = 'language';
 
@@ -22,6 +23,7 @@ export class I18nService {
     translateService.setTranslation('en-US', enUS);
     translateService.setTranslation('es-ES', esES);
     translateService.setTranslation('fr-FR', frFR);
+    translateService.setTranslation('pr-PR', prPR);
   }
 
   /**

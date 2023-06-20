@@ -13,6 +13,7 @@ import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusab
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
+import { SalaryRateGroupInputComponent } from '@app/@shared/Forms/salary-rate-group-input/salary-rate-group-input.component';
 
 @Component({
   selector: 'app-contact-me-additional-details',
@@ -24,6 +25,7 @@ import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-inp
     ReactiveFormsModule,
     SelectInputComponent,
     ReusableInputComponent,
+    SalaryRateGroupInputComponent
   ],
   templateUrl: './contact-me-additional-details.component.html',
   styleUrls: ['./contact-me-additional-details.component.scss'],
@@ -31,27 +33,15 @@ import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-inp
 export class ContactMeAdditionalDetailsComponent implements OnInit {
   form!: any;
 
-  salaryTypeList = [
-    { value: 'Annually', label: 'Annually', data: { label: 'Annually' } },
-    { value: 'Hourly', label: 'Hourly', data: { label: 'Hourly' } },
-  ];
-
   locationTypeList = [
     { value: 'Hybrid', label: 'Hybrid', data: { label: 'Hybrid' } },
     { value: 'Remote', label: 'Remote', data: { label: 'Remote' } },
   ];
-
   jobTypeList = [
     { value: 'Full Time', label: 'Full Time', data: { label: 'Full Time' } },
     { value: 'Part Time', label: 'Part Time', data: { label: 'Part Time' } },
     { value: 'Casual', label: 'Casual', data: { label: 'Casual' } },
     { value: 'Contract', label: 'Contract', data: { label: 'Contract' } },
-  ];
-
-  currencyList = [
-    { value: 'AUD', label: 'AUD', data: { label: 'AUD' } },
-    { value: 'USD', label: 'USD', data: { label: ' USD' } },
-    { value: 'PKR', label: 'PKR', data: { label: 'PKR' } },
   ];
 
   constructor(
@@ -65,15 +55,18 @@ export class ContactMeAdditionalDetailsComponent implements OnInit {
       jobType: new FormControl('', Validators.required),
       locationType: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
-      currency: new FormControl('AUD', Validators.required),
-      salaryType: new FormControl('Annually', Validators.required),
-      salaryStart: new FormControl('', Validators.required),
-      salaryEnd: new FormControl('', Validators.required),
+      salaryRange: new FormGroup({
+        currency: new FormControl('AUD', Validators.required),
+        salaryType: new FormControl('Annually', Validators.required),
+        salaryStart: new FormControl('', Validators.required),
+        salaryEnd: new FormControl('', Validators.required),
+      }),
     });
   }
 
   submit() {
     this.dialogRef.close('yes');
+    console.log(this.form.value)
     this.openConfirmationPopup();
   }
 

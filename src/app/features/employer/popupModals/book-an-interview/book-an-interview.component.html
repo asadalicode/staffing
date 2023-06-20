@@ -62,6 +62,7 @@
         </app-phone-number-input>
 
         <button
+         translate
           type="submit"
           (click)="submit()"
           class="btn-primary-lg col-span-2 mt-5">
@@ -77,7 +78,7 @@
           [data]="interviewTypeList"
           [control]="formStep2.controls.interviewType"
         ></app-select-input>
-        <button type="submit" (click)="confirm()" class="btn-primary-lg mt-5">
+        <button type="submit" (click)="confirm()" class="btn-primary-lg mt-5" translate>
           Confirm
         </button>
       </form>
