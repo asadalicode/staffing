@@ -30,11 +30,14 @@ body {
   .select2-results__option {
     background: transparent !important;
     color: #5e5e5e !important;
-    width: 90% !important;
+    width: 100% !important;
     margin: auto;
     padding: 8px !important;
     border-bottom: 1px solid #d2d2d2 !important;
   }
+  // ::after {
+  //   border: 1px solid #d2d2d2 !important;
+  // }
 }
 .select2-container--default .select2-results__option:last-child {
   border-bottom: none !important;
