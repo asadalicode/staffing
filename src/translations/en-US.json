@@ -13,6 +13,7 @@
   "Qualifications":"Qualifications",
   "Skills":"Skills",
   "Book Interview": "Book Interview",
+  "Book an interview": "Book an interview",
   "Invite To Job":"Invite To Job",
   "Total Experience 14+ years":"Total Experience 14+ years",
   "View Full Resume":"View Full Resume",
@@ -24,6 +25,19 @@
   "Education":"Education",
   "Licenses & Certifications": "Licenses & Certifications",
   "Language":"Language",
-  "Total experience": "Total experience"
-
+  "Total experience": "Total experience",
+  "First Name": "First Name",
+  "Last Name": "Last Name",
+  "Email": "Email",
+  "Company Name": "Company Name",
+  "Contact Number": "Contact Number",
+  "Submit": "Submit",
+  "I'll find you a Job Title": "I'll find you a Job Title",
+  "Contact Me": "Contact Me",
+  "back":"back",
+  "Next":"Next",
+  "Agree And Get Started": "Agree And Get Started",
+  "Email me Terms of Business": "Email me Terms of Business",
+  "Confirm": "Confirm",
+  "Confirm and start": "Confirm and start"
 }

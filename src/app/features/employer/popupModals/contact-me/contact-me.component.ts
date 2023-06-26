@@ -19,6 +19,7 @@ import {
 import { ContactMeAdditionalDetailsComponent } from '../contact-me-additional-details/contact-me-additional-details.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Config {
   title: string;
@@ -35,6 +36,7 @@ interface Config {
     FormsModule,
     UserCardComponent,
     PhoneNumberInputComponent,
+    TranslateModule,
     ContactMeAdditionalDetailsComponent,
     ReactiveFormsModule,
   ],

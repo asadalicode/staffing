@@ -13,13 +13,29 @@
   "Qualifications": "Qualifications",
   "Skills": "Compétences",
   "Book Interview": "Entrevue de livre",
+  "Book an interview": "réserver une entrevue",
   "Invite To Job": "Inviter au travail",
   "Total Experience 14+ years": "Expérience totale 14+ ans",
   "View Full Resume": "Voir le CV complet",
   "Back To Top": "Retour au sommet",
   "Load More Candidates": "Charger plus de candidats",
   "Request Profile": "Request Profile",
-  "Total experience": "Expérience totale"
+  "Total experience": "Expérience totale",
+    "First Name": "Prénom",
+    "Last Name": "Nom de famille",
+    "Email": "E-mail",
+    "Company Name": "Nom de l'entreprise",
+    "Contact Number": "Numéro de Contact",
+    "Submit": "Envoyer",
+    "I'll find you a Job Title": "I'll find you a Job Title",
+    "Contact Me": "Contactez-moi",
+    "back": "Retour",
+    "Next": "Suivant",
+    "Agree And Get Started": "D’accord et Commencer",
+    "Email me Terms of Business": "Envoyez-moi le Conditions d’affaires",
+    "Confirm": "Confirmer",
+    "Confirm and start": "Confirmer et commencer"
+
 }
 
 

@@ -7,13 +7,14 @@ import {
   ReactiveFormsModule,
   FormControl,
 } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reusable-input',
   templateUrl: './reusable-input.component.html',
   styleUrls: ['./reusable-input.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -1,9 +1,3 @@
-import {
-  NgxIntlTelInputModule,
-  SearchCountryField,
-  CountryISO,
-  PhoneNumberFormat,
-} from 'ngx-intl-tel-input';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonCloseComponent } from '@app/@shared/components/button-close/button-close.component';
@@ -20,6 +14,7 @@ import { ReusableInputComponent } from '@app/@shared/Forms/reusable-input/reusab
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
@@ -33,6 +28,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
     ReusableInputComponent,
     UserCardComponent,
     SelectInputComponent,
+    TranslateModule,
     PhoneNumberInputComponent,
   ],
   templateUrl: './book-an-interview.component.html',

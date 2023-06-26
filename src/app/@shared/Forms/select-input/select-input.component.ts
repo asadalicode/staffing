@@ -20,6 +20,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ReusableInputComponent } from '../reusable-input/reusable-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface DataType {
   label: string;
@@ -29,7 +30,7 @@ interface DataType {
 @Component({
   selector: 'app-select-input',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, Select2Module],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, Select2Module, TranslateModule],
   templateUrl: './select-input.component.html',
   styleUrls: ['./select-input.component.scss'],
   providers: [

@@ -19,6 +19,7 @@ import { CandidateCardComponent } from './components/candidate-card/candidate-ca
 import { SalaryGraphComponent } from './components/salary-graph/salary-graph.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { UlListComponent } from './components/ul-list/ul-list.component';
+import { TooltipDirective } from '@app/@shared/directives/tooltip/tooltip.directive';
 
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
     ContactMeComponent,
     TrimTextPipe,
     UlListComponent,
+    TooltipDirective,
     RouterModule.forChild(routes),
   ],
   providers: [

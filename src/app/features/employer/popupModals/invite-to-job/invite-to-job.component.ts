@@ -13,6 +13,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectInputComponent } from '@app/@shared/Forms/select-input/select-input.component';
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
+import { SalaryRateGroupInputComponent } from '@app/@shared/Forms/salary-rate-group-input/salary-rate-group-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
@@ -27,6 +29,8 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
     PhoneNumberInputComponent,
     SelectInputComponent,
     ReusableInputComponent,
+    TranslateModule,
+    SalaryRateGroupInputComponent,
   ],
   templateUrl: './invite-to-job.component.html',
   styleUrls: ['./invite-to-job.component.scss'],
@@ -89,10 +93,12 @@ export class InviteToJobComponent implements OnInit {
       jobType: new FormControl('', Validators.required),
       locationType: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
-      currency: new FormControl('AUD', Validators.required),
-      salaryType: new FormControl('Annually', Validators.required),
-      salaryStart: new FormControl('', Validators.required),
-      salaryEnd: new FormControl('', Validators.required),
+      salaryRange: new FormGroup({
+        currency: new FormControl('AUD', Validators.required),
+        salaryType: new FormControl('Annually', Validators.required),
+        salaryStart: new FormControl('', Validators.required),
+        salaryEnd: new FormControl('', Validators.required),
+      }),
     });
 
     this.formStep5 = new FormGroup({
