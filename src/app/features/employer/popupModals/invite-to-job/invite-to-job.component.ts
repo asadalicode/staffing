@@ -15,6 +15,7 @@ import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 import { SalaryRateGroupInputComponent } from '@app/@shared/Forms/salary-rate-group-input/salary-rate-group-input.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserCardComponent } from '../../components/user-card/user-card.component';
 
 @Component({
   selector: 'app-invite-to-job',
@@ -24,11 +25,12 @@ import { TranslateModule } from '@ngx-translate/core';
     ButtonCloseComponent,
     FormsModule,
     ReactiveFormsModule,
+    UserCardComponent,
     PhoneNumberInputComponent,
     SelectInputComponent,
     ReusableInputComponent,
     TranslateModule,
-    SalaryRateGroupInputComponent
+    SalaryRateGroupInputComponent,
   ],
   templateUrl: './invite-to-job.component.html',
   styleUrls: ['./invite-to-job.component.scss'],
@@ -41,7 +43,7 @@ export class InviteToJobComponent implements OnInit {
   step = 1;
   selectedJobType = '';
   selectedCurrency = '';
-
+  jobTitle: string = 'NodeJS Developer';
   salaryTypeList = [
     { value: 'Annually', label: 'Annually', data: { label: 'Annually' } },
     { value: 'Hourly', label: 'Hourly', data: { label: 'Hourly' } },
@@ -75,6 +77,7 @@ export class InviteToJobComponent implements OnInit {
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      company: new FormControl('', Validators.required),
       contact: new FormGroup({
         phone: new FormControl('', Validators.required),
       }),

@@ -4,10 +4,10 @@
       <h4 class="text-24 font-semibold text-secondary-light">
         Book an interview
       </h4>
-      <span class="hidden sm:flex h-2 w-2 rounded-full bg-primary-dark"></span>
+      <!-- <span class="hidden sm:flex h-2 w-2 rounded-full bg-primary-dark"></span>
       <div class="text-24 font-normal text-secondary-light">
         NodeJS Developer
-      </div>
+      </div> -->
     </div>
 
     <app-button-close
@@ -18,13 +18,18 @@
   </div>
 
   <ng-container *ngIf="step === 1">
-    <p class="font-normal text-base text-secondary-light">
+    <!-- <p class="font-normal text-base text-secondary-light">
       You have made a great decision to invite
       <span class="underline font-medium">Leslie Alexander</span> for an
       interview.
     </p>
     <p class="font-normal text-base text-secondary-light">
       I need to confirm a few details, is this your best contact?
+    </p> -->
+
+    <p class="font-normal text-base text-secondary-light">
+      Let's confirm a few more details about your
+      <span class="font-semibold text-primary-dark">{{ jobTitle }}</span> role.
     </p>
   </ng-container>
 
@@ -36,39 +41,52 @@
 
   <div class="mt-5">
     <ng-container *ngIf="step === 1">
-      <form [formGroup]="formStep1" class="grid grid-cols-2 gap-4">
-        <app-reusable-input
-          placeholder="First Name"
-          class="col-span-2 md:col-span-1"
-          type="text"
-          [control]="formStep1.controls.firstName"
-        ></app-reusable-input>
-        <app-reusable-input
-          placeholder="Last Name"
-          class="col-span-2 md:col-span-1"
-          type="text"
-          [control]="formStep1.controls.lastName"
-        ></app-reusable-input>
-        <app-reusable-input
-          placeholder="Email"
-          class="col-span-2"
-          type="email"
-          [control]="formStep1.controls.email"
-        ></app-reusable-input>
+      <div class="flex flex-col sm:flex-row gap-6 mt-6">
+        <app-user-card></app-user-card>
+        <div class="grow">
+          <form [formGroup]="formStep1" class="grid grid-cols-2 gap-4">
+            <app-reusable-input
+              placeholder="First Name"
+              class="col-span-2 md:col-span-1"
+              type="text"
+              [control]="formStep1.controls.firstName"
+            ></app-reusable-input>
+            <app-reusable-input
+              placeholder="Last Name"
+              class="col-span-2 md:col-span-1"
+              type="text"
+              [control]="formStep1.controls.lastName"
+            ></app-reusable-input>
+            <app-reusable-input
+              placeholder="Email"
+              class="col-span-2"
+              type="email"
+              [control]="formStep1.controls.email"
+            ></app-reusable-input>
 
-        <app-phone-number-input
-          class="col-span-2"
-          [formGroup]="formStep1.controls.contact">
-        </app-phone-number-input>
+            <app-reusable-input
+              placeholder="Company Name"
+              class="col-span-2"
+              type="text"
+              [control]="formStep1.controls.company"
+            ></app-reusable-input>
 
-        <button
-         translate
-          type="submit"
-          (click)="submit()"
-          class="btn-primary-lg col-span-2 mt-5">
-          Confirm and start
-        </button>
-      </form>
+            <app-phone-number-input
+              class="col-span-2"
+              [formGroup]="formStep1.controls.contact"
+            >
+            </app-phone-number-input>
+
+            <button
+              type="submit"
+              (click)="submit()"
+              class="btn-primary-lg col-span-2 mt-2"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </ng-container>
 
     <ng-container *ngIf="step === 2">
@@ -78,7 +96,12 @@
           [data]="interviewTypeList"
           [control]="formStep2.controls.interviewType"
         ></app-select-input>
-        <button type="submit" (click)="confirm()" class="btn-primary-lg mt-5" translate>
+        <button
+          type="submit"
+          (click)="confirm()"
+          class="btn-primary-lg mt-5"
+          translate
+        >
           Confirm
         </button>
       </form>
