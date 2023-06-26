@@ -374,3 +374,21 @@ ngx-intl-tel-input input {
 ngx-intl-tel-input input[disabled] {
   background-color: #e5eaf1;
 }
+
+
+.tooltip {
+  position: absolute;
+  top:30px;
+  background-color: #fff;
+  color: #111928;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 9999;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: 150%;
+  max-width: 380px;
+  border-radius: 4px;
+  box-shadow: 0px 3px 2px 1px rgba(0, 0, 0, 0.08);
+}
