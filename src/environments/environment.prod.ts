@@ -11,4 +11,5 @@ export const environment = {
   // serverUrl: 'https://api.chucknorris.io',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'es-ES', 'fr-FR', 'pr-PR'],
+  serverUrl: 'https://api.recruitsolutions.com',
 };

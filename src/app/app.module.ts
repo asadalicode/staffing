@@ -14,6 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { I18nModule } from './i18n';
 import { RouteReuseStrategy } from '@angular/router';
 import { RouteReusableStrategy } from '@shared';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ApiPrefixInterceptor } from '@shared/http/api-prefix.interceptor';
 @NgModule({
   declarations: [AppComponent, ShellComponent],
   imports: [
@@ -22,6 +24,7 @@ import { RouteReusableStrategy } from '@shared';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    HttpClientModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
@@ -29,6 +32,11 @@ import { RouteReusableStrategy } from '@shared';
     I18nModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiPrefixInterceptor,
+      multi: true,
+    },
     {
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy,

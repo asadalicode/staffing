@@ -13,7 +13,8 @@ export const environment = {
   production: false,
   version: 1 + '-dev',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US','es-ES', 'fr-FR', 'pr-PR'],
+  supportedLanguages: ['en-US', 'es-ES', 'fr-FR', 'pr-PR'],
+  serverUrl: 'https://api.recruitsolutions.com',
 };
 
 /*
