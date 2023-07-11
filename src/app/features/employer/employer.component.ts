@@ -3,13 +3,13 @@ import {
   TopTalentEdmModel,
   JobInfoModel,
   TalentSummaryModel,
-  TasInformationModel
+  TasInformationModel,
 } from '@app/@shared/dataModels';
 import { ApiService } from '@app/@shared/service/api.service';
 import { EmployerService } from './employer.service';
 import { forkJoin } from 'rxjs';
 import * as _ from 'lodash';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-employer',
@@ -26,7 +26,11 @@ export class EmployerComponent implements OnInit {
   topTalentList!: TopTalentEdmModel[];
   topTalentCandidates: any = [];
   taxInformation: any;
-  constructor(private apiService: ApiService, private employerService: EmployerService) {}
+  constructor(
+    private apiService: ApiService,
+    private employerService: EmployerService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     window.addEventListener('scroll', () => {
@@ -42,7 +46,6 @@ export class EmployerComponent implements OnInit {
     } else {
       this.itemsPerPage = this.topTalentCandidates.length;
     }
- 
   }
 
   filter(event: any) {}
@@ -52,20 +55,24 @@ export class EmployerComponent implements OnInit {
   }
 
   getTopTalentEdmList() {
+    this.spinner.show();
     this.apiService
       .getAPI({
         url: `/api/v1/JobSearch/TopTalentEDM?id=${this.employerService.getEDMID()}&daysValid=${100}`,
         model: TopTalentEdmModel,
       })
-      .subscribe((res) => {
-        console.log('getTopTalentEdmList:', res);
-        this.topTalentList = res;
-        this.getTasInformation();
-        this.getGroupedCandidates();
-       
+      .subscribe({
+        next: (res) => {
+          console.log('getTopTalentEdmList:', res);
+          this.topTalentList = res;
+          this.getTasInformation();
+          this.getGroupedCandidates();
+        },
+        error: (error) => {
+          this.spinner.hide();
+        },
       });
   }
-
 
   getJobInformation() {
     this.apiService
@@ -73,30 +80,41 @@ export class EmployerComponent implements OnInit {
         url: `/Edm/${this.employerService.getEDMID()}/job`,
         model: JobInfoModel,
       })
-      .subscribe((res) => {
-        console.log('getJobInformation', res);
-        this.jobInformation = res;
-      });
+      .subscribe(
+        (res) => {
+          console.log('getJobInformation', res);
+          this.jobInformation = res;
+        },
+        (error) => {}
+      );
   }
 
   getGroupedCandidates() {
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
-          url: `/api/candidates/${categ.talentProfileId}/summary/${this.employerService.getEDMID()}`,
+          url: `/api/candidates/${
+            categ.talentProfileId
+          }/summary/${this.employerService.getEDMID()}`,
           model: TalentSummaryModel,
         })
       )
-    ).subscribe((p: any) => {
-      let result: any = [];
-      p.forEach((element: any, index: any) => {
-        result.push(element.data);
-      });
-      this.topTalentCandidates = _(result)
-        .groupBy((talent:any) => talent.talentProfileId)
-        .map((candidate:any, talent:any) => ({ candidate, talent }))
-        .value();
-      console.log(this.topTalentCandidates);
+    ).subscribe({
+      next: (p: any) => {
+        let result: any = [];
+        p.forEach((element: any, index: any) => {
+          result.push(element.data);
+        });
+        this.topTalentCandidates = _(result)
+          .groupBy((talent: any) => talent.talentProfileId)
+          .map((candidate: any, talent: any) => ({ candidate, talent }))
+          .value();
+        this.spinner.hide();
+        console.log(this.topTalentCandidates);
+      },
+      error: (error) => {
+        this.spinner.hide();
+      },
     });
   }
 
@@ -114,7 +132,7 @@ export class EmployerComponent implements OnInit {
       });
   }
 
-  trackByfn(index:any, item:any) {
+  trackByfn(index: any, item: any) {
     return item.uniqueValue;
   }
 }
