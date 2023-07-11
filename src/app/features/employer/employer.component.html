@@ -1,16 +1,16 @@
 <div class="w-full sm:w-[90%] md:w-[85%] lg:max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-0 py-5 pt-10 lg:pt-20">
   <h1 class="font-montserrat fonr-weight-400 text-3xl md:text-5xl lg:text-7xl sm:text-center">
-    I’ll find you top talent for
-    <span class="sm:whitespace-pre before:content-[\a]">
+    <div>I’ll find you top talent for</div> 
+    <div>
       your
-      <span class="font-[500] text-primary-dark">NodeJS Developer</span> job
-      <!-- <span class="font-[500] text-primary-dark">{{jobInformation?.jobTitle}}</span> job -->
+      <!-- <span class="font-[500] text-primary-dark">NodeJS Developer</span> job -->
+      <span class="font-[500] text-primary-dark">{{jobInformation?.jobTitle}}</span> job
       now!
-    </span>
+    </div>
   </h1>
 
   <section class="text-center">
-    <app-contact-us-card></app-contact-us-card>
+    <app-contact-us-card [tasInformation]="taxInformation?.data"></app-contact-us-card>
   </section>
 
   <section class="candidates mt-6">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="hidden sm:block text-sm14 text-secondary-light">
-        {{ items.length }} of {{ topTalentCandidates.length }} Candidates
+        {{ itemsPerPage }} of {{ topTalentCandidates.length }} Candidates
       </div>
     </div>
     <div class="bg-[#F4F2F3] sm:p-8 rounded-[20px] grid gap-6">

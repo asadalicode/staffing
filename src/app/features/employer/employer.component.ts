@@ -3,11 +3,13 @@ import {
   TopTalentEdmModel,
   JobInfoModel,
   TalentSummaryModel,
+  TasInformationModel
 } from '@app/@shared/dataModels';
 import { ApiService } from '@app/@shared/service/api.service';
 import { EmployerService } from './employer.service';
 import { forkJoin } from 'rxjs';
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-employer',
@@ -17,13 +19,13 @@ import * as _ from 'lodash';
 export class EmployerComponent implements OnInit {
   total = 32;
   itemsPerPage = 4;
-  items = [{ fav: true }, { fav: false }, { fav: false }, { fav: true }];
   talentList: any = [];
   windowScrolled = false;
   jobInformation!: any;
   tabSelected = 'All Candidates'; // default
   topTalentList!: TopTalentEdmModel[];
   topTalentCandidates: any = [];
+  taxInformation: any;
   constructor(private apiService: ApiService, private employerService: EmployerService) {}
 
   ngOnInit() {
@@ -35,7 +37,12 @@ export class EmployerComponent implements OnInit {
   }
 
   loadmore() {
-    this.itemsPerPage += 4;
+    if (this.topTalentCandidates.length > this.itemsPerPage) {
+      this.itemsPerPage += 4;
+    } else {
+      this.itemsPerPage = this.topTalentCandidates.length;
+    }
+ 
   }
 
   filter(event: any) {}
@@ -53,7 +60,9 @@ export class EmployerComponent implements OnInit {
       .subscribe((res) => {
         console.log('getTopTalentEdmList:', res);
         this.topTalentList = res;
+        this.getTasInformation();
         this.getGroupedCandidates();
+       
       });
   }
 
@@ -74,7 +83,7 @@ export class EmployerComponent implements OnInit {
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
-          url: `/api/candidates/${categ.talentProfileId}/summary/${'01GYV97RGHB05DQ36SRKFVZ9CZ'}`,
+          url: `/api/candidates/${categ.talentProfileId}/summary/${this.employerService.getEDMID()}`,
           model: TalentSummaryModel,
         })
       )
@@ -89,6 +98,20 @@ export class EmployerComponent implements OnInit {
         .value();
       console.log(this.topTalentCandidates);
     });
+  }
+
+  getTasInformation() {
+    // /Edm/d7d89070 - dada - 4f47 - ab39 - 2b9f187ed45b / tas
+
+    this.apiService
+      .getAPI({
+        url: `/Edm/${this.employerService.getEDMID()}/tas`,
+        model: TasInformationModel,
+      })
+      .subscribe((res) => {
+        console.log('get Tax information:', res);
+        this.taxInformation = res;
+      });
   }
 
   trackByfn(index:any, item:any) {

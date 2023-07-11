@@ -22,7 +22,12 @@ export class CandidateCardComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.item)
+    console.log(this.item);
+   
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+    this.matchSkills(this.item)
   }
 
   openFullResume(): void {
@@ -44,6 +49,18 @@ export class CandidateCardComponent implements OnInit {
   onInviteToJob() {
     const dialogRef = this.dialog.open(InviteToJobComponent, {
       panelClass: ['popup-modal', 'lg'],
+    });
+  }
+
+  matchSkills(item: any) {  
+    this.item.skills.forEach((e: any, index: any) => {
+      if (this.item.jobSkills !== null) {
+        let matchedElement: any = this.item.jobSkills.filter((skill: any) => skill.skillName === e.skillName);
+        if (matchedElement.length) {
+          this.item.skills[index].matchedSkill = true;
+        }
+      }
+
     });
   }
 }

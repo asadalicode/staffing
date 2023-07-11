@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HowIWorkComponent } from '../../popupModals/how-i-work/how-i-work.component';
 import { ContactMeComponent } from '../../popupModals/contact-me/contact-me.component';
@@ -9,6 +9,7 @@ import { ContactMeComponent } from '../../popupModals/contact-me/contact-me.comp
   styleUrls: ['./contact-us-card.component.scss']
 })
 export class ContactUsCardComponent {
+  @Input() tasInformation: any;
   constructor(public dialog: MatDialog) { }
 
   howToWork(): void {

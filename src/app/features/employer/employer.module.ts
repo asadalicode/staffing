@@ -20,6 +20,7 @@ import { SalaryGraphComponent } from './components/salary-graph/salary-graph.com
 import { SliderComponent } from './components/slider/slider.component';
 import { UlListComponent } from './components/ul-list/ul-list.component';
 import { TooltipDirective } from '@app/@shared/directives/tooltip/tooltip.directive';
+import { DaysToYearsMonthsDaysPipe } from '@app/@shared/pipes/days-to-years-months-days.pipe';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
     TrimTextPipe,
     UlListComponent,
     TooltipDirective,
+    DaysToYearsMonthsDaysPipe,
     RouterModule.forChild(routes),
   ],
   providers: [

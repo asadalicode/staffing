@@ -110,7 +110,7 @@
             {{role.organisation}}</span>
           <span
             class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020">
-            {{role.days}}</span>
+            {{role.days | daysToYearsMonthsDays}}</span>
         </div>
       </ng-container>
  
@@ -149,8 +149,8 @@
     <h3 class="font-bold text-xl text-secondary-dark" translate>Skills</h3>
     <div class="flex flex-wrap gap-2 mt-4">
       <ng-container *ngFor="let skill of item?.skills">
-        <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
-        <!-- <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span> -->
+        <span *ngIf="!skill.matchedSkill" class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
+        <span *ngIf="skill.matchedSkill" class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
       </ng-container>
     </div>
   </div>
