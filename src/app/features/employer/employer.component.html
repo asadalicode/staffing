@@ -4,6 +4,7 @@
     <span class="sm:whitespace-pre before:content-[\a]">
       your
       <span class="font-[500] text-primary-dark">NodeJS Developer</span> job
+      <!-- <span class="font-[500] text-primary-dark">{{jobInformation?.jobTitle}}</span> job -->
       now!
     </span>
   </h1>
@@ -31,19 +32,19 @@
         </div>
       </div>
       <div class="hidden sm:block text-sm14 text-secondary-light">
-        {{ items.length }} of {{ total }} Candidates
+        {{ items.length }} of {{ topTalentCandidates.length }} Candidates
       </div>
     </div>
     <div class="bg-[#F4F2F3] sm:p-8 rounded-[20px] grid gap-6">
-      <ng-container *ngFor="let item of items">
-        <app-candidate-card [item]="item"></app-candidate-card>
+      <ng-container *ngFor="let item of topTalentCandidates.slice(0,itemsPerPage) ; trackBy: trackByfn; let i=index">
+        <app-candidate-card [item]="item.candidate[0]"></app-candidate-card>
       </ng-container>
 
       <div class="flex flex-col items-center gap-3">
-        <button type="button" (click)="loadmore()" class="btn-primary-outline-lg" translate>
+        <button type="button"  class="btn-primary-outline-lg" translate>
            Invite Favourite Candidates
         </button>
-        <button type="button" class="btn-link-md text-primary-dark" translate>
+        <button type="button" (click)="loadmore()" class="btn-link-md text-primary-dark" translate>
           Load More Candidates
         </button>
       </div>

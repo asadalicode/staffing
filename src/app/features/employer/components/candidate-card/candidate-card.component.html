@@ -3,8 +3,9 @@
 >
   <div class="flex md:flex-row flex-col sm:gap-4">
     <div class="flex flex-row grow gap-4">
-      <img
-        src="/assets/placeholder/user-icon.png"
+      <!-- [src]="/assets/placeholder/user-icon.png" -->
+      <img *ngIf="item?.profilePhoto !== ''"
+        [src]="item?.profilePhoto"
         alt="icon"
         class="flex-none w-[60px] h-[60px] rounded-full object-cover"
         loading="lazy"
@@ -100,42 +101,19 @@
   <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
     <h3 class="font-bold text-xl" translate>Experience</h3>
     <div class="font-semibold text-secondary-light text-2sm">
-      <div class="grid grid-cols-6 px-3 mb-2 mt-4">
-        <span class="order-1 col-span-4 sm:col-span-2">Accountant</span>
-        <span
-          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
-          >Shell Australia</span
-        >
-        <span
-          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
-          >5 years</span
-        >
-      </div>
-      <div class="grid grid-cols-6 px-3 mb-2">
-        <span class="order-1 col-span-4 sm:col-span-2"
-          >Assistant Manager Accountant</span
-        >
-        <span
-          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
-          >Shell Australia</span
-        >
-        <span
-          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
-          >5 years</span
-        >
-      </div>
 
-      <div class="grid grid-cols-6 px-3 mb-2">
-        <span class="order-1 col-span-4 sm:col-span-2">Junior Auditor</span>
-        <span
-          class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020"
-          >Shell Australia
-        </span>
-        <span
-          class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020"
-          >4 years</span
-        >
-      </div>
+      <ng-container *ngFor="let role of item.allRoles">
+        <div class="grid grid-cols-6 px-3 mb-2 mt-4">
+          <span class="order-1 col-span-4 sm:col-span-2">{{role.roleName}}</span>
+          <span
+            class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020">
+            {{role.organisation}}</span>
+          <span
+            class="col-span-2 order-2 sm:col-span-2 sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020">
+            {{role.days}}</span>
+        </div>
+      </ng-container>
+ 
 
       <button type="button" class="font-normal text-[#202020] text-sm">
         +3 Other Roles
@@ -148,15 +126,14 @@
       Qualifications
     </h3>
     <div class="text-secondary-light mt-4">
-      <div class="grid sm:grid-cols-2 px-3 mb-4">
-        <span class="font-semibold text-2sm"
-          >Master Degree - Business Administration</span
-        >
-        <span class="sm:text-right font-light text-[14px]"
-          >Monash University, Melbourne</span
-        >
-      </div>
+      <ng-container *ngFor="let qualification of item?.qualifications">
+              <div class="grid sm:grid-cols-2 px-3 mb-4">
+                <span class="font-semibold text-2sm">{{qualification.level}} - {{qualification.course}}</span>
+                <span class="sm:text-right font-light text-[14px]">{{qualification.institute}}</span>
+              </div>
+      </ng-container>
 
+<!-- 
       <div class="grid sm:grid-cols-2 px-3 mb-4">
         <span class="font-semibold text-2sm"
           >Master Degree - Business Administration</span
@@ -164,57 +141,17 @@
         <span class="sm:text-right font-light text-[14px]"
           >Monash University, Melbourne</span
         >
-      </div>
+      </div> -->
     </div>
   </div>
 
   <div class="p-3 rounded-md">
     <h3 class="font-bold text-xl text-secondary-dark" translate>Skills</h3>
     <div class="flex flex-wrap gap-2 mt-4">
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >NodeJS</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >React js</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >React js</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Development</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Development</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Frontend Development</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
+      <ng-container *ngFor="let skill of item?.skills">
+        <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
+        <!-- <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span> -->
+      </ng-container>
     </div>
   </div>
 

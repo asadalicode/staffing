@@ -5,6 +5,9 @@ import {
   TalentSummaryModel,
 } from '@app/@shared/dataModels';
 import { ApiService } from '@app/@shared/service/api.service';
+import { EmployerService } from './employer.service';
+import { forkJoin } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-employer',
@@ -13,10 +16,15 @@ import { ApiService } from '@app/@shared/service/api.service';
 })
 export class EmployerComponent implements OnInit {
   total = 32;
+  itemsPerPage = 4;
   items = [{ fav: true }, { fav: false }, { fav: false }, { fav: true }];
+  talentList: any = [];
   windowScrolled = false;
+  jobInformation!: any;
   tabSelected = 'All Candidates'; // default
-  constructor(private apiService: ApiService) {}
+  topTalentList!: TopTalentEdmModel[];
+  topTalentCandidates: any = [];
+  constructor(private apiService: ApiService, private employerService: EmployerService) {}
 
   ngOnInit() {
     window.addEventListener('scroll', () => {
@@ -24,14 +32,10 @@ export class EmployerComponent implements OnInit {
     });
     this.getTopTalentEdmList();
     this.getJobInformation();
-    this.getTalentSummary();
   }
 
   loadmore() {
-    this.items.push({ fav: false });
-    this.items.push({ fav: false });
-    this.items.push({ fav: true });
-    this.items.push({ fav: false });
+    this.itemsPerPage += 4;
   }
 
   filter(event: any) {}
@@ -43,35 +47,51 @@ export class EmployerComponent implements OnInit {
   getTopTalentEdmList() {
     this.apiService
       .getAPI({
-        url: `/api/v1/JobSearch/TopTalentEDM?id=${'7A5658AC-4CA5-4049-A0C2-8468089BEE09'}&daysValid=${100}`,
+        url: `/api/v1/JobSearch/TopTalentEDM?id=${this.employerService.getEDMID()}&daysValid=${100}`,
         model: TopTalentEdmModel,
       })
       .subscribe((res) => {
         console.log('getTopTalentEdmList:', res);
+        this.topTalentList = res;
+        this.getGroupedCandidates();
       });
   }
+
 
   getJobInformation() {
     this.apiService
       .getAPI({
-        url: `/Edm/${'7A5658AC-4CA5-4049-A0C2-8468089BEE09'}/job`,
+        url: `/Edm/${this.employerService.getEDMID()}/job`,
         model: JobInfoModel,
       })
       .subscribe((res) => {
         console.log('getJobInformation', res);
+        this.jobInformation = res;
       });
   }
 
-  // url:/api/candidates/:talentProfileId/summary/:jobId
-  // get :talentProfileId from getTopTalentEdmList response and :jobId from getJobInformation
-  getTalentSummary() {
-    this.apiService
-      .getAPI({
-        url: `/api/candidates/${204704}/summary/${'01GYV97RGHB05DQ36SRKFVZ9CZ'}`,
-        model: TalentSummaryModel,
-      })
-      .subscribe((res) => {
-        console.log('getTalentSummary', res);
+  getGroupedCandidates() {
+    forkJoin(
+      this.topTalentList.map((categ: any) =>
+        this.apiService.getAPI({
+          url: `/api/candidates/${categ.talentProfileId}/summary/${'01GYV97RGHB05DQ36SRKFVZ9CZ'}`,
+          model: TalentSummaryModel,
+        })
+      )
+    ).subscribe((p: any) => {
+      let result: any = [];
+      p.forEach((element: any, index: any) => {
+        result.push(element.data);
       });
+      this.topTalentCandidates = _(result)
+        .groupBy((talent:any) => talent.talentProfileId)
+        .map((candidate:any, talent:any) => ({ candidate, talent }))
+        .value();
+      console.log(this.topTalentCandidates);
+    });
+  }
+
+  trackByfn(index:any, item:any) {
+    return item.uniqueValue;
   }
 }

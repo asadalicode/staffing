@@ -2,13 +2,16 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TrimTextPipe } from '@app/@shared/pipes/trim-text.pipe';
 import { BookAnInterviewComponent } from '../book-an-interview/book-an-interview.component';
 import { InviteToJobComponent } from '../invite-to-job/invite-to-job.component';
+import { ApiService } from '@app/@shared/service/api.service';
+import { TalentSummaryModel } from '@app/@shared/dataModels';
 @Component({
   selector: 'app-candidate-full-resume',
   templateUrl: './candidate-full-resume.component.html',
@@ -18,6 +21,7 @@ import { InviteToJobComponent } from '../invite-to-job/invite-to-job.component';
 export class CandidateFullResumeComponent implements OnInit {
   totalCandidates = 32;
   currentCandiate = 1;
+  talentSummary!: any;
 
   showMoreAboutTextLength = 778;
   showMoreText = true;
@@ -25,20 +29,6 @@ export class CandidateFullResumeComponent implements OnInit {
 
   stateOfTruncatedText!: boolean[];
 
-  aboutText: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe inventore enim delectus quo cum mollitia,
-   quas doloribus eos iusto exercitationem sed dolorum deleniti totam maxime quia aliquid incidunt vero! Sit, tempore magni earum 
-   nesciunt ducimus esse id beatae, omnis soluta provident reprehenderit nisi. Excepturi earum repudiandae ab distinctio odio 
-  possimus consequatur, ducimus delectus impedit necessitatibus quis placeat suscipit doloribus eaque rerum facere nisi unde a dicta 
-  voluptatem repellendus. Libero expedita, officia accusantium dolore at distinctio cupiditate unde, quaerat quo, quos cumque vitae 
-  veritatis autem dolor sint! Maiores esse doloribus consectetur 
-
-  quae nulla illum eaque porro. Magnam voluptate vel quis molestias corporis quasi itaque amet commodi velit libero repellat optio 
-  numquam eveniet eius possimus veniam, veritatis voluptatibus consequatur mollitia! Voluptates cumque, consequuntur ut minus temporibus
-  maxime perferendis rem enim esse est eum sit explicabo officia nisi fugit officiis omnis inventore saepe consectetur, praesentium quam?
-  Iste, est omnis. Ab, aspernatur illo! Distinctio cupiditate, asperiores rerum quas a quia! Dolore magni doloremque accusantium ratione,
-  rem quae quam. Voluptatibus expedita placeat neque mollitia eius fugiat architecto delectus beatae, accusamus, porro nisi consequatur 
-  consequuntur animi eveniet soluta nihil facilis exercitationem quibusdam nulla similique ab provident. Deleniti doloribus non dolor
-  accusamus quasi saepe reprehenderit, fugiat debitis? `;
 
   experiences: any = [];
   noOfExperiences = 5;
@@ -48,117 +38,20 @@ export class CandidateFullResumeComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
     public trimPipe: TrimTextPipe,
+    private apiService: ApiService,
     private cdr: ChangeDetectorRef,
-    private elRef: ElementRef
+    private elRef: ElementRef,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.experiences = {
       totalExperiece: '6 yrs 11 mos',
-      meta: [
-        {
-          id: 1,
-          icon: 'icon',
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: null,
-          title: 'Senior Back-end Developer',
-          experience: '1 yr 5 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2023',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: 'icon',
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: null,
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: 'icon',
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: null,
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: 'icon',
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: null,
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: 'icon',
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-        {
-          id: 1,
-          icon: null,
-          title: 'Senior NodeJS Developer',
-          experience: '1 yr 3 mos',
-          company: 'FutureDev Agency',
-          from: 'Jan 2022',
-          to: 'Present',
-          address: 'Port Melbourne, Victoria',
-        },
-      ],
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getTalentSummary(this.data?.talentProfileId);
+    this.talentSummary = this.data.candidate;
+  }
 
   prevCandidate() {
     if (this.currentCandiate > 1) {
@@ -195,7 +88,7 @@ export class CandidateFullResumeComponent implements OnInit {
   toggleShowMoretext() {
     this.showMoreText = !this.showMoreText;
     if (!this.showMoreText) {
-      this.moreTextCount = this.aboutText.length;
+      this.moreTextCount = this.talentSummary?.careerSummary.length;
     } else {
       this.moreTextCount = 778;
     }

@@ -1,70 +1,33 @@
 <div class="w-100 pb-4 sm:pb-8">
   <div class="flex justify-between items-center mb-2">
     <div class="flex gap-2 items-center">
-      <button
-        type="button"
-        class="disabled:opacity-50"
-        [disabled]="currentCandiate == 1"
-        (click)="prevCandidate()"
-      >
-        <svg
-          width="10"
-          height="14"
-          viewBox="0 0 10 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+      <button type="button" class="disabled:opacity-50" [disabled]="currentCandiate == 1" (click)="prevCandidate()">
+        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M4.06719 6.99974L8.73386 2.33307C9.26719 1.79974 9.26719 0.99974 8.73386 0.466406C8.20052 -0.0669271 7.40052 -0.0669271 6.86719 0.466406L1.26719 6.06641C0.733854 6.59974 0.733854 7.39974 1.26719 7.93307L6.86719 13.5331C7.13385 13.7997 7.40052 13.9331 7.80052 13.9331C8.20052 13.9331 8.46719 13.7997 8.73386 13.5331C9.26719 12.9997 9.26719 12.1997 8.73386 11.6664L4.06719 6.99974Z"
-            fill="#AA1D35"
-          />
+            fill="#AA1D35" />
         </svg>
       </button>
-      <span class="px-2 font-bold text-sm14 text-light-500"
-        >{{ currentCandiate }} of {{ totalCandidates }} candidates</span
-      >
-      <button
-        class="disabled:opacity-50"
-        type="button"
-        class="transform rotate-180"
-        (click)="nextCandidate()"
-        [ngClass]="currentCandiate == totalCandidates ? 'hidden' : ''"
-        [disabled]="currentCandiate == totalCandidates"
-      >
-        <svg
-          width="10"
-          height="14"
-          viewBox="0 0 10 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+      <span class="px-2 font-bold text-sm14 text-light-500">{{ currentCandiate }} of {{ totalCandidates }}
+        candidates</span>
+      <button class="disabled:opacity-50" type="button" class="transform rotate-180" (click)="nextCandidate()"
+        [ngClass]="currentCandiate == totalCandidates ? 'hidden' : ''" [disabled]="currentCandiate == totalCandidates">
+        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M4.06719 6.99974L8.73386 2.33307C9.26719 1.79974 9.26719 0.99974 8.73386 0.466406C8.20052 -0.0669271 7.40052 -0.0669271 6.86719 0.466406L1.26719 6.06641C0.733854 6.59974 0.733854 7.39974 1.26719 7.93307L6.86719 13.5331C7.13385 13.7997 7.40052 13.9331 7.80052 13.9331C8.20052 13.9331 8.46719 13.7997 8.73386 13.5331C9.26719 12.9997 9.26719 12.1997 8.73386 11.6664L4.06719 6.99974Z"
-            fill="#AA1D35"
-          />
+            fill="#AA1D35" />
         </svg>
       </button>
     </div>
-    <app-button-close
-      bgColor="bg-white"
-      (click)="close()"
-      color="fill-violet-600"
-    ></app-button-close>
+    <app-button-close bgColor="bg-white" (click)="close()" color="fill-violet-600"></app-button-close>
   </div>
 
   <!-- Canidate personal information section -->
-  <div
-    class="sm:flex bg-white rounded-large gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light"
-  >
+  <div class="sm:flex bg-white rounded-large gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light">
     <!-- user image -->
     <div class="flex items-end mb-[10px] sm:mb-0">
-      <img
-        src="/assets/placeholder/user-icon.png"
-        alt="icon"
-        class="flex-none w-[100px] h-[100px] rounded-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
+      <img src="/assets/placeholder/user-icon.png" alt="icon"
+        class="flex-none w-[100px] h-[100px] rounded-full object-cover" loading="lazy" decoding="async" />
     </div>
 
     <div class="flex flex-col-reverse sm:flex-col flex-grow gap-4 sm:gap-6">
@@ -72,26 +35,15 @@
         <!-- <button type="button" class="hidden md:block btn-link-sm text-primary-dark" translate>
           Request Profile
         </button> -->
-        <button
-          type="button"
-          class="btn-primary-outline-sm"
-          (click)="onBookInterview()"
-          translate
-        >
+        <button type="button" class="btn-primary-outline-sm" (click)="onBookInterview()" translate>
           Book Interview
         </button>
-        <button
-          type="button"
-          class="btn-primary-sm"
-          (click)="onInviteToJob()"
-          translate
-        >
+        <button type="button" class="btn-primary-sm" (click)="onInviteToJob()" translate>
           Invite to Job
         </button>
 
         <div
-          class="absolute sm:static right-3 sm:right-5 top-6 flex cursor-pointer justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full"
-        >
+          class="absolute sm:static right-3 sm:right-5 top-6 flex cursor-pointer justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full">
           <img src="/assets/icons/heart.svg" class="w-[16px]" alt="fav icon" />
         </div>
       </div>
@@ -103,9 +55,7 @@
         <div class="flex text-3xl font-extralight text-secondary-light">
           Senior NodeJS Developer
         </div>
-        <div
-          class="flex text-[14px] font-light text-secondary-light gap-2 items-center"
-        >
+        <div class="flex text-[14px] font-light text-secondary-light gap-2 items-center">
           <span><img src="/assets/icons/map.svg" alt="" /></span>
           <span class="">Port Melbourne, Victoria</span>
         </div>
@@ -117,13 +67,11 @@
   <app-expension-panel title="About">
     <!-- <div class="about-section" [innerHTML]="aboutText"></div> -->
 
-    <p class="text-secondary-dark text-base font-normal">
-      {{ aboutText | trimText : moreTextCount : showMoreText }}
+    <p class="text-secondary-dark text-base font-normal"
+      [innerHtml]="talentSummary?.careerSummary | trimText : moreTextCount : showMoreText">
+      <!-- {{ talentSummary?.careerSummary | trimText : moreTextCount : showMoreText }} -->
     </p>
-    <button
-      class="btn-default-outline mt-6 w-full"
-      (click)="toggleShowMoretext()"
-    >
+    <button *ngIf="moreTextCount > 778" class="btn-default-outline mt-6 w-full" (click)="toggleShowMoretext()">
       Show {{ moreTextCount == 778 ? "Full Summary" : "Less" }}
     </button>
   </app-expension-panel>
@@ -132,54 +80,36 @@
   <app-expension-panel title="Experience">
     <div class="flex flex-col pl-[14px] gap-6">
       <div class="text-right text-2xl">
-        <span class="text-light-400 font-semibold" translate
-          >Total experience</span
-        >
+        <span class="text-light-400 font-semibold" translate>Total experience</span>
         <h4 class="text-secondary-dark font-bold">
           {{ experiences?.totalExperiece }}
         </h4>
       </div>
 
-      <div *ngFor="let item of experiences?.meta.slice(0, noOfExperiences)">
+      <div *ngFor="let role of talentSummary?.allRoles.slice(0, noOfExperiences)">
         <div class="flex justify-between">
           <h4 class="text-xl text-secondary-dark font-bold">
-            {{ item?.title }}
+            {{ role?.roleName }}
           </h4>
-          <span
-            class="text-base text-secondary-dark font-normal whitespace-nowrap"
-          >
-            {{ item?.experience }}</span
-          >
+          <span class="text-base text-secondary-dark font-normal whitespace-nowrap">
+            {{ role?.days }}</span>
         </div>
 
         <div
-          class="xs:grid xs:grid-flow-col-dense xs:grid-rows-2 xs:auto-cols-max items-center text-base text-secondary-light font-light"
-        >
-          <div
-            *ngIf="item.icon"
-            class="hidden xs:block float-left xs:float-none clear-both bg-gray-400 mr-2 w-9 h-9 xs:row-span-2"
-          ></div>
-          <!-- <ng-container class="sm:hidden">
-            <div class="text-secondary-dark font-medium pt-[6px] sm:pt-0">
-              FutureDev Agency
-            </div>
-            <div class="clear-both">Jan 2022 - Present</div>
-          </ng-container> -->
+          class="xs:grid xs:grid-flow-col-dense xs:grid-rows-2 xs:auto-cols-max items-center text-base text-secondary-light font-light">
+          <div *ngIf="role?.icon"
+            class="hidden xs:block float-left xs:float-none clear-both bg-gray-400 mr-2 w-9 h-9 xs:row-span-2"></div>
 
           <div class="flex flex-col xs:flex-row xs:gap-3 xs:items-center">
-            <div
-              class="text-secondary-dark font-medium flex items-center xs:items-start"
-            >
+            <div class="text-secondary-dark font-medium flex items-center xs:items-start">
               <div class="xs:hidden block bg-gray-400 mr-2 w-9 h-9"></div>
-              <span> {{ item?.company }}</span>
+              <span> {{ role?.organisation }}</span>
             </div>
-            <span
-              class="w-1 hidden xs:flex rounded-full h-1 bg-primary-dark"
-            ></span>
-            <span> {{ item?.from }} - {{ item?.to }}</span>
+            <span class="w-1 hidden xs:flex rounded-full h-1 bg-primary-dark"></span>
+            <span> {{ role?.from }} - {{ role?.to }}</span>
           </div>
 
-          <div>{{ item?.address }}</div>
+          <div>{{ role?.address || 'Port Melbourne, Victoria' }}</div>
         </div>
 
         <app-ul-list></app-ul-list>
@@ -211,104 +141,44 @@
 
         <app-ul-list></app-ul-list>
       </div> -->
-      <button
-        *ngIf="experiences?.meta?.length > 5 && noOfExperiences == 5"
-        class="btn-default-outline mt-6 w-full capitalize"
-        (click)="toggleMoreExperience()"
-      >
-        Show All {{ experiences?.meta?.length }} Experiences
+      <button *ngIf="talentSummary?.allRoles.length > 5 && noOfExperiences == 5"
+        class="btn-default-outline mt-6 w-full capitalize" (click)="toggleMoreExperience()">
+        Show All {{ talentSummary?.allRoles.length }} Experiences
       </button>
 
-      <button
-        *ngIf="experiences?.meta?.length == noOfExperiences"
-        class="btn-default-outline mt-6 w-full capitalize"
-        (click)="toggleMoreExperience()"
-      >
+      <button *ngIf="talentSummary?.allRoles.length == noOfExperiences" class="btn-default-outline mt-6 w-full capitalize"
+        (click)="toggleMoreExperience()">
         Show Less Experiences
       </button>
     </div>
   </app-expension-panel>
 
   <app-expension-panel title="Skills">
+
     <div class="flex flex-wrap gap-2">
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >NodeJS</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >React js</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >React js</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Development</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Development</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Frontend Development</span
-      >
-      <span
-        class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
-      <span
-        class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light"
-        >Angular</span
-      >
+      <ng-container *ngFor="let skill of talentSummary?.skills">
+        <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
+        <!-- <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span> -->
+      </ng-container>
     </div>
   </app-expension-panel>
   <app-expension-panel title="Education">
     <ul class="flex flex-col gap-6">
-      <li>
-        <div class="flex gap-1 items-center">
-          <div class="bg-gray-400 w-9 h-9"></div>
-          <h4 class="leading-6 text-xl text-secondary-dark font-bold">
-            Melbourne Technical College
-          </h4>
-        </div>
-        <div class="flex flex-col text-base text-secondary-light font-light">
-          <span class="text-secondary-dark font-medium"
-            >Magister of Information Science</span
-          >
-          <span>Port Melbourne, Victoria</span>
-          <span>2011 - 2015</span>
-        </div>
-      </li>
-      <li>
-        <div class="flex gap-1 items-center">
-          <div class="bg-gray-400 w-9 h-9"></div>
-          <h4 class="leading-6 text-xl text-secondary-dark font-bold">
-            Melbourne Technical College
-          </h4>
-        </div>
-        <div class="flex flex-col text-base text-secondary-light font-light">
-          <span class="text-secondary-dark font-medium"
-            >Magister of Information Science</span
-          >
-          <span>Port Melbourne, Victoria</span>
-          <span>2011 - 2015</span>
-        </div>
-      </li>
+      <ng-container *ngFor="let qualification of talentSummary?.qualifications">
+              <li>
+                <div class="flex gap-1 items-center">
+                  <div class="bg-gray-400 w-9 h-9"></div>
+                  <h4 class="leading-6 text-xl text-secondary-dark font-bold">
+                    {{qualification.institute}}
+                  </h4>
+                </div>
+                <div class="flex flex-col text-base text-secondary-light font-light">
+                  <span class="text-secondary-dark font-medium">{{qualification.course}}</span>
+                  <span>Port Melbourne, Victoria</span>
+                  <span>2011 - 2015</span>
+                </div>
+              </li>
+      </ng-container>
     </ul>
   </app-expension-panel>
   <app-expension-panel title="Licenses & Certifications">
