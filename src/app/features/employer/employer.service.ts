@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class EmployerService {
- private EDMId!: string;
+  private EDMId!: string;
+  private TopTalentList = [];
 
   constructor(private route: ActivatedRoute, private _router: Router) {
     this.navigateToEDMRoute();
@@ -37,5 +38,26 @@ export class EmployerService {
 
   getEDMID() {
     return this.EDMId;
+  }
+
+
+  setTopTalentList(list: any) {
+    console.log(list)
+    this.TopTalentList = list;
+  }
+
+  getTotalTalentList() {
+    return this.TopTalentList.length;
+  }
+
+  getNextCandidate(talentProfileId: any) {
+    let index = this.TopTalentList.findIndex((item: any) => item.talent == talentProfileId);
+      return this.TopTalentList[index + 1];
+  }
+
+  getPrevCandidate(talentProfileId: any) {
+    let index = this.TopTalentList.findIndex((item: any) => item.talent == talentProfileId);
+      return this.TopTalentList[index - 1];
+    
   }
 }

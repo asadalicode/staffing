@@ -82,11 +82,36 @@
       <div class="text-right text-2xl">
         <span class="text-light-400 font-semibold" translate>Total experience</span>
         <h4 class="text-secondary-dark font-bold">
-          {{ experiences?.totalExperiece }}
+          {{ talentSummary?.totalYearsOfExperienceInMonths | monthsToYears}}
         </h4>
       </div>
 
-      <div *ngFor="let role of talentSummary?.allRoles.slice(0, noOfExperiences)">
+      <div>
+        <div class="flex justify-between">
+          <h4 class="text-xl text-secondary-dark font-bold">
+            {{ talentSummary?.recentRole?.roleName }}
+          </h4>
+          <span class="text-base text-secondary-dark font-normal whitespace-nowrap">{{ talentSummary?.recentRole?.days | daysToYearsMonthsDays}}</span
+          >
+        </div>
+
+        <div class="flex flex-col text-base text-secondary-light font-light">
+          <div class="flex flex-col sm:flex-row sm:gap-3 sm:items-center">
+            <span class="text-secondary-dark font-medium">{{ talentSummary?.recentRole?.organisation }}</span>
+            <span
+              class="w-1 hidden sm:flex rounded-full h-1 bg-primary-dark"
+            ></span>
+            <span>{{talentSummary?.recentRole?.startDate | date:'MMM y'}} - Present</span>
+          </div>
+        <div>{{ talentSummary?.recentRole?.address || 'Port Melbourne, Victoria' }}</div>
+        </div>
+
+        <app-ul-list></app-ul-list>
+      </div>
+
+      <div *ngFor="let role of talentSummary?.allRoles.slice(0, sliceRolesList ? 4: talentSummary.allRoles.length )">
+
+        <ng-container *ngIf="talentSummary?.recentRole.roleId !== role.roleId">
         <div class="flex justify-between">
           <h4 class="text-xl text-secondary-dark font-bold">
             {{ role?.roleName }}
@@ -94,60 +119,36 @@
           <span class="text-base text-secondary-dark font-normal whitespace-nowrap">
             {{ role?.days | daysToYearsMonthsDays}}</span>
         </div>
-
+        
         <div
           class="xs:grid xs:grid-flow-col-dense xs:grid-rows-2 xs:auto-cols-max items-center text-base text-secondary-light font-light">
           <div *ngIf="role?.icon"
             class="hidden xs:block float-left xs:float-none clear-both bg-gray-400 mr-2 w-9 h-9 xs:row-span-2"></div>
-
+        
           <div class="flex flex-col xs:flex-row xs:gap-3 xs:items-center">
             <div class="text-secondary-dark font-medium flex items-center xs:items-start">
               <div class="xs:hidden block bg-gray-400 mr-2 w-9 h-9"></div>
               <span> {{ role?.organisation }}</span>
             </div>
             <span class="w-1 hidden xs:flex rounded-full h-1 bg-primary-dark"></span>
-            <span> {{ role?.from }} - {{ role?.to }}</span>
+            <span> {{ role?.startDate | date:'MMM y' }} - {{ role?.endDate | date:'MMM y' }}</span>
           </div>
-
+        
           <div>{{ role?.address || 'Port Melbourne, Victoria' }}</div>
         </div>
-
+        
         <app-ul-list></app-ul-list>
+        </ng-container>
+
       </div>
 
-      <!-- <div>
-        <div class="flex justify-between">
-          <h4 class="text-xl text-secondary-dark font-bold">
-            Senior NodeJS Developer
-          </h4>
-          <span
-            class="text-base text-secondary-dark font-normal whitespace-nowrap"
-            >1 yr 3 mos</span
-          >
-        </div>
-
-        <div class="flex flex-col text-base text-secondary-light font-light">
-          <div class="flex flex-col sm:flex-row sm:gap-3 sm:items-center">
-            <span class="text-secondary-dark font-medium"
-              >FutureDev Agency</span
-            >
-            <span
-              class="w-1 hidden sm:flex rounded-full h-1 bg-primary-dark"
-            ></span>
-            <span>Jan 2022 - Present</span>
-          </div>
-          <span>Port Melbourne, Victoria</span>
-        </div>
-
-        <app-ul-list></app-ul-list>
-      </div> -->
-      <button *ngIf="talentSummary?.allRoles.length > 5 && noOfExperiences == 5"
-        class="btn-default-outline mt-6 w-full capitalize" (click)="toggleMoreExperience()">
+      <button *ngIf="talentSummary?.allRoles.length > 4 && sliceRolesList"
+        class="btn-default-outline mt-6 w-full capitalize" (click)="sliceRolesList = false">
         Show All {{ talentSummary?.allRoles.length }} Experiences
       </button>
 
-      <button *ngIf="talentSummary?.allRoles.length == noOfExperiences" class="btn-default-outline mt-6 w-full capitalize"
-        (click)="toggleMoreExperience()">
+      <button *ngIf="!sliceRolesList" class="btn-default-outline mt-6 w-full capitalize"
+        (click)="sliceRolesList = true">
         Show Less Experiences
       </button>
     </div>
@@ -188,7 +189,7 @@
           Google NodeJS Course
         </h4>
         <div class="flex flex-col text-base text-secondary-light font-light">
-          <span>Issued Jun 2017</span>
+          <span>Issued Jun 2017</span> 
         </div>
       </li>
       <li>

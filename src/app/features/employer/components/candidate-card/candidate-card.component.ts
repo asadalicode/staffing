@@ -15,6 +15,7 @@ import { TalentSummaryModel } from '@app/@shared/dataModels';
   
 export class CandidateCardComponent implements OnInit {
   @Input() item!: any;
+  sliceRolesList = true;
 
 
   constructor(public dialog: MatDialog, private apiService: ApiService) { }

@@ -19,7 +19,7 @@ import { SalaryGraphComponent } from './components/salary-graph/salary-graph.com
 import { SliderComponent } from './components/slider/slider.component';
 import { UlListComponent } from './components/ul-list/ul-list.component';
 import { TooltipDirective } from '@app/@shared/directives/tooltip/tooltip.directive';
-import { DaysToYearsMonthsDaysPipe } from '@app/@shared/pipes/days-to-years-months-days.pipe';
+import { DaysToYearsMonthsDaysPipe, MonthToYearsPipe } from '@app/@shared/pipes/days-to-years-months-days.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [{ path: '', component: EmployerComponent }];
@@ -48,6 +48,7 @@ const routes: Routes = [{ path: '', component: EmployerComponent }];
     UlListComponent,
     TooltipDirective,
     DaysToYearsMonthsDaysPipe,
+    MonthToYearsPipe,
     NgxSpinnerModule,
     RouterModule.forChild(routes),
   ],

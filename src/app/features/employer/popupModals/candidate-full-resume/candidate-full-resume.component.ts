@@ -1,3 +1,4 @@
+import { EmployerService } from './../../employer.service';
 import {
   ChangeDetectorRef,
   Component,
@@ -12,6 +13,7 @@ import { BookAnInterviewComponent } from '../book-an-interview/book-an-interview
 import { InviteToJobComponent } from '../invite-to-job/invite-to-job.component';
 import { ApiService } from '@app/@shared/service/api.service';
 import { TalentSummaryModel } from '@app/@shared/dataModels';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-candidate-full-resume',
   templateUrl: './candidate-full-resume.component.html',
@@ -29,39 +31,45 @@ export class CandidateFullResumeComponent implements OnInit {
 
   stateOfTruncatedText!: boolean[];
 
-
-  experiences: any = [];
-  noOfExperiences = 5;
-  isExperienceToggle: boolean = false;
+  sliceRolesList = true;
 
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
     public trimPipe: TrimTextPipe,
-    private apiService: ApiService,
+    private spinner: NgxSpinnerService,
+    private employerService: EmployerService,
     private cdr: ChangeDetectorRef,
     private elRef: ElementRef,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    this.experiences = {
-      totalExperiece: '6 yrs 11 mos',
-    };
   }
 
   ngOnInit() {
     // this.getTalentSummary(this.data?.talentProfileId);
     this.talentSummary = this.data.candidate;
+    this.totalCandidates = this.employerService.getTotalTalentList();
   }
 
   prevCandidate() {
     if (this.currentCandiate > 1) {
       this.currentCandiate -= 1;
+      let item: any = this.employerService.getPrevCandidate(this.data.talentProfileId);
+      setTimeout(() => {
+        this.talentSummary = [...item.candidate];
+      }, 1000);
+     
     }
   }
 
   nextCandidate() {
     if (this.totalCandidates > this.currentCandiate) {
       this.currentCandiate += 1;
+      this.talentSummary = {};
+      let item: any = this.employerService.getNextCandidate(this.data.talentProfileId);
+      setTimeout(() => {
+        this.talentSummary = [...item.candidate];
+      }, 1000);
     }
   }
 
@@ -93,14 +101,5 @@ export class CandidateFullResumeComponent implements OnInit {
       this.moreTextCount = 778;
     }
     this.cdr.detectChanges();
-  }
-
-  toggleMoreExperience() {
-    this.isExperienceToggle = !this.isExperienceToggle;
-    if (this.isExperienceToggle) {
-      this.noOfExperiences = this.experiences.meta.length;
-    } else {
-      this.noOfExperiences = 5;
-    }
   }
 }

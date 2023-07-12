@@ -30,7 +30,7 @@ export class EmployerComponent implements OnInit {
     private apiService: ApiService,
     private employerService: EmployerService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     window.addEventListener('scroll', () => {
@@ -48,7 +48,7 @@ export class EmployerComponent implements OnInit {
     }
   }
 
-  filter(event: any) {}
+  filter(event: any) { }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -85,7 +85,7 @@ export class EmployerComponent implements OnInit {
           console.log('getJobInformation', res);
           this.jobInformation = res;
         },
-        (error) => {}
+        (error) => { }
       );
   }
 
@@ -93,9 +93,8 @@ export class EmployerComponent implements OnInit {
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
-          url: `/api/candidates/${
-            categ.talentProfileId
-          }/summary/${this.employerService.getEDMID()}`,
+          url: `/api/candidates/${categ.talentProfileId
+            }/summary/${this.employerService.getEDMID()}`,
           model: TalentSummaryModel,
         })
       )
@@ -111,6 +110,7 @@ export class EmployerComponent implements OnInit {
           .value();
         this.spinner.hide();
         console.log(this.topTalentCandidates);
+        this.employerService.setTopTalentList(this.topTalentCandidates);
       },
       error: (error) => {
         this.spinner.hide();

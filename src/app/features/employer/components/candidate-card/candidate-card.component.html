@@ -92,7 +92,7 @@
           class="bg-primary-light text-secondary-light py-1 sm:py-2 px-1 sm:px-6 text-[14px] mt-[16px] md:mt-0 rounded-[4px] font-semibold"
           translate
         >
-          Total Experience 14+ years
+          Total Experience {{item?.totalYearsOfExperienceInMonths | monthsToYears}}
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
     <h3 class="font-bold text-xl" translate>Experience</h3>
     <div class="font-semibold text-secondary-light text-2sm">
 
-      <ng-container *ngFor="let role of item.allRoles">
+      <ng-container *ngFor="let role of item.allRoles.slice(0,sliceRolesList ? 3: item.allRoles.length)">
         <div class="grid grid-cols-6 px-3 mb-2 mt-4">
           <span class="order-1 col-span-4 sm:col-span-2">{{role.roleName}}</span>
           <span
@@ -115,7 +115,7 @@
       </ng-container>
  
 
-      <button type="button" class="font-normal text-[#202020] text-sm">
+      <button type="button" *ngIf="sliceRolesList"  (click)="sliceRolesList = !sliceRolesList" class="font-normal text-[#202020] text-sm">
         +3 Other Roles
       </button>
     </div>
