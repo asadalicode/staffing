@@ -6,13 +6,13 @@
       How does your salary compare?
     </p>
     <h2 class="text-black-202020 font-semibold text-[28px]">
-      NodeJS Developer
+      {{graphdata?.resultName}}
     </h2>
     <p class="text-[14px] text-secondary-light font-semibold">
       Average Market Salary
     </p>
-    <p class="text-[14px] text-secondary-light font-normal">$95,250</p>
-    <p class="text-[38px] text-primary-dark font-bold">$95,250</p>
+    <p class="text-[14px] text-secondary-light font-normal">{{currencySymbol}}{{graphdata?.averageSalary}}</p>
+    <p class="text-[38px] text-primary-dark font-bold">{{currencySymbol}}{{graphdata?.averageSalary}}</p>
     <h4 class="text-base font-semibold text-[#93969E] max-w-[200px]">
       Your salary is above the market average
     </h4>
