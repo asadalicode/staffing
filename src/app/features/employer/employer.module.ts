@@ -21,7 +21,6 @@ import { UlListComponent } from './components/ul-list/ul-list.component';
 import { TooltipDirective } from '@app/@shared/directives/tooltip/tooltip.directive';
 import { DaysToYearsMonthsDaysPipe, MonthToYearsPipe } from '@app/@shared/pipes/days-to-years-months-days.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
 const routes: Routes = [{ path: '', component: EmployerComponent }];
 
 @NgModule({

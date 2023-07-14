@@ -1,17 +1,18 @@
 <div class="w-100 pb-4 sm:pb-8">
+  
   <div class="flex justify-between items-center mb-2">
     <div class="flex gap-2 items-center">
-      <button type="button" class="disabled:opacity-50" [disabled]="currentCandiate == 1" (click)="prevCandidate()">
+      <button type="button" class="disabled:opacity-50" [disabled]="currentCandidateIndex == 0" (click)="prevCandidate()">
         <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M4.06719 6.99974L8.73386 2.33307C9.26719 1.79974 9.26719 0.99974 8.73386 0.466406C8.20052 -0.0669271 7.40052 -0.0669271 6.86719 0.466406L1.26719 6.06641C0.733854 6.59974 0.733854 7.39974 1.26719 7.93307L6.86719 13.5331C7.13385 13.7997 7.40052 13.9331 7.80052 13.9331C8.20052 13.9331 8.46719 13.7997 8.73386 13.5331C9.26719 12.9997 9.26719 12.1997 8.73386 11.6664L4.06719 6.99974Z"
             fill="#AA1D35" />
         </svg>
       </button>
-      <span class="px-2 font-bold text-sm14 text-light-500">{{ currentCandiate }} of {{ totalCandidates }}
+      <span class="px-2 font-bold text-sm14 text-light-500">{{ currentCandidateIndex + 1 }} of {{ totalCandidates }}
         candidates</span>
       <button class="disabled:opacity-50" type="button" class="transform rotate-180" (click)="nextCandidate()"
-        [ngClass]="currentCandiate == totalCandidates ? 'hidden' : ''" [disabled]="currentCandiate == totalCandidates">
+        [ngClass]="currentCandidateIndex == totalCandidates - 1 ? 'hidden' : ''" [disabled]="currentCandidateIndex == totalCandidates - 1">
         <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M4.06719 6.99974L8.73386 2.33307C9.26719 1.79974 9.26719 0.99974 8.73386 0.466406C8.20052 -0.0669271 7.40052 -0.0669271 6.86719 0.466406L1.26719 6.06641C0.733854 6.59974 0.733854 7.39974 1.26719 7.93307L6.86719 13.5331C7.13385 13.7997 7.40052 13.9331 7.80052 13.9331C8.20052 13.9331 8.46719 13.7997 8.73386 13.5331C9.26719 12.9997 9.26719 12.1997 8.73386 11.6664L4.06719 6.99974Z"
@@ -21,7 +22,6 @@
     </div>
     <app-button-close bgColor="bg-white" (click)="close()" color="fill-violet-600"></app-button-close>
   </div>
-
   <!-- Canidate personal information section -->
   <div class="sm:flex bg-white rounded-large gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light">
     <!-- user image -->
@@ -65,11 +65,8 @@
 
   <!-- about section -->
   <app-expension-panel title="About">
-    <!-- <div class="about-section" [innerHTML]="aboutText"></div> -->
-
     <p class="text-secondary-dark text-base font-normal"
       [innerHtml]="talentSummary?.careerSummary | trimText : moreTextCount : showMoreText">
-      <!-- {{ talentSummary?.careerSummary | trimText : moreTextCount : showMoreText }} -->
     </p>
     <button *ngIf="moreTextCount > 778" class="btn-default-outline mt-6 w-full" (click)="toggleShowMoretext()">
       Show {{ moreTextCount == 778 ? "Full Summary" : "Less" }}
@@ -109,7 +106,7 @@
         <app-ul-list></app-ul-list>
       </div>
 
-      <div *ngFor="let role of talentSummary?.allRoles.slice(0, sliceRolesList ? 4: talentSummary.allRoles.length )">
+      <div *ngFor="let role of talentSummary?.allRoles.slice(0, sliceRolesList ? 4: talentSummary?.allRoles.length )">
 
         <ng-container *ngIf="talentSummary?.recentRole.roleId !== role.roleId">
         <div class="flex justify-between">
@@ -158,8 +155,8 @@
 
     <div class="flex flex-wrap gap-2">
       <ng-container *ngFor="let skill of talentSummary?.skills">
-        <span class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
-        <!-- <span class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span> -->
+        <span  *ngIf="!skill.matchedSkill" class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
+        <span *ngIf="skill.matchedSkill" class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
       </ng-container>
     </div>
   </app-expension-panel>
@@ -201,7 +198,7 @@
         </div>
       </li>
     </ul>
-  </app-expension-panel>
+  </app-expension-panel> 
   <app-expension-panel title="Language">
     <ul>
       <li class="text-base font-semibold leading-6 flex gap-2 items-center">

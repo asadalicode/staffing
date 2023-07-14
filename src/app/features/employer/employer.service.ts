@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,14 +51,19 @@ export class EmployerService {
     return this.TopTalentList.length;
   }
 
-  getNextCandidate(talentProfileId: any) {
+  // current index of cadidates List
+  getCurrentIndex(talentProfileId: any) {
     let index = this.TopTalentList.findIndex((item: any) => item.talent == talentProfileId);
-      return this.TopTalentList[index + 1];
+    return index;
   }
 
-  getPrevCandidate(talentProfileId: any) {
-    let index = this.TopTalentList.findIndex((item: any) => item.talent == talentProfileId);
-      return this.TopTalentList[index - 1];
-    
+  getNextCandidate(talentProfileId: any): Observable<any> {
+    let index = this.getCurrentIndex(talentProfileId);
+      return of(this.TopTalentList[index + 1]);
+  }
+
+  getPrevCandidate(talentProfileId: any): Observable<any> {
+    let index = this.getCurrentIndex(talentProfileId);
+    return  of(this.TopTalentList[index - 1]);
   }
 }

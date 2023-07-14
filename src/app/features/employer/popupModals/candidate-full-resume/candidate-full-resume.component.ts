@@ -2,18 +2,15 @@ import { EmployerService } from './../../employer.service';
 import {
   ChangeDetectorRef,
   Component,
-  ElementRef,
   Inject,
   OnInit,
-  ViewChild,
+  ChangeDetectionStrategy,
+  NgZone
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TrimTextPipe } from '@app/@shared/pipes/trim-text.pipe';
 import { BookAnInterviewComponent } from '../book-an-interview/book-an-interview.component';
 import { InviteToJobComponent } from '../invite-to-job/invite-to-job.component';
-import { ApiService } from '@app/@shared/service/api.service';
-import { TalentSummaryModel } from '@app/@shared/dataModels';
-import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-candidate-full-resume',
   templateUrl: './candidate-full-resume.component.html',
@@ -22,8 +19,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CandidateFullResumeComponent implements OnInit {
   totalCandidates = 32;
+  isView = false;
   currentCandiate = 1;
   talentSummary!: any;
+  talentId: any;
 
   showMoreAboutTextLength = 778;
   showMoreText = true;
@@ -32,44 +31,50 @@ export class CandidateFullResumeComponent implements OnInit {
   stateOfTruncatedText!: boolean[];
 
   sliceRolesList = true;
-
+  currentCandidateIndex = 0;
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
     public trimPipe: TrimTextPipe,
-    private spinner: NgxSpinnerService,
     private employerService: EmployerService,
     private cdr: ChangeDetectorRef,
-    private elRef: ElementRef,
+    private ngZone: NgZone,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
   }
 
   ngOnInit() {
-    // this.getTalentSummary(this.data?.talentProfileId);
     this.talentSummary = this.data.candidate;
     this.totalCandidates = this.employerService.getTotalTalentList();
+    this.talentId = this.data.talentProfileId;
+    this.getCurrentIndex(this.talentId);
   }
 
-  prevCandidate() {
-    if (this.currentCandiate > 1) {
-      this.currentCandiate -= 1;
-      let item: any = this.employerService.getPrevCandidate(this.data.talentProfileId);
-      setTimeout(() => {
-        this.talentSummary = [...item.candidate];
-      }, 1000);
-     
-    }
+  getCurrentIndex(id:any) {
+    this.currentCandidateIndex = this.employerService.getCurrentIndex(id);
   }
 
   nextCandidate() {
-    if (this.totalCandidates > this.currentCandiate) {
-      this.currentCandiate += 1;
-      this.talentSummary = {};
-      let item: any = this.employerService.getNextCandidate(this.data.talentProfileId);
-      setTimeout(() => {
-        this.talentSummary = [...item.candidate];
-      }, 1000);
+    if (this.totalCandidates > this.currentCandidateIndex) {
+      this.employerService.getNextCandidate(this.talentId).subscribe(res => {
+        this.ngZone.run(() => { 
+          this.talentSummary = { ...res.candidate[0] };
+          this.talentId = res.talent;
+          this.getCurrentIndex(this.talentId);
+        });
+      })
+    }
+  }
+  prevCandidate() {
+    if (this.currentCandidateIndex > 0) {  
+      this.employerService.getPrevCandidate(this.talentId).subscribe(res => {
+        this.ngZone.run(() => {
+          this.talentSummary = { ...res.candidate[0] };
+          this.talentId = res.talent;
+          this.getCurrentIndex(this.talentId);
+        });
+      })
+     
     }
   }
 
@@ -87,10 +92,6 @@ export class CandidateFullResumeComponent implements OnInit {
     const dialogRef = this.dialog.open(InviteToJobComponent, {
       panelClass: ['popup-modal', 'lg'],
     });
-  }
-
-  toggleLongTextState(index: number) {
-    this.stateOfTruncatedText[index] = !this.stateOfTruncatedText[index];
   }
 
   toggleShowMoretext() {

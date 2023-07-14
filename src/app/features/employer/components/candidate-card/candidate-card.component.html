@@ -116,7 +116,7 @@
  
 
       <button type="button" *ngIf="sliceRolesList"  (click)="sliceRolesList = !sliceRolesList" class="font-normal text-[#202020] text-sm">
-        +3 Other Roles
+        +{{item?.allRoles.length - 3}} Other Roles
       </button>
     </div>
   </div>
