@@ -17,9 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./employer.component.scss'],
 })
 export class EmployerComponent implements OnInit {
-  total = 32;
   itemsPerPage = 4;
-  talentList: any = [];
   windowScrolled = false;
   jobInformation!: any;
   tabSelected = 'All Candidates'; // default

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { SalaryGraphModel, TopTalentEdmModel } from '@app/@shared/dataModels';
 import { ApiService } from '@app/@shared/service/api.service';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
@@ -10,10 +10,16 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./salary-graph.component.scss'],
 })
 export class SalaryGraphComponent implements OnInit{
+  @Input() countryId!: any;
+  @Input() roleId!: any;
+  @Input() locationId!: any;
+  @Input() subClassificationId!: any;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   graphdata!: any;
   currencySymbol = '$';
   chartDataSet = [];
+  salaryRangeData = [];
+  backgroundColors = [];
   barChartOptions!: ChartConfiguration['options'];
   barChartData!: ChartData<'bar'>
   barChartType: ChartType = 'bar';
@@ -48,17 +54,11 @@ export class SalaryGraphComponent implements OnInit{
     };
 
     this.barChartData = {
-      labels: ['0-15000', '16000-25000', '100-110k', '120-130k', '140-150k'],
+      labels: this.salaryRangeData,
       datasets: [
         {
           data: this.chartDataSet,
-          backgroundColor: [
-            'rgba(210, 210, 210, 1)',
-            '#AA1D35',
-            'rgba(210, 210, 210, 1)',
-            'rgba(210, 210, 210, 1)',
-            'rgba(210, 210, 210, 1)',
-          ],
+          backgroundColor: this.backgroundColors,
         },
       ],
     };
@@ -96,16 +96,29 @@ export class SalaryGraphComponent implements OnInit{
   getSalaryGraph() {
     this.apiService
       .getAPI({
-        url: `/api/jobinsights/SalaryComparison?roleId=2311&locationId=192004&subClassificationId=0&countryId=249`,
+        url: `/api/jobinsights/SalaryComparison?roleId=${this.roleId}&locationId=${this.locationId}&subClassificationId=${this.subClassificationId}&countryId=${this.countryId}`,
         model: SalaryGraphModel,
       })
       .subscribe({
-        next: (res) => {
+        next: async (res) => {
           this.graphdata = res.data;
           this.currencySymbol = this.graphdata.currency.symbol;
-          this.chartDataSet = this.graphdata.chartData.map((e: any) => {
+
+          let sortChartData:any = await this.graphdata.chartData.sort((a: any, b: any) => { return a.minSalary - b.minSalary });
+
+          this.chartDataSet = sortChartData.map((e: any) => {
             return e.quantity;
           });
+
+          this.salaryRangeData = sortChartData.map((e: any) => {
+            return `${e.minSalary}- ${e.maxSalary}`
+          });
+
+          this.backgroundColors = sortChartData.map((e: any) => {
+            return e.isAverageSalary ? '#AA1D35' : 'rgba(210, 210, 210, 1)';
+          });
+
+
           this.drawChart();
           // this.barChartData.datasets.data = this.graphdata.
             console.log('salary graph data:', res);

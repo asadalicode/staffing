@@ -64,7 +64,7 @@
   </div>
 
   <!-- about section -->
-  <app-expension-panel title="About">
+  <app-expension-panel title="About" *ngIf="talentSummary?.careerSummary !==null">
     <p class="text-secondary-dark text-base font-normal"
       [innerHtml]="talentSummary?.careerSummary | trimText : moreTextCount : showMoreText">
     </p>
@@ -74,7 +74,7 @@
   </app-expension-panel>
 
   <!-- experience section -->
-  <app-expension-panel title="Experience">
+  <app-expension-panel title="Experience" *ngIf="talentSummary?.allRoles !==null ||  talentSummary?.allRoles.length > 0">
     <div class="flex flex-col pl-[14px] gap-6">
       <div class="text-right text-2xl">
         <span class="text-light-400 font-semibold" translate>Total experience</span>
@@ -151,8 +151,7 @@
     </div>
   </app-expension-panel>
 
-  <app-expension-panel title="Skills">
-
+  <app-expension-panel title="Skills" *ngIf="talentSummary?.skills !==null">
     <div class="flex flex-wrap gap-2">
       <ng-container *ngFor="let skill of talentSummary?.skills">
         <span  *ngIf="!skill.matchedSkill" class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
@@ -160,7 +159,9 @@
       </ng-container>
     </div>
   </app-expension-panel>
-  <app-expension-panel title="Education">
+
+
+  <app-expension-panel title="Education" *ngIf="talentSummary?.qualifications !==null">
     <ul class="flex flex-col gap-6">
       <ng-container *ngFor="let qualification of talentSummary?.qualifications">
               <li>
@@ -179,6 +180,7 @@
       </ng-container>
     </ul>
   </app-expension-panel>
+
   <app-expension-panel title="Licenses & Certifications">
     <ul class="flex flex-col gap-6">
       <li>

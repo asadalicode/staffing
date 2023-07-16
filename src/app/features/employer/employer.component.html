@@ -99,8 +99,16 @@
     </div>
   </section>
 
-  <section class="bg-[#F9FAFB] p-4 mt-3">
-    <app-salary-graph></app-salary-graph>
+  <section class="bg-[#F9FAFB] p-4 mt-3" *ngIf="jobInformation != null">
+    <!--roleId: jobInformation?.role?.roleId -->
+    <!--locationId:  jobInformation?.geoData?.geoDataId -->
+
+    <app-salary-graph 
+      roleId="2311" 
+      locationId="192004" 
+      [subClassificationId]="jobInformation?.role?.subClassificationId" 
+      [countryId]="jobInformation?.countryId">
+    </app-salary-graph>
   </section>
 </div>
 

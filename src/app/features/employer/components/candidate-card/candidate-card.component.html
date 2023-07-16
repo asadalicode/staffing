@@ -98,7 +98,7 @@
     </div>
   </div>
 
-  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
+  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md" *ngIf="item?.allRoles !==null ||  item?.allRoles.length > 0">
     <h3 class="font-bold text-xl" translate>Experience</h3>
     <div class="font-semibold text-secondary-light text-2sm">
 
@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md">
+  <div class="bg-[#FEFBFB] mt-4 p-3 rounded-md" *ngIf="item?.qualifications !==null">
     <h3 class="font-bold text-xl text-secondary-dark" translate>
       Qualifications
     </h3>
@@ -145,7 +145,7 @@
     </div>
   </div>
 
-  <div class="p-3 rounded-md">
+  <div class="p-3 rounded-md" *ngIf="item?.skills !==null">
     <h3 class="font-bold text-xl text-secondary-dark" translate>Skills</h3>
     <div class="flex flex-wrap gap-2 mt-4">
       <ng-container *ngFor="let skill of item?.skills">
