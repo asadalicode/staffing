@@ -1,7 +1,7 @@
 import { EmployerService } from './../../employer.service';
 import { UserCardComponent } from './../../components/user-card/user-card.component';
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
@@ -21,6 +21,8 @@ import { ContactMeAdditionalDetailsComponent } from '../contact-me-additional-de
 import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation-popup/confirmation-popup.component';
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ApiService } from '@app/@shared/service/api.service';
+import { ContactFormModel } from '@app/@shared/dataModels';
 
 interface Config {
   title: string
@@ -44,7 +46,7 @@ interface Config {
   templateUrl: './contact-me.component.html',
   styleUrls: ['./contact-me.component.scss'],
 })
-export class ContactMeComponent {
+export class ContactMeComponent implements OnInit {
   jobTitle: string = 'NodeJS Developer';
   JobInformation!: any;
   contactForm = new FormGroup({
@@ -53,18 +55,23 @@ export class ContactMeComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     companyName: new FormControl('', Validators.required),
     contact: new FormGroup({
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl({}, Validators.required),
     }),
   });
 
   constructor(
+    private apiService: ApiService,
     public employerService: EmployerService,
     public dialogRef: MatDialogRef<ContactMeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Config,
     public dialog: MatDialog
-  ) {
+  ) {}
+
+  ngOnInit() {
+    
     this.employerService.getJobInformation().subscribe(res => {
       this.JobInformation = res;
+      this.getContactFormData();
     });
   }
 
@@ -76,6 +83,7 @@ export class ContactMeComponent {
     console.log(this.contactForm.value);
     this.dialogRef.close('yes');
     this.openConfirmationPopup();
+    this.sendContactForm();
   }
 
   openConfirmationPopup() {
@@ -113,6 +121,47 @@ export class ContactMeComponent {
       if (yes) {
         // this.goToAdditionalInformation();
       }
+    });
+  }
+
+  getContactFormData() {
+    this.apiService
+      .getAPI({
+        url: `/Contact/${this.JobInformation.contactId}`,
+        model: ContactFormModel,
+      })
+      .subscribe(
+        (res) => {
+          console.log('get', res);
+          let contact = res.data;
+          this.contactForm.patchValue({
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            email: contact.email
+          });
+        },
+        (error) => { }
+      );
+  }
+
+  sendContactForm() {
+    
+    let PhoneNumber:any = this.contactForm.value.contact?.phone;
+
+    let body:any = {
+      "firstName": this.contactForm.value.firstName,
+      "lastName": this.contactForm.value.lastName,
+      "location": "string",
+      "locationPlaceId": this.JobInformation.contactId,
+      "subject": "nothing",
+      "email": this.contactForm.value.email,
+      "phoneCode": PhoneNumber.dialCode,
+      "phoneNumber": PhoneNumber.number,
+      "message": "dsfsd",
+      "domainName": this.contactForm.value.companyName
+    }
+    this.apiService.sendContactForm(body).subscribe(res => {
+      console.log('form submitted');
     });
   }
 }

@@ -1,3 +1,4 @@
+import { EmployerService } from './../../employer.service';
 import { ChangeDetectionStrategy, Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CandidateFullResumeComponent } from '../../popupModals/candidate-full-resume/candidate-full-resume.component';
@@ -16,21 +17,28 @@ import { TalentSummaryModel } from '@app/@shared/dataModels';
 export class CandidateCardComponent implements OnInit {
   @Input() item!: any;
   sliceRolesList = true;
+  jobInformation!: any;
   candidateFullName = '';
 
 
-  constructor(public dialog: MatDialog, private apiService: ApiService) { }
+  constructor(public dialog: MatDialog,
+    private employerService:EmployerService,
+    private apiService: ApiService) { }
 
 
 
   ngOnInit() {
     console.log(this.item);
-   
+    
   }
 
   ngOnChanges(change: SimpleChanges) {
     this.matchSkills(this.item);
     this.candidateFullName = this.getCandidateFullName(this.item);
+    this.employerService.getJobInformation().subscribe(res=> {
+      this.jobInformation = res;
+    });
+   
   }
 
   openFullResume(): void {

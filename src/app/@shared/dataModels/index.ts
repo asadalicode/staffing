@@ -2,4 +2,5 @@ export * from './topTalentEdm';
 export * from './jobInfo';
 export * from './talentSummary';
 export * from './tasInformation';
-export * from './saraygraph'
+export * from './saraygraph';
+export * from './contactForm';

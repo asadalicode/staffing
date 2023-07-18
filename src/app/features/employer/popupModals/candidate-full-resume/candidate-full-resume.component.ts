@@ -33,6 +33,7 @@ export class CandidateFullResumeComponent implements OnInit {
   sliceRolesList = true;
   currentCandidateIndex = 0;
   candidateFullName: any;
+  jobInformation!: any;
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
@@ -50,6 +51,9 @@ export class CandidateFullResumeComponent implements OnInit {
     this.talentId = this.data.talentProfileId;
     this.getCurrentIndex(this.talentId);
     this.candidateFullName = this.getCandidateFullName(this.talentSummary);
+    this.employerService.getJobInformation().subscribe(res => {
+      this.jobInformation = res;
+    });
   }
 
   getCandidateFullName(item:any) {
