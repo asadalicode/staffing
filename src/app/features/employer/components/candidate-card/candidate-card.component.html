@@ -16,10 +16,10 @@
         <h2 appTooltip="Glenn Fairchild Glenn Fair"
           class="line-clamp-2 md:line-clamp-1 max-w-[150px] md:max-w-[250px] mr-[35px] text-2xl text-left font-bold text-secondary-darktruncate text-ellipsis overflow-hidden"
         >
-          Glenn Fairchild Glenn Fair
+           {{candidateFullName || '-'}}
         </h2>
         <div class="hidden md:flex text-base font-medium text-secondary-light">
-          Senior NodeJS Developer
+          {{ item?.recentRole?.roleName }}
         </div>
         <div
           class="hidden md:flex text-[14px] font-light text-secondary-light gap-2 items-center"
@@ -48,7 +48,7 @@
     <div class="flex gap-1 flex-col">
       <div class="flex md:grow flex-col gap-2 items-start md:items-end">
         <div class="flex md:hidden text-base font-medium text-secondary-light">
-          Senior NodeJS Developer
+          {{ item?.recentRole?.roleName }}
         </div>
         <div
           class="flex md:hidden text-[14px] font-light text-secondary-light gap-2 items-center"

@@ -79,7 +79,6 @@ export class BookAnInterviewComponent implements OnInit {
     } else {
       this.formStep1.markAllAsTouched();
       console.log(this.formStep1.value);
-      debugger;
 
       // this.scrollToFirstInvalidControl();
     }

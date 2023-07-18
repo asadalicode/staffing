@@ -16,6 +16,7 @@ import { TalentSummaryModel } from '@app/@shared/dataModels';
 export class CandidateCardComponent implements OnInit {
   @Input() item!: any;
   sliceRolesList = true;
+  candidateFullName = '';
 
 
   constructor(public dialog: MatDialog, private apiService: ApiService) { }
@@ -28,7 +29,8 @@ export class CandidateCardComponent implements OnInit {
   }
 
   ngOnChanges(change: SimpleChanges) {
-    this.matchSkills(this.item)
+    this.matchSkills(this.item);
+    this.candidateFullName = this.getCandidateFullName(this.item);
   }
 
   openFullResume(): void {
@@ -39,6 +41,10 @@ export class CandidateCardComponent implements OnInit {
       },
       panelClass: 'full-resume-modal',
     });
+  }
+
+  getCandidateFullName(item:any) {
+    return `${this.item.firstName} ${this.item.lastName}`
   }
 
   onBookInterview(): void {

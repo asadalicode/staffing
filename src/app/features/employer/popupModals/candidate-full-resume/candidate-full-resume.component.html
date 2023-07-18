@@ -25,8 +25,8 @@
   <!-- Canidate personal information section -->
   <div class="sm:flex bg-white rounded-large gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light">
     <!-- user image -->
-    <div class="flex items-end mb-[10px] sm:mb-0">
-      <img src="/assets/placeholder/user-icon.png" alt="icon"
+    <div class="flex items-end mb-[10px] sm:mb-0" *ngIf="talentSummary?.profilePhoto !== ''" >
+      <img [src]="talentSummary?.profilePhoto" alt="icon"
         class="flex-none w-[100px] h-[100px] rounded-full object-cover" loading="lazy" decoding="async" />
     </div>
 
@@ -50,10 +50,10 @@
 
       <div class="grow">
         <h2 class="text-3xl text-left font-bold text-secondary-dark">
-          Glenn Fairchild Glenn Fair
+          {{candidateFullName}}
         </h2>
         <div class="flex text-3xl font-extralight text-secondary-light">
-          Senior NodeJS Developer
+          {{ talentSummary?.recentRole?.roleName }}
         </div>
         <div class="flex text-[14px] font-light text-secondary-light gap-2 items-center">
           <span><img src="/assets/icons/map.svg" alt="" /></span>

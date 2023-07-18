@@ -32,6 +32,7 @@ export class CandidateFullResumeComponent implements OnInit {
 
   sliceRolesList = true;
   currentCandidateIndex = 0;
+  candidateFullName: any;
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
@@ -48,8 +49,12 @@ export class CandidateFullResumeComponent implements OnInit {
     this.totalCandidates = this.employerService.getTotalTalentList();
     this.talentId = this.data.talentProfileId;
     this.getCurrentIndex(this.talentId);
+    this.candidateFullName = this.getCandidateFullName(this.talentSummary);
   }
 
+  getCandidateFullName(item:any) {
+    return `${item.firstName} ${item.lastName}`
+  }
   getCurrentIndex(id:any) {
     this.currentCandidateIndex = this.employerService.getCurrentIndex(id);
   }
@@ -61,6 +66,7 @@ export class CandidateFullResumeComponent implements OnInit {
           this.talentSummary = { ...res.candidate[0] };
           this.talentId = res.talent;
           this.getCurrentIndex(this.talentId);
+          this.candidateFullName = this.getCandidateFullName(this.talentSummary)
         });
       })
     }
@@ -72,6 +78,7 @@ export class CandidateFullResumeComponent implements OnInit {
           this.talentSummary = { ...res.candidate[0] };
           this.talentId = res.talent;
           this.getCurrentIndex(this.talentId);
+          this.candidateFullName = this.getCandidateFullName(this.talentSummary)
         });
       })
      
@@ -81,7 +88,6 @@ export class CandidateFullResumeComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
   onBookInterview(): void {
     const dialogRef = this.dialog.open(BookAnInterviewComponent, {
       panelClass: ['popup-modal', 'lg'],

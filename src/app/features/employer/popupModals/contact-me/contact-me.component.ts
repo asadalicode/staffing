@@ -1,3 +1,4 @@
+import { EmployerService } from './../../employer.service';
 import { UserCardComponent } from './../../components/user-card/user-card.component';
 
 import { Component, Inject } from '@angular/core';
@@ -22,7 +23,7 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
 import { TranslateModule } from '@ngx-translate/core';
 
 interface Config {
-  title: string;
+  title: string
 }
 
 @Component({
@@ -45,6 +46,7 @@ interface Config {
 })
 export class ContactMeComponent {
   jobTitle: string = 'NodeJS Developer';
+  JobInformation!: any;
   contactForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -56,10 +58,15 @@ export class ContactMeComponent {
   });
 
   constructor(
+    public employerService: EmployerService,
     public dialogRef: MatDialogRef<ContactMeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Config,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.employerService.getJobInformation().subscribe(res => {
+      this.JobInformation = res;
+    });
+  }
 
   close() {
     this.dialogRef.close();

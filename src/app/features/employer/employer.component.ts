@@ -23,7 +23,7 @@ export class EmployerComponent implements OnInit {
   tabSelected = 'All Candidates'; // default
   topTalentList!: TopTalentEdmModel[];
   topTalentCandidates: any = [];
-  taxInformation: any;
+  tasInformation: any;
   constructor(
     private apiService: ApiService,
     private employerService: EmployerService,
@@ -81,6 +81,7 @@ export class EmployerComponent implements OnInit {
       .subscribe(
         (res) => {
           console.log('getJobInformation', res);
+          this.employerService.setJobInformation(res);
           this.jobInformation = res;
         },
         (error) => { }
@@ -126,7 +127,8 @@ export class EmployerComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log('get Tax information:', res);
-        this.taxInformation = res;
+        this.employerService.setTasInformation(res.data);
+        this.tasInformation = res;
       });
   }
 

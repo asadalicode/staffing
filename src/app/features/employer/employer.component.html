@@ -1,56 +1,33 @@
-<div
-  class="w-full sm:w-[90%] md:w-[85%] lg:max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-0 py-5 pt-10 lg:pt-20"
->
-  <h1
-    class="font-montserrat fonr-weight-400 text-3xl md:text-5xl lg:text-7xl sm:text-center"
-  >
+<div class="w-full sm:w-[90%] md:w-[85%] lg:max-w-[1024px] mx-auto px-4 sm:px-6 lg:px-0 py-5 pt-10 lg:pt-20">
+  <h1 class="font-montserrat fonr-weight-400 text-3xl md:text-5xl lg:text-7xl sm:text-center">
     <div>I’ll find you top talent for</div>
     <div>
       your
       <!-- <span class="font-[500] text-primary-dark">NodeJS Developer</span> job -->
       <span class="font-[500] text-primary-dark">{{
         jobInformation?.jobTitle
-      }}</span>
+        }}</span>
       job now!
     </div>
   </h1>
 
   <section class="text-center">
-    <app-contact-us-card
-      [tasInformation]="taxInformation?.data"
-    ></app-contact-us-card>
+    <app-contact-us-card [tasInformation]="tasInformation?.data"></app-contact-us-card>
   </section>
 
   <section class="candidates mt-6">
     <div class="flex flex-row justify-between py-2">
       <div class="flex my-radio-button">
         <div class="flex items-center">
-          <input
-            id="inline-radio"
-            (change)="filter($event)"
-            [checked]="tabSelected === 'All Candidates'"
-            type="radio"
-            value="All Candidates"
-            name="filter-candidate"
-            class="invisible"
-          />
-          <label
-            for="inline-radio"
-            (change)="filter($event)"
-            class="cursor-pointer"
-          >
+          <input id="inline-radio" (change)="filter($event)" [checked]="tabSelected === 'All Candidates'" type="radio"
+            value="All Candidates" name="filter-candidate" class="invisible" />
+          <label for="inline-radio" (change)="filter($event)" class="cursor-pointer">
             <span translate>All_Candidates</span>
           </label>
         </div>
         <div class="flex items-center">
-          <input
-            id="inline-2-radio"
-            [checked]="tabSelected === 'Favourites'"
-            type="radio"
-            value="Favourites"
-            name="filter-candidate"
-            class="invisible"
-          />
+          <input id="inline-2-radio" [checked]="tabSelected === 'Favourites'" type="radio" value="Favourites"
+            name="filter-candidate" class="invisible" />
           <label for="inline-2-radio" class="cursor-pointer" translate>
             <span translate>Favourites</span>
           </label>
@@ -62,13 +39,11 @@
     </div>
     <div class="bg-[#F4F2F3] sm:p-8 rounded-[20px] grid gap-6">
       <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-      <ng-container
-        *ngFor="
+      <ng-container *ngFor="
           let item of topTalentCandidates.slice(0, itemsPerPage);
           trackBy: trackByfn;
           let i = index
-        "
-      >
+        ">
         <app-candidate-card [item]="item.candidate[0]"></app-candidate-card>
       </ng-container>
 
@@ -76,23 +51,15 @@
         <button type="button" class="btn-primary-outline-lg" translate>
           Invite Favourite Candidates
         </button>
-        <button
-          type="button"
-          (click)="loadmore()"
-          class="btn-link-md text-primary-dark"
-          translate
-        >
+        <button type="button" (click)="loadmore()" class="btn-link-md text-primary-dark" translate>
           Load More Candidates
         </button>
       </div>
     </div>
 
     <div class="flex flex-row justify-center items-center gap-3 pt-4">
-      <button
-        type="button"
-        (click)="scrollToTop()"
-        class="flex gap-2 flex-row items-center text-[13px] font-bold text-secondary"
-      >
+      <button type="button" (click)="scrollToTop()"
+        class="flex gap-2 flex-row items-center text-[13px] font-bold text-secondary">
         <img class="animate-bounce" src="assets/icons/arrow-up.svg" alt="" />
         <span translate>Back To Top</span>
       </button>
@@ -103,20 +70,15 @@
     <!--roleId: jobInformation?.role?.roleId -->
     <!--locationId:  jobInformation?.geoData?.geoDataId -->
 
-    <app-salary-graph 
-      roleId="2311" 
-      locationId="192004" 
-      [subClassificationId]="jobInformation?.role?.subClassificationId" 
-      [countryId]="jobInformation?.countryId">
+    <app-salary-graph roleId="2311" locationId="192004"
+      [subClassificationId]="jobInformation?.role?.subClassificationId" [countryId]="jobInformation?.countryId">
     </app-salary-graph>
   </section>
 </div>
 
 <div>
   <section class="py-4 mt-3">
-    <h2
-      class="font-bold text-[#93969E] mt-6 text-[24px] sm:text-[30px] md:text-[40px] text-center"
-    >
+    <h2 class="font-bold text-[#93969E] mt-6 text-[24px] sm:text-[30px] md:text-[40px] text-center">
       Our customers say it best.
     </h2>
 

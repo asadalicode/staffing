@@ -9,6 +9,8 @@ import { Observable, of } from 'rxjs';
 export class EmployerService {
   private EDMId!: string;
   private TopTalentList = [];
+  private TasInformation: any;
+  JobInformation: any;
 
   constructor(private route: ActivatedRoute, private _router: Router) {
     this.navigateToEDMRoute();
@@ -66,4 +68,24 @@ export class EmployerService {
     let index = this.getCurrentIndex(talentProfileId);
     return  of(this.TopTalentList[index - 1]);
   }
+
+
+  // set and tax information from main employee component and get from anywhere
+  setTasInformation(information: any) {
+    this.TasInformation = information;
+  }
+
+  getTasInformation(): Observable<any> {
+    return of(this.TasInformation);
+  }
+
+  // set job information from main employee component and get from anywhere
+  setJobInformation(information: any) {
+    this.JobInformation = information;
+  }
+
+  getJobInformation(): Observable<any> {
+    return of(this.JobInformation);
+  }
 }
+0
