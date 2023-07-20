@@ -14,5 +14,6 @@ export class ShellComponent {
     .pipe(
       map(result => result.matches),
       shareReplay()
-    );
+  );
+
 }

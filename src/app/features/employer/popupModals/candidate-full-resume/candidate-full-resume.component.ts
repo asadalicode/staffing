@@ -47,6 +47,7 @@ export class CandidateFullResumeComponent implements OnInit {
 
   ngOnInit() {
     this.talentSummary = this.data.candidate;
+    this.calculateExperianceDays();
     this.totalCandidates = this.employerService.getTotalTalentList();
     this.talentId = this.data.talentProfileId;
     this.getCurrentIndex(this.talentId);
@@ -70,7 +71,8 @@ export class CandidateFullResumeComponent implements OnInit {
           this.talentSummary = { ...res.candidate[0] };
           this.talentId = res.talent;
           this.getCurrentIndex(this.talentId);
-          this.candidateFullName = this.getCandidateFullName(this.talentSummary)
+          this.candidateFullName = this.getCandidateFullName(this.talentSummary);
+          this.calculateExperianceDays();
         });
       })
     }
@@ -82,13 +84,19 @@ export class CandidateFullResumeComponent implements OnInit {
           this.talentSummary = { ...res.candidate[0] };
           this.talentId = res.talent;
           this.getCurrentIndex(this.talentId);
-          this.candidateFullName = this.getCandidateFullName(this.talentSummary)
+          this.candidateFullName = this.getCandidateFullName(this.talentSummary);
+          this.calculateExperianceDays();
         });
       })
      
     }
   }
 
+  calculateExperianceDays() {
+    if (this.talentSummary && this.talentSummary.allRoles.length > 0) {
+      this.talentSummary['totaldays'] = this.talentSummary.allRoles.reduce((partialSum: any, a: any) => partialSum + a.days, 0)
+    }
+  }
   close() {
     this.dialogRef.close();
   }

@@ -35,8 +35,8 @@ export class DaysToYearsMonthsDaysPipe implements PipeTransform {
   standalone: true
 })
 export class MonthToYearsPipe implements PipeTransform {
-  transform(months: number): string {
-    const years = Math.round(months / 12);
+  transform(days: number): string {
+    const years = Math.floor(days / 365);
     return `${years}+ years `;
   }
 }

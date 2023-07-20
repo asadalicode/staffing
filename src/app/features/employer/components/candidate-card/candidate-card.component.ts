@@ -33,6 +33,10 @@ export class CandidateCardComponent implements OnInit {
   }
 
   ngOnChanges(change: SimpleChanges) {
+    if (this.item && this.item.allRoles.length>0) {
+      this.item['totaldays'] = this.item.allRoles.reduce((partialSum: any, a: any) => partialSum + a.days, 0)
+    }
+
     this.matchSkills(this.item);
     this.candidateFullName = this.getCandidateFullName(this.item);
     this.employerService.getJobInformation().subscribe(res=> {

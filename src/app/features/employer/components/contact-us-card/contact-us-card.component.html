@@ -8,38 +8,24 @@
     <div class="p-2 sm:p-4 flex sm:gap-4">
       <div class="sm:w-[84px] hidden sm:flex">
         <div class="flex-none text-center mx-auto">
-          <img
-            class="h-[84px] w-[84px]"
-            src="{{tasInformation?.photo}}"
-            alt="Image"
-          />
+          <img class="h-[84px] w-[84px]" src="{{tasInformation?.photo}}" alt="Image" />
         </div>
       </div>
 
-      <div class="flex-1">
-        <div
-          class="flex items-center sm:items-start justify-center sm:justify-start gap-3"
-        >
+      <div class="flex flex-col gap-2 sm:flex-1 sm:gap-0">
+        <div class="flex items-center sm:items-start justify-center sm:justify-start gap-3">
           <div class="sm:hidden text-center">
-             <!-- /assets/placeholder/user-icon.png -->
-            <img
-              class="h-16 w-16 sm:24 sm:object-cover sm:w-24"
-              src="{{tasInformation?.photo}}"
-              alt="Image"
-            />
+            <!-- /assets/placeholder/user-icon.png -->
+            <img class="h-16 w-16 sm:24 sm:object-cover sm:w-24" src="{{tasInformation?.photo}}" alt="Image" />
           </div>
           <div class="flex flex-col gap-1">
             <h2 class="text-2xl text-left font-bold text-secondary-dark">
               {{tasInformation?.name}}
             </h2>
-            <p
-              class="text-xs text-center sm:text-left text-primary-dark font-[800]"
-            >
+            <p class="text-xs text-center sm:text-left text-primary-dark font-[800]">
               {{tasInformation?.jobTitle}}
             </p>
-            <div
-              class="text-sm14 flex items-center gap-2 text-primary-dark font-bold justify-center sm:justify-start"
-            >
+            <div class="text-sm14 flex items-center gap-2 text-primary-dark font-bold justify-center sm:justify-start">
               <span><img src="/assets/icons/phone.svg" alt="" /></span>
               <span>{{tasInformation?.phone}}</span>
             </div>
@@ -53,11 +39,13 @@
           </p>
 
           <div class="mt-4 flex flex-col sm:flex-row gap-4 items-center">
-            <button type="button" class="btn-primary-lg capitalize" translate (click)="findNextHire()">Find My Next Hire</button>
-            <button type="button" class="btn-link-md text-primary-dark capitalize" (click)="howToWork()" translate>How I Work </button>
+            <button type="button" class="btn-primary-lg capitalize" translate (click)="findNextHire()">Find My Next
+              Hire</button>
+            <button type="button" class="btn-link-md text-primary-dark capitalize" (click)="howToWork()" translate>How I
+              Work </button>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>

@@ -151,14 +151,14 @@ export class ContactMeComponent implements OnInit {
     let body:any = {
       "firstName": this.contactForm.value.firstName,
       "lastName": this.contactForm.value.lastName,
-      "location": "string",
-      "locationPlaceId": this.JobInformation.contactId,
-      "subject": "nothing",
+      "location": this.JobInformation?.geoData?.description,
+      "locationPlaceId": this.JobInformation.countryId,
+      "subject": this.JobInformation?.jobTitle,
       "email": this.contactForm.value.email,
       "phoneCode": PhoneNumber.dialCode,
       "phoneNumber": PhoneNumber.number,
-      "message": "dsfsd",
-      "domainName": this.contactForm.value.companyName
+      "message": "",
+      "domainName": this.JobInformation?.jobTitle
     }
     this.apiService.sendContactForm(body).subscribe(res => {
       console.log('form submitted');
