@@ -11,11 +11,16 @@
   </div>
   <p class="font-normal text-base text-secondary-light">
     Let's confirm a few more details about your
-    <span class="font-semibold text-primary-dark">{{ JobInformation?.jobTitle }}</span> role.
+    <span class="font-semibold text-primary-dark">{{
+      JobInformation?.jobTitle
+    }}</span>
+    role.
   </p>
 
   <div class="flex flex-col sm:flex-row gap-6 mt-6">
-    <app-user-card></app-user-card>
+    <div class="hidden md:block">
+      <app-user-card></app-user-card>
+    </div>
     <div class="grow">
       <form [formGroup]="contactForm" class="grid grid-cols-2 gap-4">
         <app-reusable-input

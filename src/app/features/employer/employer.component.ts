@@ -10,6 +10,9 @@ import { EmployerService } from './employer.service';
 import { forkJoin } from 'rxjs';
 import * as _ from 'lodash';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { BookAnInterviewComponent } from './popupModals/book-an-interview/book-an-interview.component';
+import { ContactMeComponent } from './popupModals/contact-me/contact-me.component';
 
 @Component({
   selector: 'app-employer',
@@ -25,10 +28,11 @@ export class EmployerComponent implements OnInit {
   topTalentCandidates: any = [];
   tasInformation: any;
   constructor(
+    private dialog: MatDialog,
     private apiService: ApiService,
     private employerService: EmployerService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     window.addEventListener('scroll', () => {
@@ -46,7 +50,7 @@ export class EmployerComponent implements OnInit {
     }
   }
 
-  filter(event: any) { }
+  filter(event: any) {}
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,7 +88,7 @@ export class EmployerComponent implements OnInit {
           this.employerService.setJobInformation(res);
           this.jobInformation = res;
         },
-        (error) => { }
+        (error) => {}
       );
   }
 
@@ -92,8 +96,9 @@ export class EmployerComponent implements OnInit {
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
-          url: `/api/candidates/${categ.talentProfileId
-            }/summary/${this.employerService.getEDMID()}`,
+          url: `/api/candidates/${
+            categ.talentProfileId
+          }/summary/${this.employerService.getEDMID()}`,
           model: TalentSummaryModel,
         })
       )
@@ -134,5 +139,14 @@ export class EmployerComponent implements OnInit {
 
   trackByfn(index: any, item: any) {
     return item.uniqueValue;
+  }
+
+  contactMe() {
+    const dialogRef = this.dialog.open(ContactMeComponent, {
+      data: {
+        title: 'Contact Me',
+      },
+      panelClass: ['popup-modal', 'lg'],
+    });
   }
 }

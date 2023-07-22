@@ -42,7 +42,9 @@
   <div class="mt-5">
     <ng-container *ngIf="step === 1">
       <div class="flex flex-col sm:flex-row gap-6 mt-6">
-        <app-user-card></app-user-card>
+        <div class="hidden md:block">
+          <app-user-card></app-user-card>
+        </div>
         <div class="grow">
           <form [formGroup]="formStep1" class="grid grid-cols-2 gap-4">
             <app-reusable-input
