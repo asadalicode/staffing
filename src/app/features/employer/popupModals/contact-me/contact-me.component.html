@@ -47,6 +47,13 @@
           type="text"
           [control]="contactForm.controls.companyName"
         ></app-reusable-input>
+        <app-reusable-textArea
+          placeholder="Message"
+          class="col-span-2"
+          [control]="contactForm.controls.message"
+        >
+        </app-reusable-textArea>
+
         <!-- <app-reusable-input placeholder="Contact Number" class="col-span-2" type="text" [control]="contactForm.controls.phone"></app-reusable-input> -->
         <app-phone-number-input
           class="grow col-span-2"

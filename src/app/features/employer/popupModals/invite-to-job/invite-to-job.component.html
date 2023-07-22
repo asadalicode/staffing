@@ -23,7 +23,9 @@
 
       <p class="font-normal text-base text-secondary-light">
         Let's confirm a few more details about your
-        <span class="font-semibold text-primary-dark">{{ jobTitle }}</span>
+        <span class="font-semibold text-primary-dark">{{
+          JobInformation?.jobTitle
+        }}</span>
         role.
       </p>
       <div class="mt-5">
@@ -56,8 +58,15 @@
                 placeholder="Company Name"
                 class="col-span-2"
                 type="text"
-                [control]="formStep1.controls.company"
+                [control]="formStep1.controls.companyName"
               ></app-reusable-input>
+
+              <app-reusable-textArea
+                placeholder="Message"
+                class="col-span-2"
+                [control]="formStep1.controls.message"
+              >
+              </app-reusable-textArea>
 
               <div class="flex flex-col sm:flex-row col-span-2 gap-4">
                 <app-phone-number-input
@@ -75,7 +84,7 @@
 
               <button
                 type="button"
-                (click)="next()"
+                (click)="sendContactForm()"
                 class="btn-primary-lg col-span-2 mt-2"
                 [disabled]="formStep1.invalid"
               >

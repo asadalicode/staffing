@@ -273,7 +273,7 @@ body {
 }
 
 .wrapper {
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 /*****************************************************
@@ -282,7 +282,7 @@ body {
 
 .iti {
   display: block !important;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .iti .dropdown-menu.country-dropdown {
@@ -378,10 +378,9 @@ ngx-intl-tel-input input[disabled] {
   background-color: #e5eaf1;
 }
 
-
 .tooltip {
   position: absolute;
-  top:30px;
+  top: 30px;
   background-color: #fff;
   color: #111928;
   padding: 4px 8px;
