@@ -18,7 +18,9 @@ export class EmployerService {
 
   getQueryParams() {
     this.route.queryParams.subscribe((params: any) => {
-      console.log(params);
+      if (!params || !Object.keys(params).length) {
+        params.id = 'd184d1d1-14a6-415d-b6cc-71eb5d2de1b3';
+      }
       this.navigateToEDMRoute(params?.id);
       this.EDMId = params.id;
       // this.setEDMId();
