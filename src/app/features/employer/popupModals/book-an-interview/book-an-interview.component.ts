@@ -16,6 +16,10 @@ import { ConfirmationPopupComponent } from '@app/@shared/components/confirmation
 import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input/phone-number-input.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
+import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/reusable-textArea.component';
+import { ApiService } from '@app/@shared/service/api.service';
+import { EmployerService } from '../../employer.service';
+import { ContactFormModel } from '@app/@shared/dataModels';
 
 @Component({
   selector: 'app-book-an-interview',
@@ -26,6 +30,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
     FormsModule,
     ReactiveFormsModule,
     ReusableInputComponent,
+    ReusableTextAreaComponent,
     UserCardComponent,
     SelectInputComponent,
     TranslateModule,
@@ -39,6 +44,7 @@ export class BookAnInterviewComponent implements OnInit {
   formStep2!: any;
   step = 1;
   jobTitle: string = 'NodeJS Developer';
+  JobInformation!: any;
   interviewTypeList = [
     { label: 'One on one', value: '1', data: { label: 'One on one' } },
     { label: 'Video', value: '2', data: { label: 'Video' } },
@@ -50,21 +56,71 @@ export class BookAnInterviewComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<BookAnInterviewComponent>,
     public dialog: MatDialog,
-    public fb: FormBuilder
-  ) {}
-
-  ngOnInit(): void {
+    public fb: FormBuilder,
+    private apiService: ApiService,
+    public employerService: EmployerService
+  ) {
     this.formStep1 = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      company: new FormControl('', Validators.required),
+      companyName: new FormControl('', Validators.required),
+      message: new FormControl('', Validators.required),
       contact: new FormGroup({
         phone: new FormControl('', Validators.required),
       }),
     });
     this.formStep2 = new FormGroup({
       interviewType: new FormControl('', Validators.required),
+    });
+  }
+
+  ngOnInit(): void {
+    this.employerService.getJobInformation().subscribe((res) => {
+      this.JobInformation = res;
+      this.getContactFormData();
+    });
+  }
+
+  getContactFormData() {
+    this.apiService
+      .getAPI({
+        url: `/Contact/${this.JobInformation.contactId}`,
+        model: ContactFormModel,
+      })
+      .subscribe({
+        next: (res) => {
+          console.log('get', res);
+          let contact = res.data;
+          this.formStep1.patchValue({
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            email: contact.email,
+            companyName: this.JobInformation?.jobTitle,
+          });
+        },
+        error: (error) => {},
+      });
+  }
+
+  sendContactForm() {
+    let PhoneNumber: any = this.formStep1.value.contact?.phone;
+
+    let body: any = {
+      firstName: this.formStep1.value.firstName,
+      lastName: this.formStep1.value.lastName,
+      location: this.JobInformation?.geoData?.description,
+      locationPlaceId: this.JobInformation.countryId,
+      subject: this.JobInformation?.jobTitle,
+      email: this.formStep1.value.email,
+      phoneCode: PhoneNumber.dialCode,
+      phoneNumber: PhoneNumber.number,
+      message: this.formStep1.value.message,
+      domainName: this.JobInformation?.jobTitle,
+    };
+    this.apiService.sendContactForm(body).subscribe((res) => {
+      console.log('form submitted');
+      this.step = 2;
     });
   }
 
@@ -75,7 +131,7 @@ export class BookAnInterviewComponent implements OnInit {
   submit() {
     if (this.formStep1.valid) {
       console.log(this.formStep1.value);
-      this.step = 2;
+      this.sendContactForm();
     } else {
       this.formStep1.markAllAsTouched();
       console.log(this.formStep1.value);

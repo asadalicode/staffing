@@ -16,6 +16,10 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
 import { SalaryRateGroupInputComponent } from '@app/@shared/Forms/salary-rate-group-input/salary-rate-group-input.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserCardComponent } from '../../components/user-card/user-card.component';
+import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/reusable-textArea.component';
+import { EmployerService } from '../../employer.service';
+import { ApiService } from '@app/@shared/service/api.service';
+import { ContactFormModel } from '@app/@shared/dataModels';
 
 @Component({
   selector: 'app-invite-to-job',
@@ -29,6 +33,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
     PhoneNumberInputComponent,
     SelectInputComponent,
     ReusableInputComponent,
+    ReusableTextAreaComponent,
     TranslateModule,
     SalaryRateGroupInputComponent,
   ],
@@ -44,6 +49,7 @@ export class InviteToJobComponent implements OnInit {
   selectedJobType = '';
   selectedCurrency = '';
   jobTitle: string = 'NodeJS Developer';
+  JobInformation!: any;
   salaryTypeList = [
     { value: 'Annually', label: 'Annually', data: { label: 'Annually' } },
     { value: 'Hourly', label: 'Hourly', data: { label: 'Hourly' } },
@@ -69,15 +75,16 @@ export class InviteToJobComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<InviteToJobComponent>,
-    public dialog: MatDialog
-  ) {}
-
-  ngOnInit(): void {
+    public dialog: MatDialog,
+    private apiService: ApiService,
+    public employerService: EmployerService
+  ) {
     this.formStep1 = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      company: new FormControl('', Validators.required),
+      companyName: new FormControl('', Validators.required),
+      message: new FormControl('', Validators.required),
       contact: new FormGroup({
         phone: new FormControl('', Validators.required),
       }),
@@ -106,6 +113,13 @@ export class InviteToJobComponent implements OnInit {
       salaryType: new FormControl('Annually', Validators.required),
       salaryStart: new FormControl('', Validators.required),
       salaryEnd: new FormControl('', Validators.required),
+    });
+  }
+
+  ngOnInit(): void {
+    this.employerService.getJobInformation().subscribe((res) => {
+      this.JobInformation = res;
+      this.getContactFormData();
     });
   }
 
@@ -144,5 +158,47 @@ export class InviteToJobComponent implements OnInit {
   }
   onCurrenyChange(event: any) {
     this.selectedCurrency = event.value;
+  }
+
+  getContactFormData() {
+    this.apiService
+      .getAPI({
+        url: `/Contact/${this.JobInformation.contactId}`,
+        model: ContactFormModel,
+      })
+      .subscribe({
+        next: (res) => {
+          console.log('get', res);
+          let contact = res.data;
+          this.formStep1.patchValue({
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            email: contact.email,
+            companyName: this.JobInformation?.jobTitle,
+          });
+        },
+        error: (error) => {},
+      });
+  }
+
+  sendContactForm() {
+    let PhoneNumber: any = this.formStep1.value.contact?.phone;
+
+    let body: any = {
+      firstName: this.formStep1.value.firstName,
+      lastName: this.formStep1.value.lastName,
+      location: this.JobInformation?.geoData?.description,
+      locationPlaceId: this.JobInformation.countryId,
+      subject: this.JobInformation?.jobTitle,
+      email: this.formStep1.value.email,
+      phoneCode: PhoneNumber.dialCode,
+      phoneNumber: PhoneNumber.number,
+      message: this.formStep1.value.message,
+      domainName: this.JobInformation?.jobTitle,
+    };
+    this.apiService.sendContactForm(body).subscribe((res) => {
+      console.log('form submitted');
+      this.next();
+    });
   }
 }

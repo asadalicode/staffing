@@ -29,7 +29,10 @@
 
     <p class="font-normal text-base text-secondary-light">
       Let's confirm a few more details about your
-      <span class="font-semibold text-primary-dark">{{ jobTitle }}</span> role.
+      <span class="font-semibold text-primary-dark">{{
+        JobInformation?.jobTitle
+      }}</span>
+      role.
     </p>
   </ng-container>
 
@@ -42,7 +45,9 @@
   <div class="mt-5">
     <ng-container *ngIf="step === 1">
       <div class="flex flex-col sm:flex-row gap-6 mt-6">
-        <app-user-card></app-user-card>
+        <div class="hidden md:block">
+          <app-user-card></app-user-card>
+        </div>
         <div class="grow">
           <form [formGroup]="formStep1" class="grid grid-cols-2 gap-4">
             <app-reusable-input
@@ -68,8 +73,15 @@
               placeholder="Company Name"
               class="col-span-2"
               type="text"
-              [control]="formStep1.controls.company"
+              [control]="formStep1.controls.companyName"
             ></app-reusable-input>
+
+            <app-reusable-textArea
+              placeholder="Message"
+              class="col-span-2"
+              [control]="formStep1.controls.message"
+            >
+            </app-reusable-textArea>
 
             <app-phone-number-input
               class="col-span-2"

@@ -23,9 +23,10 @@ import { PhoneNumberInputComponent } from '@app/@shared/Forms/phone-number-input
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '@app/@shared/service/api.service';
 import { ContactFormModel } from '@app/@shared/dataModels';
+import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/reusable-textArea.component';
 
 interface Config {
-  title: string
+  title: string;
 }
 
 @Component({
@@ -35,6 +36,7 @@ interface Config {
     CommonModule,
     ButtonCloseComponent,
     ReusableInputComponent,
+    ReusableTextAreaComponent,
     ConfirmationPopupComponent,
     FormsModule,
     UserCardComponent,
@@ -54,6 +56,7 @@ export class ContactMeComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     companyName: new FormControl('', Validators.required),
+    message: new FormControl('', Validators.required),
     contact: new FormGroup({
       phone: new FormControl({}, Validators.required),
     }),
@@ -68,8 +71,7 @@ export class ContactMeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
-    this.employerService.getJobInformation().subscribe(res => {
+    this.employerService.getJobInformation().subscribe((res) => {
       this.JobInformation = res;
       this.getContactFormData();
     });
@@ -130,37 +132,36 @@ export class ContactMeComponent implements OnInit {
         url: `/Contact/${this.JobInformation.contactId}`,
         model: ContactFormModel,
       })
-      .subscribe(
-        (res) => {
-          console.log('get', res);
+      .subscribe({
+        next: (res) => {
           let contact = res.data;
           this.contactForm.patchValue({
             firstName: contact.firstName,
             lastName: contact.lastName,
-            email: contact.email
+            email: contact.email,
+            companyName: this.JobInformation?.jobTitle,
           });
         },
-        (error) => { }
-      );
+        error: (error) => {},
+      });
   }
 
   sendContactForm() {
-    
-    let PhoneNumber:any = this.contactForm.value.contact?.phone;
+    let PhoneNumber: any = this.contactForm.value.contact?.phone;
 
-    let body:any = {
-      "firstName": this.contactForm.value.firstName,
-      "lastName": this.contactForm.value.lastName,
-      "location": this.JobInformation?.geoData?.description,
-      "locationPlaceId": this.JobInformation.countryId,
-      "subject": this.JobInformation?.jobTitle,
-      "email": this.contactForm.value.email,
-      "phoneCode": PhoneNumber.dialCode,
-      "phoneNumber": PhoneNumber.number,
-      "message": "",
-      "domainName": this.JobInformation?.jobTitle
-    }
-    this.apiService.sendContactForm(body).subscribe(res => {
+    let body: any = {
+      firstName: this.contactForm.value.firstName,
+      lastName: this.contactForm.value.lastName,
+      location: this.JobInformation?.geoData?.description,
+      locationPlaceId: this.JobInformation.countryId,
+      subject: this.JobInformation?.jobTitle,
+      email: this.contactForm.value.email,
+      phoneCode: PhoneNumber.dialCode,
+      phoneNumber: PhoneNumber.number,
+      message: this.contactForm.value.message,
+      domainName: this.JobInformation?.jobTitle,
+    };
+    this.apiService.sendContactForm(body).subscribe((res) => {
       console.log('form submitted');
     });
   }
