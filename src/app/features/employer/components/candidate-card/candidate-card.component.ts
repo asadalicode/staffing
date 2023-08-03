@@ -82,4 +82,15 @@ export class CandidateCardComponent implements OnInit {
 
     });
   }
+
+  toggleFavorite() {
+    this.item['fav'] = !this.item['fav'];
+
+    if (this.item['fav']) {
+      this.employerService.addItemToList(this.item);
+    } else {
+      this.employerService.removeItemFromList(this.item)
+    }
+   
+  }
 }

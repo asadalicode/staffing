@@ -20,12 +20,13 @@
       </div>
 
       <div
+      (click)="toggleFavorite()"
         class="flex cursor-pointer md:hidden justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full"
-        [class.bg-primary-dark]="!item.fav">
+        [class.bg-primary-dark]="item.fav">
         <img [src]="
             item.fav
-              ? '/assets/icons/heart.svg'
-              : '/assets/icons/heart-while.svg'
+              ? '/assets/icons/heart-while.svg'
+              : '/assets/icons/heart.svg'
           " class="w-[16px]" alt="" />
       </div>
     </div>
@@ -46,12 +47,13 @@
           <button type="button" class="text-sm underline text-primary-dark" (click)="onInviteToJob()" translate>
             Invite To Job
           </button>
-          <div [class.bg-primary-dark]="!item.fav"
+          <div [class.bg-primary-dark]="item.fav"
+          (click)="toggleFavorite()"
             class="cursor-pointer hidden md:flex justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full">
             <img [src]="
                 item.fav
-                  ? '/assets/icons/heart.svg'
-                  : '/assets/icons/heart-while.svg'
+                  ? '/assets/icons/heart-while.svg'
+                  : '/assets/icons/heart.svg'
               " class="w-[16px]" alt="" />
           </div>
         </div>

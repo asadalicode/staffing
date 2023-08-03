@@ -19,16 +19,16 @@
     <div class="flex flex-row justify-between py-2">
       <div class="flex my-radio-button">
         <div class="flex items-center">
-          <input id="inline-radio" (change)="filter($event)" [checked]="tabSelected === 'All Candidates'" type="radio"
-            value="All Candidates" name="filter-candidate" class="invisible" />
-          <label for="inline-radio" (change)="filter($event)" class="cursor-pointer">
+          <input id="inline-radio" (change)="getTopTalentEdmList()" [checked]="tabSelected === 'All Candidates'" type="radio"
+            value="All Candidates" name="filter-candidate" class="invisible"  />
+          <label for="inline-radio"  class="cursor-pointer">
             <span translate>All_Candidates</span>
           </label>
         </div>
         <div class="flex items-center">
           <input id="inline-2-radio" [checked]="tabSelected === 'Favourites'" type="radio" value="Favourites"
-            name="filter-candidate" class="invisible" />
-          <label for="inline-2-radio" class="cursor-pointer" translate>
+            name="filter-candidate" class="invisible" (change)="getFavoriteCandidates()"/>
+          <label for="inline-2-radio" class="cursor-pointer"  translate>
             <span translate>Favourites</span>
           </label>
         </div>
@@ -51,7 +51,7 @@
         <button type="button" class="btn-primary-outline-lg" translate>
           Invite Favourite Candidates
         </button>
-        <button type="button" (click)="loadmore()" class="btn-link-md text-primary-dark" translate>
+        <button type="button" *ngIf="topTalentCandidates.length > 4" (click)="loadmore()" class="btn-link-md text-primary-dark" translate>
           Load More Candidates
         </button>
       </div>

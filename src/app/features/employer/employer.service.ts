@@ -88,5 +88,36 @@ export class EmployerService {
   getJobInformation(): Observable<any> {
     return of(this.JobInformation);
   }
+
+  //to get the favorite candidate list from local storage
+  getFavoriteCandidates(): Observable<any> {
+  const listJSON = localStorage.getItem('favouriteCandidates');
+  return of(listJSON ? JSON.parse(listJSON) : []);
+}
+
+  // to save the favorite candidate list to local storage
+  saveListToLocalStorage(list: any): void {
+  const listJSON = JSON.stringify(list);
+  localStorage.setItem('favouriteCandidates', listJSON);
+}
+
+// Function to add an item to the favorite candidate
+ addItemToList(item: any): void {
+   this.getFavoriteCandidates().subscribe(res => {
+     let list = res;
+     list.push(item);
+     this.saveListToLocalStorage(list);
+   });
+   
+}
+
+  // Function to remove an item from the list
+  removeItemFromList(item:any): void {
+    this.getFavoriteCandidates().subscribe(res => {
+      let list = res;
+      list = list.filter((e: any) => e.talentProfileId !== item.talentProfileId);
+      this.saveListToLocalStorage(list);
+    });   
+  }
 }
 0

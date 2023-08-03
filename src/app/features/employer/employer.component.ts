@@ -46,7 +46,6 @@ export class EmployerComponent implements OnInit {
     }
   }
 
-  filter(event: any) { }
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -89,6 +88,10 @@ export class EmployerComponent implements OnInit {
   }
 
   getGroupedCandidates() {
+    let favouriteCandidates: any = [];
+    this.employerService.getFavoriteCandidates().subscribe(res => {
+      favouriteCandidates = res;
+    });
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
@@ -100,7 +103,10 @@ export class EmployerComponent implements OnInit {
     ).subscribe({
       next: (p: any) => {
         let result: any = [];
+       
         p.forEach((element: any, index: any) => {
+          let favFound: boolean = favouriteCandidates.some((el: any) => { return el.talentProfileId === element.data.talentProfileId }) || false;
+          element.data['fav'] = favFound;
           result.push(element.data);
         });
         this.topTalentCandidates = _(result)
@@ -108,8 +114,10 @@ export class EmployerComponent implements OnInit {
           .map((candidate: any, talent: any) => ({ candidate, talent }))
           .value();
         this.spinner.hide();
+        this.perPageLimit();
         console.log(this.topTalentCandidates);
         this.employerService.setTopTalentList(this.topTalentCandidates);
+
       },
       error: (error) => {
         this.spinner.hide();
@@ -134,5 +142,25 @@ export class EmployerComponent implements OnInit {
 
   trackByfn(index: any, item: any) {
     return item.uniqueValue;
+  }
+
+
+  getFavoriteCandidates() {
+    this.employerService.getFavoriteCandidates().subscribe(res => {
+      this.topTalentCandidates = _(res)
+        .groupBy((talent: any) => talent.talentProfileId)
+        .map((candidate: any, talent: any) => ({ candidate, talent }))
+        .value();
+      this.perPageLimit();
+      
+    });
+  }
+
+  perPageLimit() {
+    if (this.topTalentCandidates.length <= 4) {
+      this.itemsPerPage = this.topTalentCandidates.length;
+    } else {
+      this.itemsPerPage = 4;
+    }
   }
 }
