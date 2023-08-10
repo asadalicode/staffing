@@ -4,6 +4,6 @@
         {{item}}
     </li>
 </ul>
-    <button type="button" (click)="truncateDefault = !truncateDefault" class="text-primary-dark text-sm14 underline whitespace-nowrap see-more">
+    <button *ngIf="items && items.length>4" type="button" (click)="truncateDefault = !truncateDefault" class="text-primary-dark text-sm14 underline whitespace-nowrap see-more">
         {{truncateDefault ? 'see more': 'show less'}} 
     </button>

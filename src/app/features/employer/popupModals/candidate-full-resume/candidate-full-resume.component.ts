@@ -121,4 +121,9 @@ export class CandidateFullResumeComponent implements OnInit {
     }
     this.cdr.detectChanges();
   }
+
+  getRecentRole(roleId:number) {
+    return this.talentSummary?.allRoles.find((data:any)=> data.roleId==roleId)
+  }
+
 }

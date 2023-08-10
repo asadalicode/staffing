@@ -102,8 +102,7 @@
           </div>
         <div>{{ talentSummary?.recentRole?.address || 'Port Melbourne, Victoria' }}</div>
         </div>
-
-        <app-ul-list></app-ul-list>
+        <app-ul-list [summaryData]="getRecentRole(talentSummary?.recentRole?.roleId)"></app-ul-list>
       </div>
 
       <div *ngFor="let role of talentSummary?.allRoles.slice(0, sliceRolesList ? 4: talentSummary?.allRoles.length )">
@@ -134,7 +133,7 @@
           <div>{{ role?.address || 'Port Melbourne, Victoria' }}</div>
         </div>
         
-        <app-ul-list></app-ul-list>
+        <app-ul-list [summaryData]="role"></app-ul-list>
         </ng-container>
 
       </div>

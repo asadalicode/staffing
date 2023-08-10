@@ -14,6 +14,7 @@ export class SalaryGraphComponent implements OnInit{
   @Input() roleId!: any;
   @Input() locationId!: any;
   @Input() subClassificationId!: any;
+  isError=false;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   graphdata!: any;
   currencySymbol = '$';
@@ -94,6 +95,7 @@ export class SalaryGraphComponent implements OnInit{
 
 
   getSalaryGraph() {
+
     this.apiService
       .getAPI({
         url: `/api/jobinsights/SalaryComparison?roleId=${this.roleId}&locationId=${this.locationId}&subClassificationId=${this.subClassificationId}&countryId=${this.countryId}`,
@@ -118,12 +120,15 @@ export class SalaryGraphComponent implements OnInit{
             return e.isAverageSalary ? '#AA1D35' : 'rgba(210, 210, 210, 1)';
           });
 
-
+          this.isError=false;
           this.drawChart();
+         
           // this.barChartData.datasets.data = this.graphdata.
             console.log('salary graph data:', res);
         },
         error: (error) => {
+          console.log("@@@@")
+          this.isError=true;
         },
       });
   }
