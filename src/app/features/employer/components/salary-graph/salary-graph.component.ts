@@ -43,7 +43,7 @@ export class SalaryGraphComponent implements OnInit{
           },
         },
         y: {
-          min: 10,
+          min: 0,
           display: false,
         },
       },
@@ -111,6 +111,8 @@ export class SalaryGraphComponent implements OnInit{
           this.chartDataSet = sortChartData.map((e: any) => {
             return e.quantity;
           });
+
+          console.log(this.chartDataSet);
 
           this.salaryRangeData = sortChartData.map((e: any) => {
             return `${e.minSalary}- ${e.maxSalary}`
