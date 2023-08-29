@@ -1,7 +1,7 @@
 import { EmployerService } from './../../employer.service';
 import { UserCardComponent } from './../../components/user-card/user-card.component';
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
@@ -24,6 +24,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from '@app/@shared/service/api.service';
 import { ContactFormModel } from '@app/@shared/dataModels';
 import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/reusable-textArea.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+declare const Feathery:any;
 
 interface Config {
   title: string;
@@ -48,6 +51,8 @@ interface Config {
   templateUrl: './contact-me.component.html',
   styleUrls: ['./contact-me.component.scss'],
 })
+
+
 export class ContactMeComponent implements OnInit {
   jobTitle: string = 'NodeJS Developer';
   JobInformation!: any;
@@ -63,22 +68,51 @@ export class ContactMeComponent implements OnInit {
   });
 
   constructor(
+    private readonly elementRef: ElementRef,
+          private renderer: Renderer2,
     private apiService: ApiService,
     public employerService: EmployerService,
     public dialogRef: MatDialogRef<ContactMeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Config,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService
+  ) {
+    
+    this.loadScript()
+  }
 
   ngOnInit() {
     this.employerService.getJobInformation().subscribe((res) => {
       this.JobInformation = res;
       this.getContactFormData();
     });
+  
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  loadScript() {
+  // this.spinner.show();
+  const script = this.renderer.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/@feathery/react@latest/umd/index.js';
+ script.onload = () => {
+  this.initializeFeathery();
+ };
+ this.renderer.appendChild(this.elementRef.nativeElement, script);
+  }
+
+
+  initializeFeathery() {
+    if (typeof Feathery !== 'undefined') {
+      Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
+      Feathery.renderAt('container', { formName: '8 Web TT Contact Us (With Figma Designs For Matching Purposes)' });
+      // this.spinner.hide();
+    } else {
+      console.error('Feathery script is not loaded properly.');
+      // this.spinner.hide();
+    }
   }
 
   submit() {

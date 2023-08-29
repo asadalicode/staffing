@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonCloseComponent } from '@app/@shared/components/button-close/button-close.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -21,6 +21,7 @@ import { ApiService } from '@app/@shared/service/api.service';
 import { EmployerService } from '../../employer.service';
 import { ContactFormModel } from '@app/@shared/dataModels';
 
+declare const Feathery:any;
 @Component({
   selector: 'app-book-an-interview',
   standalone: true,
@@ -58,7 +59,9 @@ export class BookAnInterviewComponent implements OnInit {
     public dialog: MatDialog,
     public fb: FormBuilder,
     private apiService: ApiService,
-    public employerService: EmployerService
+    public employerService: EmployerService,
+    private renderer: Renderer2,
+    private readonly elementRef: ElementRef,
   ) {
     this.formStep1 = new FormGroup({
       firstName: new FormControl('', Validators.required),
@@ -73,6 +76,7 @@ export class BookAnInterviewComponent implements OnInit {
     this.formStep2 = new FormGroup({
       interviewType: new FormControl('', Validators.required),
     });
+    this.loadScript();
   }
 
   ngOnInit(): void {
@@ -81,6 +85,25 @@ export class BookAnInterviewComponent implements OnInit {
       this.getContactFormData();
     });
   }
+
+  loadScript() {
+    const script = this.renderer.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@feathery/react@latest/umd/index.js';
+   script.onload = () => {
+    this.initializeFeathery();
+   };
+   this.renderer.appendChild(this.elementRef.nativeElement, script);
+    }
+  
+  
+    initializeFeathery() {
+      if (typeof Feathery !== 'undefined') {
+        Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
+        Feathery.renderAt('container', { formName: '9 Web TT Invite to Job (With Figma Designs For Matching Purposes)' });
+      } else {
+        console.error('Feathery script is not loaded properly.');
+      }
+    }
 
   getContactFormData() {
     this.apiService
