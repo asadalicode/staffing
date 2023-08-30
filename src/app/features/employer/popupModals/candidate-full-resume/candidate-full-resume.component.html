@@ -1,6 +1,7 @@
-<div class="w-100 pb-4 sm:pb-8">
+<div class="w-100 pb-4 sm:pb-8 overflow-auto" id="top">
   
-  <div class="flex justify-between items-center mb-2">
+  <!-- fixed left-4 right-5 top-3 z-10 -->
+  <div  class="flex justify-between items-center mb-2 ">
     <div class="flex gap-2 items-center">
       <button type="button" class="disabled:opacity-50" [disabled]="currentCandidateIndex == 0" (click)="prevCandidate()">
         <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,15 +23,15 @@
     </div>
     <app-button-close bgColor="bg-white" (click)="close()" color="fill-violet-600"></app-button-close>
   </div>
-  <!-- Canidate personal information section -->
-  <div class="sm:flex bg-white rounded-large gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light">
+  <!-- Canidate personal information section mt-10-->
+  <div class="sm:flex bg-white rounded-large  gap-0 sm:gap-[18px] px-3 sm:px-5 md:px-8 py-4 drop-shadow-light ">
     <!-- user image -->
     <div class="flex items-end mb-[10px] sm:mb-0" *ngIf="talentSummary?.profilePhoto !== ''" >
       <img [src]="talentSummary?.profilePhoto" alt="icon"
         class="flex-none w-[100px] h-[100px] rounded-full object-cover" loading="lazy" decoding="async" />
     </div>
 
-    <div class="flex flex-col-reverse sm:flex-col flex-grow gap-4 sm:gap-6">
+    <div class="flex flex-col-reverse sm:flex-col flex-grow gap-4 sm:gap-6 relative">
       <div class="flex flex-col xs:flex-row gap-2 xs:gap-4 justify-end">
         <!-- <button type="button" class="hidden md:block btn-link-sm text-primary-dark" translate>
           Request Profile
@@ -43,7 +44,7 @@
         </button>
 
         <div
-          class="absolute sm:static right-3 sm:right-5 top-6 flex cursor-pointer justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full">
+          class="absolute sm:static right-3 sm:right-5 top-0 flex cursor-pointer justify-center w-[32px] h-[32px] border-solid border-2 border-primary-dark rounded-full">
           <img src="/assets/icons/heart.svg" class="w-[16px]" alt="fav icon" />
         </div>
       </div>
@@ -100,7 +101,7 @@
             ></span>
             <span>{{talentSummary?.recentRole?.startDate | date:'MMM y'}} - Present</span>
           </div>
-        <div>{{ talentSummary?.recentRole?.address || 'Port Melbourne, Victoria' }}</div>
+        <div>{{ talentSummary?.recentRole?.address || '' }}</div>
         </div>
         <app-ul-list [summaryData]="getRecentRole(talentSummary?.recentRole?.roleId)"></app-ul-list>
       </div>
@@ -130,7 +131,7 @@
             <span> {{ role?.startDate | date:'MMM y' }} - {{ role?.endDate | date:'MMM y' }}</span>
           </div>
         
-          <div>{{ role?.address || 'Port Melbourne, Victoria' }}</div>
+          <div>{{ role?.address || '' }}</div>
         </div>
         
         <app-ul-list [summaryData]="role"></app-ul-list>
@@ -172,8 +173,9 @@
                 </div>
                 <div class="flex flex-col text-base text-secondary-light font-light">
                   <span class="text-secondary-dark font-medium">{{qualification.course}}</span>
-                  <span>Port Melbourne, Victoria</span>
-                  <span>2011 - 2015</span>
+                  <span>{{qualification?.location || ''}}</span>
+                  <span>{{qualification?.duration || ''}} </span>
+                  <!-- 2011 - 2015 -->
                 </div>
               </li>
       </ng-container>
@@ -214,4 +216,16 @@
       </li>
     </ul>
   </app-expension-panel>
+  <div class="flex flex-row justify-center items-center gap-3 pt-4">
+    <button
+      type="button"
+      (click)="scrollToTop()"
+      class="flex gap-2 flex-row items-center text-[13px] font-bold text-secondary"
+    >
+      <img class="animate-bounce" src="assets/icons/arrow-up.svg" alt="" />
+      <span translate>Back To Top</span>
+    </button>
+  </div>
+
 </div>
+

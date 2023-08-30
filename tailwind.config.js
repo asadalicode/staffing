@@ -33,6 +33,8 @@ module.exports = withMT({
     },
 
     screens: {
+
+      xs: { min: "350px", max: "640px" },
       sm: "640px",
       // sm: { min: "350px", max: "769px" },
       // => @media (min-width: 640px) { ... }

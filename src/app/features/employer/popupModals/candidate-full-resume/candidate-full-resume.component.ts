@@ -126,4 +126,8 @@ export class CandidateFullResumeComponent implements OnInit {
     return this.talentSummary?.allRoles.find((data:any)=> data.roleId==roleId)
   }
 
+  scrollToTop() {
+    document.getElementById('top')?.scrollIntoView({ block: "start", behavior: 'smooth' });
+  }
+
 }
