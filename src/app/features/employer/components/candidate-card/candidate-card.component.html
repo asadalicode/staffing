@@ -117,12 +117,20 @@
   <div class="p-3 rounded-md" *ngIf="item?.skills !==null">
     <h3 class="font-bold text-xl text-secondary-dark" translate>Skills</h3>
     <div class="flex flex-wrap gap-2 mt-4">
-      <ng-container *ngFor="let skill of item?.skills">
+      <ng-container *ngFor="let skill of item?.skills.slice(startPage, paginationLimit)">
         <span *ngIf="!skill.matchedSkill"
           class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
         <span *ngIf="skill.matchedSkill"
           class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
       </ng-container>
+
+      <button type="button" *ngIf="paginationLimit < item?.skills.length" (click)="showMoreItems()" class="btn-link-md text-primary-dark" translate>
+        Show More
+      </button>
+
+      <button type="button" *ngIf="paginationLimit >= item?.skills.length && item?.skills.length>6" (click)="showLessItems()" class="btn-link-md text-primary-dark" translate>
+        Show Less
+      </button>
     </div>
   </div>
 

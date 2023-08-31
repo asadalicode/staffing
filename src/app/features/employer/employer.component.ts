@@ -49,6 +49,7 @@ export class EmployerComponent implements OnInit {
       this.itemsPerPage = this.topTalentCandidates.length;
     }
   }
+  
 
 
   scrollToTop() {

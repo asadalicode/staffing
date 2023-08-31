@@ -24,15 +24,38 @@ export class CandidateCardComponent implements OnInit {
   sliceRolesList = true;
   jobInformation!: any;
   candidateFullName = '';
-
+  startPage : number;
+  paginationLimit:number; 
+  itemsPerPage = 4;
   constructor(
     public dialog: MatDialog,
     private employerService: EmployerService,
     private apiService: ApiService
-  ) {}
+  ) {
+    this.startPage = 0;
+    this.paginationLimit = 6;
+  }
 
   ngOnInit() {
     console.log(this.item);
+    this.perPageLimit()
+  }
+
+  perPageLimit() {
+    if (this.item?.skills.length <= 4) {
+      this.itemsPerPage = this.item?.skills.length;
+    } else {
+      this.itemsPerPage = 6;
+    }
+  }
+
+  showMoreItems()
+  {
+     this.paginationLimit = Number(this.paginationLimit) + 6;        
+  }
+  showLessItems()
+  {
+    this.paginationLimit = 6;
   }
 
   ngOnChanges(change: SimpleChanges) {
