@@ -23,6 +23,7 @@ export class CandidateFullResumeComponent implements OnInit {
   currentCandiate = 1;
   talentSummary!: any;
   talentId: any;
+  itemsPerPage = 4;
 
   showMoreAboutTextLength = 778;
   showMoreText = true;
@@ -34,6 +35,8 @@ export class CandidateFullResumeComponent implements OnInit {
   currentCandidateIndex = 0;
   candidateFullName: any;
   jobInformation!: any;
+  startPage : number;
+  paginationLimit:number; 
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CandidateFullResumeComponent>,
@@ -43,6 +46,8 @@ export class CandidateFullResumeComponent implements OnInit {
     private ngZone: NgZone,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+    this.startPage = 0;
+    this.paginationLimit = 6;
   }
 
   ngOnInit() {
@@ -52,10 +57,36 @@ export class CandidateFullResumeComponent implements OnInit {
     this.talentId = this.data.talentProfileId;
     this.getCurrentIndex(this.talentId);
     this.candidateFullName = this.getCandidateFullName(this.talentSummary);
+    this.perPageLimit();
     this.employerService.getJobInformation().subscribe(res => {
       this.jobInformation = res;
     });
   }
+
+  perPageLimit() {
+    if (this.talentSummary?.skills.length <= 4) {
+      this.itemsPerPage = this.talentSummary?.skills.length;
+    } else {
+      this.itemsPerPage = 6;
+    }
+  }
+
+  showMoreItems()
+  {
+     this.paginationLimit = Number(this.paginationLimit) + 6;        
+  }
+  showLessItems()
+  {
+    this.paginationLimit = 6;
+  }
+
+  // loadmore() {
+  //   if (this.talentSummary?.skills.length > this.itemsPerPage) {
+  //     this.itemsPerPage += 4;
+  //   } else {
+  //     this.itemsPerPage = this.talentSummary?.skills.length;
+  //   }
+  // }
 
   getCandidateFullName(item:any) {
     return `${item.firstName} ${item.lastName}`

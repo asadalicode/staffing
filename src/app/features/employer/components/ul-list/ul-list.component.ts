@@ -36,4 +36,9 @@ export class UlListComponent {
   //   'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi mollitia corrupti odit est quo.',
   //   'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi mollitia corrupti odit est quo.'
   // ];
+
+  getTotalCharacters(items:string): number {
+    return items.length;
+  }
 }
+

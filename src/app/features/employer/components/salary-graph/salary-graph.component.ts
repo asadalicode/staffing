@@ -3,7 +3,7 @@ import { SalaryGraphModel, TopTalentEdmModel } from '@app/@shared/dataModels';
 import { ApiService } from '@app/@shared/service/api.service';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
+import {BreakpointObserver} from '@angular/cdk/layout';
 @Component({
   selector: 'app-salary-graph',
   templateUrl: './salary-graph.component.html',
@@ -24,8 +24,11 @@ export class SalaryGraphComponent implements OnInit{
   barChartOptions!: ChartConfiguration['options'];
   barChartData!: ChartData<'bar'>
   barChartType: ChartType = 'bar';
+  isMobile = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, breakpointObserver: BreakpointObserver) { 
+    this.isMobile = breakpointObserver.isMatched('(max-width: 768px)');
+  }
   
   ngOnInit() {
     this.getSalaryGraph();
@@ -38,10 +41,15 @@ export class SalaryGraphComponent implements OnInit{
       // We use these empty structures as placeholders for dynamic theming.
       scales: {
         x: {
+          stacked: true,
           grid: {
             display: false,
           },
+          // ticks: {
+          //   maxTicksLimit:this.isMobile? 3:6
+          // }
         },
+        
         y: {
           min: 0,
           display: false,
@@ -55,10 +63,10 @@ export class SalaryGraphComponent implements OnInit{
     };
 
     this.barChartData = {
-      labels: this.salaryRangeData,
+      labels: this.isMobile?this.salaryRangeData.slice(0, 6): this.salaryRangeData.slice(0, 6),
       datasets: [
         {
-          data: this.chartDataSet,
+          data: this.isMobile?this.chartDataSet.slice(0, 6) : this.chartDataSet.slice(0, 6),
           backgroundColor: this.backgroundColors,
         },
       ],
@@ -115,7 +123,7 @@ export class SalaryGraphComponent implements OnInit{
           console.log(this.chartDataSet);
 
           this.salaryRangeData = sortChartData.map((e: any) => {
-            return `${e.minSalary}- ${e.maxSalary}`
+            return `$${e.minSalary}- $${e.maxSalary}`
           });
 
           this.backgroundColors = sortChartData.map((e: any) => {

@@ -51,7 +51,7 @@
 
       <div class="grow">
         <h2 class="text-3xl text-left font-bold text-secondary-dark">
-          {{candidateFullName}}
+          {{talentSummary?.firstName || ''}}
         </h2>
         <div class="flex text-3xl font-extralight text-secondary-light">
           {{ talentSummary?.recentRole?.roleName }}
@@ -153,10 +153,17 @@
 
   <app-expension-panel title="Skills" *ngIf="talentSummary?.skills !==null">
     <div class="flex flex-wrap gap-2">
-      <ng-container *ngFor="let skill of talentSummary?.skills">
+      <ng-container *ngFor="let skill of talentSummary?.skills.slice(startPage, paginationLimit)">
         <span  *ngIf="!skill.matchedSkill" class="bg-light-100 px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
         <span *ngIf="skill.matchedSkill" class="bg-green-light px-2 py-1 rounded-sm text-sm14 leading-6 text-secondary-light">{{skill?.skillName}}</span>
       </ng-container>
+      <button type="button" *ngIf="paginationLimit < talentSummary?.skills.length" (click)="showMoreItems()" class="btn-link-md text-primary-dark" translate>
+        Show More
+      </button>
+
+      <button type="button" *ngIf="paginationLimit >= talentSummary?.skills.length && talentSummary?.skills.length>6" (click)="showLessItems()" class="btn-link-md text-primary-dark" translate>
+        Show Less
+      </button>
     </div>
   </app-expension-panel>
 
