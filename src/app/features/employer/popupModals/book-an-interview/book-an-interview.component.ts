@@ -99,7 +99,7 @@ export class BookAnInterviewComponent implements OnInit {
     initializeFeathery() {
       if (typeof Feathery !== 'undefined') {
         Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
-        Feathery.renderAt('container', { formName: '9 Web TT Invite to Job (With Figma Designs For Matching Purposes)' });
+        Feathery.renderAt('container', { formName: '9 Web TT Invite to Job' });
       } else {
         console.error('Feathery script is not loaded properly.');
       }

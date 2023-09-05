@@ -78,7 +78,7 @@ export class ContactMeComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {
     
-    this.loadScript()
+    
   }
 
   ngOnInit() {
@@ -107,7 +107,20 @@ export class ContactMeComponent implements OnInit {
   initializeFeathery() {
     if (typeof Feathery !== 'undefined') {
       Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
-      Feathery.renderAt('container', { formName: '8 Web TT Contact Us (With Figma Designs For Matching Purposes)' });
+      Feathery.renderAt('container', { formName: '8 Web TT Contact Us' });
+      console.log(this.contactForm.value)
+      setTimeout(()=> {
+      let fName:any= document.getElementById('text_field-13');
+      let LName:any= document.getElementById('text_field-24');
+      let email:any= document.getElementById('email-3');
+      let company:any= document.getElementById('text_field-25');
+      if(fName && LName && email && company) {
+            fName.value= this.contactForm.value.firstName;
+            LName.value= this.contactForm.value.firstName;
+            email.value= this.contactForm.value.email;
+            company.value= this.contactForm.value.companyName;
+      }
+    },3000)
       // this.spinner.hide();
     } else {
       console.error('Feathery script is not loaded properly.');
@@ -175,6 +188,8 @@ export class ContactMeComponent implements OnInit {
             email: contact.email,
             companyName: this.JobInformation?.jobTitle,
           });
+          this.loadScript()
+            
         },
         error: (error) => {},
       });
