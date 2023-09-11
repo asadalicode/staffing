@@ -2,7 +2,7 @@
   <div class="flex md:flex-row flex-col sm:gap-4">
     <div class="flex flex-row grow gap-4">
       <!-- [src]="/assets/placeholder/user-icon.png" -->
-      <img *ngIf="item?.profilePhoto !== ''" [src]="item?.profilePhoto" alt="icon"
+      <img *ngIf="item?.profilePhoto" [src]="item?.profilePhoto" alt="icon"
         class="flex-none w-[60px] h-[60px] rounded-full object-cover" loading="lazy" decoding="async" />
 
       <div class="grow">
@@ -72,13 +72,13 @@
 
       <ng-container *ngFor="let role of item.allRoles.slice(0,sliceRolesList ? 3: item.allRoles.length)">
         <div class="grid grid-cols-6 gap-2 px-3 mb-2 mt-4">
-          <span class="order-1 col-span-4 sm:col-span-2">{{role.roleName}}</span>
+          <span class="order-1 col-span-4 sm:col-span-2">{{role.roleName?role.roleName:'-'}}</span>
           <span
             class="order-3 col-span-4 sm:col-span-2 sm:order-2 text-left sm:text-center font-roboto font-normal text-[14px] text-black-202020">
-            {{role.organisation}}</span>
+            {{role.organisation?role.organisation:'-'}}</span>
           <span
             class="col-span-2 order-2 sm:col-span-2 whitespace-nowrap sm:order-3 text-right font-roboto font-normal text-[14px] text-black-202020">
-            {{role.days | daysToYearsMonthsDays}}</span>
+            {{(role.days | daysToYearsMonthsDays)? (role.days | daysToYearsMonthsDays):'-'}}</span>
         </div>
       </ng-container>
 

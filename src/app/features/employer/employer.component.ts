@@ -65,7 +65,6 @@ export class EmployerComponent implements OnInit {
       })
       .subscribe({
         next: (res) => {
-          console.log('getTopTalentEdmList:', res);
           this.topTalentList = res;
           this.getTasInformation();
           this.getGroupedCandidates();
@@ -82,14 +81,28 @@ export class EmployerComponent implements OnInit {
         url: `/Edm/${this.employerService.getEDMID()}/job`,
         model: JobInfoModel,
       })
-      .subscribe(
-        (res) => {
-          console.log('getJobInformation', res);
+      .subscribe({
+        next:(res)=> {
           this.employerService.setJobInformation(res);
           this.jobInformation = res;
         },
-        (error) => {}
-      );
+        error:(error:any) => {}
+      })
+  }
+
+
+
+   internalORExternalCandidateUrl(item:any) {
+    if(item.talentProfileId) {
+      return `/api/candidates/${
+        item.talentProfileId
+      }/summary/${this.employerService.getEDMID()}`
+    }
+    else {
+      return `/api/candidates/${
+        item.externalId
+      }/exsummary/${this.employerService.getEDMID()}`
+    }
   }
 
   getGroupedCandidates() {
@@ -100,9 +113,7 @@ export class EmployerComponent implements OnInit {
     forkJoin(
       this.topTalentList.map((categ: any) =>
         this.apiService.getAPI({
-          url: `/api/candidates/${
-            categ.talentProfileId
-          }/summary/${this.employerService.getEDMID()}`,
+          url: this.internalORExternalCandidateUrl(categ),
           model: TalentSummaryModel,
         })
       )

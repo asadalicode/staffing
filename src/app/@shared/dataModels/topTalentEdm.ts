@@ -1,6 +1,7 @@
 export class TopTalentEdmModel {
   constructor(
     public talentProfileId: number,
+    public externalId: number,
     public score: number,
     public distance: number
   ) {}
@@ -9,6 +10,7 @@ export class TopTalentEdmModel {
     return data.map((item: any) => {
       return new TopTalentEdmModel(
         item.talentProfileId,
+        item.externalId,
         item.score,
         item.distance
       );
