@@ -89,7 +89,7 @@ export class CandidateCardComponent implements OnInit {
 
   onBookInterview(): void {
     const dialogRef = this.dialog.open(BookAnInterviewComponent, {
-      panelClass: ['popup-modal', 'lg'],
+      panelClass: ['popup-modal', 'lg'], data:this.item
     });
   }
 

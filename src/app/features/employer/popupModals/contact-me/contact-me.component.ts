@@ -25,6 +25,7 @@ import { ApiService } from '@app/@shared/service/api.service';
 import { ContactFormModel } from '@app/@shared/dataModels';
 import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/reusable-textArea.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare const Feathery:any;
 
@@ -67,10 +68,12 @@ export class ContactMeComponent implements OnInit {
     }),
   });
   tasInformation: any;
-
+  jobId:any;
   constructor(
     private readonly elementRef: ElementRef,
           private renderer: Renderer2,
+          private route: ActivatedRoute,
+          private router: Router,
     private apiService: ApiService,
     public employerService: EmployerService,
     public dialogRef: MatDialogRef<ContactMeComponent>,
@@ -89,6 +92,7 @@ export class ContactMeComponent implements OnInit {
       this.getContactFormData();
       this.getTasInformation()
     });
+    this.getParam()
   
   }
 
@@ -112,17 +116,30 @@ export class ContactMeComponent implements OnInit {
  this.renderer.appendChild(this.elementRef.nativeElement, script);
   }
 
+  getParam() {
+    this.route.queryParams.subscribe((res:any)=> {
+      this.jobId= res.id;
+    })
+  }
+
 
   initializeFeathery() {
     if (typeof Feathery !== 'undefined') {
       Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
       Feathery.renderAt('container', { formName: '8 Web TT Contact Us' });
-      Feathery.setFieldValues({ '8-opp-tt-role-title': this.JobInformation?.jobTitle });  
-      Feathery.setFieldValues({ '8-user-first-name': this.tasInformation.name });  
+      Feathery.setFieldValues({ '8-in-user-first-name': this.tasInformation.name });  
+      Feathery.setFieldValues({ '8-in-user-job-title': this.tasInformation.jobTitle });  
       // Feathery.setFieldValues({ '8-user-last-name': this.tasInformation.lastName });  
-      Feathery.setFieldValues({ '8-user-job-title': this.tasInformation?.jobTitle });  
-
-      console.log(this.contactForm.value)
+      Feathery.setFieldValues({ '8-in-user-contact-phone': this.tasInformation?.phone });  
+      Feathery.setFieldValues({ '8-in-user-id': this.jobId });  
+      Feathery.setFieldValues({ '8-in-opp-tt-role-title': this.JobInformation?.jobTitle });  
+      Feathery.setFieldValues({ '8-in-opp-tt-id-no': this.JobInformation?.jobId });  
+      Feathery.setFieldValues({ '8-in-opp-tt-location-role-from': this.JobInformation?.role?.roleId });  
+      Feathery.setFieldValues({ '8-in-opp-tt-country-role-from': this.JobInformation?.countryId });  
+      Feathery.setFieldValues({ '8-in-opp-tt-advertiser-id-no': this.JobInformation?.contactId });  
+      Feathery.setFieldValues({ '8-in-opp-tt-advertiser-user-id-no': this.JobInformation?.jobId });  
+      Feathery.setFieldValues({ '8-in-src-url': window.location.href});  
+      Feathery.setFieldValues({ '8-in-src-domain': window.origin+this.router.url.split('?')[0] });  
       // this.spinner.hide();
     } else {
       console.error('Feathery script is not loaded properly.');

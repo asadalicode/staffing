@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonCloseComponent } from '@app/@shared/components/button-close/button-close.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormControl,
@@ -20,6 +20,7 @@ import { ReusableTextAreaComponent } from '@app/@shared/Forms/reusable-textArea/
 import { ApiService } from '@app/@shared/service/api.service';
 import { EmployerService } from '../../employer.service';
 import { ContactFormModel } from '@app/@shared/dataModels';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare const Feathery:any;
 @Component({
@@ -53,15 +54,20 @@ export class BookAnInterviewComponent implements OnInit {
     { label: 'Informal', value: '4', data: { label: 'Informal' } },
     { label: 'Group', value: '5', data: { label: 'Group' } },
   ];
+  tasInformation: any;
+  jobId: any;
 
   constructor(
     public dialogRef: MatDialogRef<BookAnInterviewComponent>,
     public dialog: MatDialog,
     public fb: FormBuilder,
     private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
     public employerService: EmployerService,
     private renderer: Renderer2,
     private readonly elementRef: ElementRef,
+    @Inject(MAT_DIALOG_DATA) public candidateData: any
   ) {
     this.formStep1 = new FormGroup({
       firstName: new FormControl('', Validators.required),
@@ -76,13 +82,27 @@ export class BookAnInterviewComponent implements OnInit {
     this.formStep2 = new FormGroup({
       interviewType: new FormControl('', Validators.required),
     });
-    this.loadScript();
+    this.getTasInformation();
   }
 
   ngOnInit(): void {
     this.employerService.getJobInformation().subscribe((res) => {
       this.JobInformation = res;
       this.getContactFormData();
+    });
+    this.getParam()
+    console.log(this.candidateData)
+  }
+
+  getParam() {
+    this.route.queryParams.subscribe((res:any)=> {
+      this.jobId= res.id;
+    })
+  }
+
+  getTasInformation() {
+    this.employerService.getTasInformation().subscribe((res: any) => {
+      this.tasInformation = res;
     });
   }
 
@@ -100,6 +120,15 @@ export class BookAnInterviewComponent implements OnInit {
       if (typeof Feathery !== 'undefined') {
         Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
         Feathery.renderAt('container', { formName: '9 Web TT Invite to Job' });
+        Feathery.setFieldValues({ '9-in-user-first-name': this.candidateData?.firstName });  
+        Feathery.setFieldValues({ '9-in-user-last-name': this.candidateData?.lastName });  
+        Feathery.setFieldValues({ '9-in-opp-role-title-tt': this.JobInformation?.jobTitle });  
+        Feathery.setFieldValues({ '9-in-opp-id-no-tt': this.JobInformation?.jobId });  
+        Feathery.setFieldValues({ '9-in-opp-location-role-from-tt': this.JobInformation?.role?.roleId });  
+        Feathery.setFieldValues({ '9-in-opp-country-role-from-tt': this.JobInformation?.countryId });  
+        Feathery.setFieldValues({ '9-in-opp-advertiser-id-no-tt': this.JobInformation?.contactId });  
+        Feathery.setFieldValues({ '9-in-opp-advertiser-user-id-no-tt': this.JobInformation?.jobId }); 
+        Feathery.setFieldValues({ '9-in-candidate-count': 1 });  // if not open from favourites list
       } else {
         console.error('Feathery script is not loaded properly.');
       }
@@ -121,6 +150,7 @@ export class BookAnInterviewComponent implements OnInit {
             email: contact.email,
             companyName: this.JobInformation?.jobTitle,
           });
+          this.loadScript();
         },
         error: (error) => {},
       });
