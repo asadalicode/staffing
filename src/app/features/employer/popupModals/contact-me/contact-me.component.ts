@@ -66,6 +66,7 @@ export class ContactMeComponent implements OnInit {
       phone: new FormControl({}, Validators.required),
     }),
   });
+  tasInformation: any;
 
   constructor(
     private readonly elementRef: ElementRef,
@@ -84,9 +85,17 @@ export class ContactMeComponent implements OnInit {
   ngOnInit() {
     this.employerService.getJobInformation().subscribe((res) => {
       this.JobInformation = res;
+      console.log(this.JobInformation)
       this.getContactFormData();
+      this.getTasInformation()
     });
   
+  }
+
+  getTasInformation() {
+    this.employerService.getTasInformation().subscribe((res: any) => {
+      this.tasInformation = res;
+    });
   }
 
   close() {
@@ -108,6 +117,11 @@ export class ContactMeComponent implements OnInit {
     if (typeof Feathery !== 'undefined') {
       Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
       Feathery.renderAt('container', { formName: '8 Web TT Contact Us' });
+      Feathery.setFieldValues({ '8-opp-tt-role-title': this.JobInformation?.jobTitle });  
+      Feathery.setFieldValues({ '8-user-first-name': this.tasInformation.name });  
+      // Feathery.setFieldValues({ '8-user-last-name': this.tasInformation.lastName });  
+      Feathery.setFieldValues({ '8-user-job-title': this.tasInformation?.jobTitle });  
+
       console.log(this.contactForm.value)
       setTimeout(()=> {
       let fName:any= document.getElementById('text_field-13');
@@ -116,7 +130,7 @@ export class ContactMeComponent implements OnInit {
       let company:any= document.getElementById('text_field-25');
       if(fName && LName && email && company) {
             fName.value= this.contactForm.value.firstName;
-            LName.value= this.contactForm.value.firstName;
+            LName.value= this.contactForm.value.lastName;
             email.value= this.contactForm.value.email;
             company.value= this.contactForm.value.companyName;
       }

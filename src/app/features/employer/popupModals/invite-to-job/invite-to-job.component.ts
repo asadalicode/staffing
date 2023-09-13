@@ -117,7 +117,7 @@ export class InviteToJobComponent implements OnInit {
       salaryStart: new FormControl('', Validators.required),
       salaryEnd: new FormControl('', Validators.required),
     });
-    this.loadScript();
+    // this.loadScript();
   }
 
   ngOnInit(): void {
@@ -141,6 +141,10 @@ export class InviteToJobComponent implements OnInit {
       if (typeof Feathery !== 'undefined') {
         Feathery.init('b993e430-8d5a-4893-8b66-c3e377f27a53');
         Feathery.renderAt('container', { formName: '9 Web TT Invite to Job' });
+        Feathery.setFieldValues({ '9-opp-role-title-tt': this.JobInformation?.jobTitle });  
+        // Feathery.setFieldValues({ '8-user-first-name': this.formStep1.value.firstName });  
+        // Feathery.setFieldValues({ '8-user-last-name': this.formStep1.value.lastName });  
+        // Feathery.setFieldValues({ '8-user-job-title': this.JobInformation?.jobTitle });  
       } else {
         console.error('Feathery script is not loaded properly.');
       }
@@ -199,6 +203,7 @@ export class InviteToJobComponent implements OnInit {
             email: contact.email,
             companyName: this.JobInformation?.jobTitle,
           });
+          this.loadScript();
         },
         error: (error) => {},
       });
