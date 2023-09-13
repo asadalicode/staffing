@@ -123,18 +123,6 @@ export class ContactMeComponent implements OnInit {
       Feathery.setFieldValues({ '8-user-job-title': this.tasInformation?.jobTitle });  
 
       console.log(this.contactForm.value)
-      setTimeout(()=> {
-      let fName:any= document.getElementById('text_field-13');
-      let LName:any= document.getElementById('text_field-24');
-      let email:any= document.getElementById('email-3');
-      let company:any= document.getElementById('text_field-25');
-      if(fName && LName && email && company) {
-            fName.value= this.contactForm.value.firstName;
-            LName.value= this.contactForm.value.lastName;
-            email.value= this.contactForm.value.email;
-            company.value= this.contactForm.value.companyName;
-      }
-    },3000)
       // this.spinner.hide();
     } else {
       console.error('Feathery script is not loaded properly.');
