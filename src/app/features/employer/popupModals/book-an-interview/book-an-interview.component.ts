@@ -56,7 +56,7 @@ export class BookAnInterviewComponent implements OnInit {
   ];
   tasInformation: any;
   jobId: any;
-
+  favCandidates=[];
   constructor(
     public dialogRef: MatDialogRef<BookAnInterviewComponent>,
     public dialog: MatDialog,
@@ -91,13 +91,37 @@ export class BookAnInterviewComponent implements OnInit {
       this.getContactFormData();
     });
     this.getParam()
-    console.log(this.candidateData)
+    this.getFavoriteCandidates();
+    console.log("this.candidateData in book interview",this.candidateData);
   }
 
   getParam() {
     this.route.queryParams.subscribe((res:any)=> {
       this.jobId= res.id;
     })
+  }
+
+  getFavoriteCandidates() {
+    this.employerService.getFavoriteCandidates().subscribe((res)=> {
+      console.log(res);
+      this.favCandidates=res;
+    })
+  }
+
+ get isFavouriteFlag() {
+    let flag;
+    this.apiService.getFavouriteFlag().subscribe((res)=> {
+      flag= res;
+    })
+    return flag;
+  }
+
+  get isAllFavouriteCandidatesFlag() {
+    let flag;
+    this.apiService.getAllFavouriteCandidatesFlag().subscribe((res)=> {
+      flag= res;
+    })
+    return flag;
   }
 
   getTasInformation() {
@@ -128,7 +152,71 @@ export class BookAnInterviewComponent implements OnInit {
         Feathery.setFieldValues({ '9-in-opp-country-role-from-tt': this.JobInformation?.countryId });  
         Feathery.setFieldValues({ '9-in-opp-advertiser-id-no-tt': this.JobInformation?.contactId });  
         Feathery.setFieldValues({ '9-in-opp-advertiser-user-id-no-tt': this.JobInformation?.jobId }); 
+        Feathery.setFieldValues({ '9-in-click-link': 'book-interview' }); 
+        if(!this.isFavouriteFlag) {
         Feathery.setFieldValues({ '9-in-candidate-count': 1 });  // if not open from favourites list
+        }
+        if(this.isFavouriteFlag && this.isAllFavouriteCandidatesFlag) {
+          Feathery.setFieldValues({ '9-in-candidate-count': this.favCandidates.length });  // if open from favourites list
+          this.favCandidates.forEach((item:any, index)=> {
+            if(index==0) {
+            Feathery.setFieldValues({ '9-in-candidate-first-name-1': item.firstName });
+            Feathery.setFieldValues({ '9-in-candidate-last-name-1': item.firstName });
+            Feathery.setFieldValues({ '9-in-candidate-experience-recent-employer-1': item?.recentRole?.roleName });
+            Feathery.setFieldValues({ '9-in-candidate-experience-recent-location-1': item.countryId });
+            Feathery.setFieldValues({ '9-in-candidate-email-1': item.email });
+            Feathery.setFieldValues({ '9-in-candidate-phone-1': item.phone });
+            Feathery.setFieldValues({ '9-in-candidate-linkedin-1': item?.linkedinId });
+            Feathery.setFieldValues({ '9-in-candidate-country-1': item.countryId });
+            Feathery.setFieldValues({ '9-in-candidate-id-1': item.talentProfileId?item?.talentProfileId:item?.externalId });
+            }
+            if(index==1) {
+              Feathery.setFieldValues({ '9-in-candidate-first-name-2': item.firstName });
+              Feathery.setFieldValues({ '9-in-candidate-last-name-2': item.firstName });
+              Feathery.setFieldValues({ '9-in-candidate-experience-recent-employer-2': item?.recentRole?.roleName });
+              Feathery.setFieldValues({ '9-in-candidate-experience-recent-location-2': item.countryId });
+              Feathery.setFieldValues({ '9-in-candidate-email-2': item.email });
+              Feathery.setFieldValues({ '9-in-candidate-phone-2': item.phone });
+              Feathery.setFieldValues({ '9-in-candidate-linkedin-2': item?.linkedinId });
+              Feathery.setFieldValues({ '9-in-candidate-country-2': item.countryId });
+              Feathery.setFieldValues({ '9-in-candidate-id-2': item.talentProfileId?item?.talentProfileId:item?.externalId });
+              }
+
+              if(index==2) {
+                Feathery.setFieldValues({ '9-in-candidate-first-name-3': item.firstName });
+                Feathery.setFieldValues({ '9-in-candidate-last-name-3': item.firstName });
+                Feathery.setFieldValues({ '9-in-candidate-experience-recent-employer-3': item?.recentRole?.roleName });
+                Feathery.setFieldValues({ '9-in-candidate-experience-recent-location-3': item.countryId });
+                Feathery.setFieldValues({ '9-in-candidate-email-3': item.email });
+                Feathery.setFieldValues({ '9-in-candidate-phone-3': item.phone });
+                Feathery.setFieldValues({ '9-in-candidate-linkedin-3': item?.linkedinId });
+                Feathery.setFieldValues({ '9-in-candidate-country-3': item.countryId });
+                Feathery.setFieldValues({ '9-in-candidate-id-3': item.talentProfileId?item?.talentProfileId:item?.externalId });
+                }
+                if(index==3) {
+                  Feathery.setFieldValues({ '9-in-candidate-first-name-4': item.firstName });
+                  Feathery.setFieldValues({ '9-in-candidate-last-name-4': item.firstName });
+                  Feathery.setFieldValues({ '9-in-candidate-experience-recent-employer-4': item?.recentRole?.roleName });
+                  Feathery.setFieldValues({ '9-in-candidate-experience-recent-location-4': item.countryId });
+                  Feathery.setFieldValues({ '9-in-candidate-email-4': item.email });
+                  Feathery.setFieldValues({ '9-in-candidate-phone-4': item.phone });
+                  Feathery.setFieldValues({ '9-in-candidate-linkedin-4': item?.linkedinId });
+                  Feathery.setFieldValues({ '9-in-candidate-country-4': item.countryId });
+                  Feathery.setFieldValues({ '9-in-candidate-id-4': item.talentProfileId?item?.talentProfileId:item?.externalId });
+                  }
+                  if(index==4) {
+                    Feathery.setFieldValues({ '9-in-candidate-first-name-5': item.firstName });
+                    Feathery.setFieldValues({ '9-in-candidate-last-name-5': item.firstName });
+                    Feathery.setFieldValues({ '9-in-candidate-experience-recent-employer-5': item?.recentRole?.roleName });
+                    Feathery.setFieldValues({ '9-in-candidate-experience-recent-location-5': item.countryId });
+                    Feathery.setFieldValues({ '9-in-candidate-email-5': item.email });
+                    Feathery.setFieldValues({ '9-in-candidate-phone-5': item.phone });
+                    Feathery.setFieldValues({ '9-in-candidate-linkedin-5': item?.linkedinId });
+                    Feathery.setFieldValues({ '9-in-candidate-country-5': item.countryId });
+                    Feathery.setFieldValues({ '9-in-candidate-id-5': item.talentProfileId?item?.talentProfileId:item?.externalId });
+                    }
+          })
+        } 
       } else {
         console.error('Feathery script is not loaded properly.');
       }

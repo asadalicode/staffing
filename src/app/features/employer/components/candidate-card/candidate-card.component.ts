@@ -88,14 +88,16 @@ export class CandidateCardComponent implements OnInit {
   }
 
   onBookInterview(): void {
+    this.apiService.setAllFavouritesFlag.next(false);
     const dialogRef = this.dialog.open(BookAnInterviewComponent, {
       panelClass: ['popup-modal', 'lg'], data:this.item
     });
   }
 
   onInviteToJob() {
+    this.apiService.setAllFavouritesFlag.next(false);
     const dialogRef = this.dialog.open(InviteToJobComponent, {
-      panelClass: ['popup-modal', 'lg'],
+      panelClass: ['popup-modal', 'lg'], data:this.item
     });
   }
 
@@ -114,9 +116,12 @@ export class CandidateCardComponent implements OnInit {
 
   toggleFavorite() {
     this.item['fav'] = !this.item['fav'];
-
     if (this.item['fav']) {
-      this.employerService.addItemToList(this.item);
+      this.employerService.getFavoriteCandidates().subscribe((res)=> {
+        if(res && res.length<5) {
+          this.employerService.addItemToList(this.item);
+        }
+    })
     } else {
       this.employerService.removeItemFromList(this.item)
     }

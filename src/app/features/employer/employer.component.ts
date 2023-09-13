@@ -27,6 +27,7 @@ export class EmployerComponent implements OnInit {
   topTalentList!: TopTalentEdmModel[];
   topTalentCandidates: any = [];
   tasInformation: any;
+  favCandidates: any;
   constructor(
     private dialog: MatDialog,
     private apiService: ApiService,
@@ -40,6 +41,7 @@ export class EmployerComponent implements OnInit {
     });
     this.getTopTalentEdmList();
     this.getJobInformation();
+    this.getSessionFavoriteCandidates();
   }
 
   loadmore() {
@@ -48,6 +50,10 @@ export class EmployerComponent implements OnInit {
     } else {
       this.itemsPerPage = this.topTalentCandidates.length;
     }
+  }
+
+  setFavouriteFlag(flag:boolean) {
+    this.apiService.setFavouritesFlag.next(flag)
   }
   
 
@@ -173,6 +179,13 @@ export class EmployerComponent implements OnInit {
     });
   }
 
+  getSessionFavoriteCandidates() {
+    this.employerService.getFavoriteCandidates().subscribe((res)=> {
+      console.log(res);
+      this.favCandidates=res;
+    })
+  }
+
   perPageLimit() {
     if (this.topTalentCandidates.length <= 4) {
       this.itemsPerPage = this.topTalentCandidates.length;
@@ -180,12 +193,21 @@ export class EmployerComponent implements OnInit {
       this.itemsPerPage = 4;
     }
   }
-  contactMe() {
-    const dialogRef = this.dialog.open(ContactMeComponent, {
-      data: {
-        title: 'Contact Me',
-      },
-      panelClass: ['popup-modal', 'lg'],
+  // contactMe() {
+  //   const dialogRef = this.dialog.open(ContactMeComponent, {
+  //     data: {
+  //       title: 'Contact Me',
+  //     },
+  //     panelClass: ['popup-modal', 'lg'],
+  //   });
+    
+  // }
+
+  onBookInterview(): void {
+    console.log(this.favCandidates);
+    this.apiService.setAllFavouritesFlag.next(true);
+    const dialogRef = this.dialog.open(BookAnInterviewComponent, {
+      panelClass: ['popup-modal', 'lg'], data:this.favCandidates?.[0]
     });
   }
 }

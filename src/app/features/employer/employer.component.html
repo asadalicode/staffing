@@ -25,14 +25,14 @@
     <div class="flex flex-row justify-between py-2">
       <div class="flex my-radio-button">
         <div class="flex items-center">
-          <input id="inline-radio" (change)="getTopTalentEdmList()" [checked]="tabSelected === 'All Candidates'" type="radio"
+          <input id="inline-radio" (click)="setFavouriteFlag(false)" (change)="getTopTalentEdmList()" [checked]="tabSelected === 'All Candidates'" type="radio"
             value="All Candidates" name="filter-candidate" class="invisible"  />
           <label for="inline-radio"  class="cursor-pointer">
             <span translate>All_Candidates</span>
           </label>
         </div>
         <div class="flex items-center">
-          <input id="inline-2-radio" [checked]="tabSelected === 'Favourites'" type="radio" value="Favourites"
+          <input id="inline-2-radio" (click)="setFavouriteFlag(true)" [checked]="tabSelected === 'Favourites'" type="radio" value="Favourites"
             name="filter-candidate" class="invisible" (change)="getFavoriteCandidates()"/>
           <label for="inline-2-radio" class="cursor-pointer"  translate>
             <span translate>Favourites</span>
@@ -60,7 +60,7 @@
           type="button"
           class="btn-primary-outline-lg"
           translate
-          (click)="contactMe()"
+          (click)="onBookInterview()"
         >
           Invite Favourite Candidates
         </button>

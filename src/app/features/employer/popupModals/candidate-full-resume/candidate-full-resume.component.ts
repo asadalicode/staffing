@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TrimTextPipe } from '@app/@shared/pipes/trim-text.pipe';
 import { BookAnInterviewComponent } from '../book-an-interview/book-an-interview.component';
 import { InviteToJobComponent } from '../invite-to-job/invite-to-job.component';
+import { ApiService } from '@app/@shared/service/api.service';
 @Component({
   selector: 'app-candidate-full-resume',
   templateUrl: './candidate-full-resume.component.html',
@@ -43,6 +44,7 @@ export class CandidateFullResumeComponent implements OnInit {
     public trimPipe: TrimTextPipe,
     private employerService: EmployerService,
     private cdr: ChangeDetectorRef,
+    private apiService: ApiService,
     private ngZone: NgZone,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
@@ -132,14 +134,16 @@ export class CandidateFullResumeComponent implements OnInit {
     this.dialogRef.close();
   }
   onBookInterview(): void {
+    this.apiService.setAllFavouritesFlag.next(false);
     const dialogRef = this.dialog.open(BookAnInterviewComponent, {
-      panelClass: ['popup-modal', 'lg'],
+      panelClass: ['popup-modal', 'lg'],data:this.talentSummary
     });
   }
 
   onInviteToJob() {
+    this.apiService.setAllFavouritesFlag.next(false);
     const dialogRef = this.dialog.open(InviteToJobComponent, {
-      panelClass: ['popup-modal', 'lg'],
+      panelClass: ['popup-modal', 'lg'],data:this.talentSummary
     });
   }
 

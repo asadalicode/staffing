@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 interface IAPI {
   url: string;
@@ -13,6 +13,18 @@ interface IAPI {
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
+
+  setFavouritesFlag= new BehaviorSubject<boolean>(false);
+  setAllFavouritesFlag= new BehaviorSubject<boolean>(false);
+
+  getFavouriteFlag():Observable<boolean> {
+    return this.setFavouritesFlag.asObservable();
+  }
+
+  getAllFavouriteCandidatesFlag():Observable<boolean> {
+    return this.setAllFavouritesFlag.asObservable();
+  }
+
 
   getAPI(params: IAPI): Observable<any> {
     return this.http
