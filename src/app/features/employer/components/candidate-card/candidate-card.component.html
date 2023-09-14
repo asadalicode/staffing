@@ -95,12 +95,16 @@
       Qualifications
     </h3>
     <div class="text-secondary-light mt-4">
-      <ng-container *ngFor="let qualification of item?.qualifications">
+      <ng-container *ngFor="let qualification of item?.qualifications.slice(0,sliceCandidatesList ? 3: item.qualifications.length)">
         <div class="grid sm:grid-cols-2 px-3 mb-4">
           <span class="font-semibold text-2sm">{{qualification.level}} - {{qualification.course}}</span>
           <span class="sm:text-right font-light text-[14px]">{{qualification.institute}}</span>
         </div>
       </ng-container>
+      <button type="button" *ngIf="sliceCandidatesList" (click)="sliceCandidatesList = !sliceCandidatesList"
+      class="font-normal text-[#202020] text-sm">
+      +{{item?.allRoles.length - 3}} Other Candidates
+    </button>
 
       <!-- 
       <div class="grid sm:grid-cols-2 px-3 mb-4">

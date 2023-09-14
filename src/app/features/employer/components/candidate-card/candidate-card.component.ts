@@ -22,6 +22,7 @@ import { TalentSummaryModel } from '@app/@shared/dataModels';
 export class CandidateCardComponent implements OnInit {
   @Input() item!: any;
   sliceRolesList = true;
+  sliceCandidatesList = true;
   jobInformation!: any;
   candidateFullName = '';
   startPage : number;
