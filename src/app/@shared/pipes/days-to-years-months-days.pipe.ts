@@ -16,7 +16,7 @@ export class DaysToYearsMonthsDaysPipe implements PipeTransform {
       let y = years === 1 ? ' year ' : ' years ';
       result += years + y;
     }
-    if (months > 0) {
+    if (years<1 && months > 0) {
       let m = months === 1 ? ' month ': ' months '
       result += months + m;
     }

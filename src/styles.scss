@@ -190,7 +190,8 @@ body {
       @apply sm:w-[696px] w-[100%];
     }
     &.lg {
-      @apply sm:w-[862px] w-[100%];
+      // @apply sm:w-[862px] w-[100%];
+      @apply w-auto;
     }
     mat-dialog-container {
       max-height: 90vh;
